@@ -56,7 +56,7 @@
       color: #fff !important;
       position: relative;
     }
-    /* Markdown styles for answer section */
+    /* Markdown styles for answer and question */
     .markdown-body {
       background-color: #000;
       color: #fff;
@@ -164,10 +164,10 @@
   </script>
   
   <script type="text/babel">
-    const { useState, useEffect, useReducer } = React;
+    const { useState, useEffect, useReducer, useRef } = React;
     const TIME_UNIT = 60000; // 1 minute for testing.
     
-    // Generate a unique ID using blueimp-md5 and a padded order.
+    // Generate a unique ID using blueimp-md5 and padded order.
     function generateId(url, order) {
       let hash = md5(url);
       return `${hash}-${String(order).padStart(5, '0')}`;
@@ -266,6 +266,11 @@
       const [isFullscreen, setIsFullscreen] = useState(false);
       const [showHelp, setShowHelp] = useState(false);
       
+      // Refs for touch events.
+      const lastTapRef = useRef(0);
+      const touchStartXRef = useRef(0);
+      const touchStartYRef = useRef(0);
+      
       // On mount, load flashcards, sources, and active source from localStorage.
       useEffect(() => {
         const savedCards = JSON.parse(localStorage.getItem("flashcards") || "[]");
@@ -314,6 +319,40 @@
           document.msExitFullscreen();
         }
         setIsFullscreen(false);
+      }
+      
+      // Touch event handlers for tablet gestures.
+      function handleTouchStart(e) {
+        const touch = e.touches[0];
+        touchStartXRef.current = touch.clientX;
+        touchStartYRef.current = touch.clientY;
+      }
+      function handleTouchEnd(e) {
+        const touch = e.changedTouches[0];
+        const deltaX = touch.clientX - touchStartXRef.current;
+        const deltaY = touch.clientY - touchStartYRef.current;
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTapRef.current;
+        if (tapLength < 300 && tapLength > 0) {
+          // Double tap toggles fullscreen.
+          if (isFullscreen) {
+            exitFullscreen();
+          } else {
+            enterFullscreen();
+          }
+          lastTapRef.current = 0;
+          return;
+        } else {
+          lastTapRef.current = currentTime;
+        }
+        // Swipe detection: horizontal swipe.
+        if (Math.abs(deltaX) > 100 && Math.abs(deltaY) < 50) {
+          if (deltaX > 0) {
+            handleAnswer(true);
+          } else {
+            handleAnswer(false);
+          }
+        }
       }
       
       // Load flashcards from all current sources.
@@ -456,13 +495,11 @@
       useEffect(() => {
         function handleKeyDown(e) {
           if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-          // If help modal is open, Esc closes it.
           if (showHelp && e.key === "Escape") {
             setShowHelp(false);
             e.preventDefault();
             return;
           }
-          // Toggle fullscreen on "f" key.
           if (e.key === "f" || e.key === "F") {
             if (isFullscreen) {
               exitFullscreen();
@@ -472,7 +509,6 @@
             e.preventDefault();
             return;
           }
-          // If in fullscreen, Esc also exits it.
           if (isFullscreen && e.key === "Escape") {
             exitFullscreen();
             e.preventDefault();
@@ -508,11 +544,12 @@
                 <code>ArrowLeft</code>: Mark as Incorrect (Needs Practice)<br/>
                 <code>ArrowRight</code>: Mark as Correct (Mastered)<br/>
                 <code>C</code>: Clear source selection<br/>
-                <code>F</code>: Toggle Fullscreen mode (for the Q/A card only)
+                <code>F</code>: Toggle Fullscreen (for the Q/A card only)
               </p>
               <p>
                 <strong>Memorization Algorithm:</strong><br/>
-                This app uses a spaced repetition technique (similar to SM‑2). Correct answers increase the review interval, while incorrect answers reset it. This way, challenging cards are reviewed more frequently.
+                This app uses a spaced repetition technique (similar to SM‑2). Correct answers increase the review interval,
+                while incorrect answers reset it. This ensures that challenging cards are reviewed more frequently.
               </p>
               <p>
                 Use these shortcuts to navigate quickly and study with minimal distraction.
@@ -522,7 +559,7 @@
         );
       };
       
-      // Render Review View.
+      // Render the Review View.
       const renderReview = () => {
         if (totalCards === 0) {
           return (
@@ -537,9 +574,7 @@
         return (
           <div className="card card-custom question-box">
             <div className="card-header">
-              <h4 className="mb-0">
-                <i className="fas fa-eye fa-spin"></i> {currentCard.question}
-              </h4>
+              <h4 className="mb-0" dangerouslySetInnerHTML={{ __html: marked.parse(currentCard.question) }}></h4>
               <small>
                 Last reviewed: {currentCard.lastReviewed ? new Date(currentCard.lastReviewed).toLocaleString() : "Never"}
               </small>
@@ -577,7 +612,7 @@
         );
       };
       
-      // Render Sources management view.
+      // Render the Sources Management View.
       const renderSources = () => {
         return (
           <div className="card card-custom">
@@ -610,10 +645,9 @@
                   <h5>Current Sources:</h5>
                   <ul className="list-group">
                     {sources.map((src, i) => {
-                      let displayUrl = src.url;
-                      if (displayUrl.toLowerCase().endsWith(".json")) {
-                        displayUrl = displayUrl.slice(0, -5);
-                      }
+                      // Show only the last part of the URL.
+                      let parts = src.url.split('/');
+                      let displayUrl = parts.pop() || parts.pop();
                       return (
                         <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
                           <div>
@@ -673,7 +707,7 @@
       
       return (
         <>
-          {/* Top Navigation (always shown) */}
+          {/* Top Navigation (always shown when not fullscreen) */}
           {!isFullscreen && (
             <nav className="navbar fixed-top" style={{ backgroundColor: "#222", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
               <span className="navbar-brand">
@@ -705,8 +739,10 @@
           
           {/* Main Container */}
           <div className="container-fluid" style={{ height: "100vh" }}>
-            {/* Main Content Area */}
-            <div id="mainContent" className="main-content">
+            {/* Main Content Area with touch handlers */}
+            <div id="mainContent" className="main-content"
+                 onTouchStart={handleTouchStart}
+                 onTouchEnd={handleTouchEnd}>
               {activeTab === "review" ? renderReview() : renderSources()}
             </div>
             {/* In non-fullscreen mode, show bottom source filter bar and footer */}
@@ -718,10 +754,8 @@
                       <div className="col-12 text-center">
                         <div className="btn-group btn-group-sm" role="group" aria-label="Source Filter">
                           {sources.map(src => {
-                            let displayUrl = src.url;
-                            if (displayUrl.toLowerCase().endsWith(".json")) {
-                              displayUrl = displayUrl.slice(0, -5);
-                            }
+                            let parts = src.url.split('/');
+                            let displayUrl = parts.pop() || parts.pop();
                             return (
                               <button 
                                 key={src.url}
