@@ -1,5 +1,55 @@
 [
   {
+    "question": "How do you query an Iceberg table in Trino?",
+    "answer": "Iceberg is a high-performance table format for data lakes that enables ACID transactions. Trino provides an Iceberg connector to query these tables efficiently.\n\nYou can query an Iceberg table using:\n```sql\nSELECT * FROM iceberg.schema_name.table_name LIMIT 10;\n```\nThis retrieves all columns from the Iceberg table while limiting the output to 10 rows to optimize performance.",
+    "reference": "https://www.google.com/search?q=Trino+Iceberg+Query"
+  },
+  {
+    "question": "How do you create a schema in Trino?",
+    "answer": "A schema in Trino is a logical namespace that organizes tables. When using **Hive, Iceberg, or Delta Lake**, schemas are usually associated with object storage (S3, HDFS, etc.).\n\nTo create a schema in Trino with the Hive connector:\n```sql\nCREATE SCHEMA hive.my_schema WITH (location = 's3://my-bucket/my-schema/');\n```\nThis statement:\n1. Creates a schema named `my_schema`.\n2. Associates it with an S3 bucket location.\n3. Requires the Hive metastore for catalog management.",
+    "reference": "https://www.google.com/search?q=Trino+Create+Schema"
+  },
+  {
+    "question": "How do you create a table in Trino using Iceberg?",
+    "answer": "Apache Iceberg provides table versioning, schema evolution, and efficient metadata management. In Trino, you can create an Iceberg table using:\n```sql\nCREATE TABLE iceberg.my_schema.my_table (\n    id INT,\n    name STRING,\n    created_at TIMESTAMP\n) WITH (\n    format = 'PARQUET',\n    location = 's3://my-bucket/my-table/'\n);\n```\n### Explanation:\n- `format = 'PARQUET'` ensures the table uses Parquet file format for storage.\n- `location` specifies the storage path.\n- Iceberg ensures efficient metadata tracking and snapshot isolation.",
+    "reference": "https://www.google.com/search?q=Trino+Iceberg+Create+Table"
+  },
+  {
+    "question": "How do you insert data into an Iceberg table in Trino?",
+    "answer": "You can insert data into an Iceberg table using the standard SQL `INSERT` statement:\n```sql\nINSERT INTO iceberg.my_schema.my_table (id, name, created_at) \nVALUES (1, 'Alice', CURRENT_TIMESTAMP);\n```\n### How It Works:\n- Trino writes the data to Iceberg’s metadata and physical storage.\n- **Iceberg ensures ACID compliance**, meaning concurrent queries and modifications are handled safely.\n- Metadata is updated to reflect the new table state.",
+    "reference": "https://www.google.com/search?q=Trino+Iceberg+Insert"
+  },
+  {
+    "question": "How do you filter data efficiently when querying an Iceberg table in Trino?",
+    "answer": "When querying large datasets, filtering efficiently helps reduce the amount of scanned data, improving performance.\n```sql\nSELECT * FROM iceberg.my_schema.my_table \nWHERE created_at > TIMESTAMP '2023-01-01 00:00:00';\n```\n### How It Works:\n- **Partition Pruning**: If the table is partitioned by `created_at`, Trino will automatically skip unnecessary partitions.\n- **Metadata Filtering**: Iceberg stores metadata separately, allowing Trino to check relevant partitions first before scanning files.",
+    "reference": "https://www.google.com/search?q=Trino+Iceberg+Query+Filter"
+  },
+  {
+    "question": "How do you delete data from an Iceberg table in Trino?",
+    "answer": "Iceberg allows row-level deletes without rewriting entire partitions. You can delete records using:\n```sql\nDELETE FROM iceberg.my_schema.my_table WHERE id = 1;\n```\n### How It Works:\n- Iceberg does **soft deletes**, meaning deleted rows are **marked as removed** but physically exist until compaction occurs.\n- A background **compaction job** may be required to permanently remove deleted data.",
+    "reference": "https://www.google.com/search?q=Trino+Iceberg+Delete+Row"
+  },
+  {
+    "question": "How do you update an Iceberg table in Trino?",
+    "answer": "Updating records in Iceberg follows an **ACID-compliant transactional approach**:\n```sql\nUPDATE iceberg.my_schema.my_table SET name = 'Bob' WHERE id = 1;\n```\n### How It Works:\n- Updates in Iceberg are **copy-on-write**, meaning a new snapshot is created with updated records.\n- Older versions remain available until manually expired or garbage collected.",
+    "reference": "https://www.google.com/search?q=Trino+Iceberg+Update+Table"
+  },
+  {
+    "question": "How do you optimize an Iceberg table in Trino?",
+    "answer": "To compact and reorganize an Iceberg table for better query performance, run:\n```sql\nCALL iceberg.system.optimize('my_schema.my_table');\n```\n### How It Works:\n- Merges small files into larger ones (reducing small file overhead).\n- Removes deleted records if soft deletes were used.\n- Updates metadata for better query efficiency.",
+    "reference": "https://www.google.com/search?q=Trino+Optimize+Iceberg+Table"
+  },
+  {
+    "question": "How do you enforce access control using file-based rules in Trino?",
+    "answer": "Trino supports **file-based access control** where policies are defined in JSON. Example:\n```json\n{\n  \"catalog\": \"hive\",\n  \"schema\": \"sales\",\n  \"table\": \"transactions\",\n  \"columns\": [\n    { \"name\": \"credit_card_number\", \"masking\": \"HASH\" }\n  ]\n}\n```\n### How It Works:\n- Defines access rules for catalogs, schemas, and tables.\n- Columns like `credit_card_number` are masked for security.\n- This file is loaded into Trino’s configuration for enforcement.",
+    "reference": "https://www.google.com/search?q=Trino+File-Based+Access+Control"
+  },
+  {
+    "question": "How do you configure Trino to use Iceberg with AWS S3?",
+    "answer": "Modify the Trino `catalog.properties` file to enable Iceberg with an AWS S3-backed Hive Metastore:\n```ini\nconnector.name=iceberg\niceberg.catalog.type=hive\nhive.metastore.uri=thrift://metastore-host:9083\niceberg.catalog.warehouse=s3://my-warehouse/\n```\n### How It Works:\n- Defines Iceberg as the table format.\n- Uses **Hive Metastore** for metadata management.\n- Data is stored in **AWS S3**, ensuring scalability and cost efficiency.",
+    "reference": "https://www.google.com/search?q=Trino+Iceberg+AWS+S3"
+  },
+  {
     "id": 1001,
     "question": "What is Trino?",
     "answer": "Trino is a distributed SQL query engine designed to query large datasets distributed across one or more diverse data sources.",
