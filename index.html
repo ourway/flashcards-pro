@@ -27,6 +27,7 @@ html, body {
   overscroll-behavior: contain;
   overflow-scrolling: touch;
   margin: 0;
+  background-color: #000;
   padding: 0;
 }
 body {
@@ -36,7 +37,13 @@ body {
   background-color: #000;
   font-family: -apple-system, system-ui, sans-serif;
   line-height: 1.5;
+  /* webkit font optimisation */
+  -webkit-font-smoothing: antialiased;
+
 }
+  .card-header {
+	  .background-color: #222;
+  }
 
 /* Slightly smaller base font on tablets and up */
 @media (min-width: 768px) {
@@ -144,7 +151,7 @@ input, textarea {
 /* "Due" display: slightly larger, monospace */
 .due-display {
   font-family: monospace;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 /* Source filter bar: fixed at the bottom (above footer), horizontal scroll */
@@ -691,7 +698,7 @@ input, textarea {
         const currentCard = filteredCards[0];
         return (
           <div className="card card-custom question-box">
-            <div className="card-header">
+	    <div className="card-header" style={{ backgroundColor: "#222"}}>
               <h4 className="mb-0" dangerouslySetInnerHTML={{ __html: marked.parse(currentCard.question) }}></h4>
               <small>
                 Last reviewed: {currentCard.lastReviewed ? new Date(currentCard.lastReviewed).toLocaleString() : "Never"}
@@ -717,7 +724,7 @@ input, textarea {
               )}
             </div>
             {showAnswer && (
-              <div className="card-footer d-flex justify-content-between">
+              <div className="card-footer d-flex justify-content-between" style={{ backgroundColor: "#222"}} >
                 <button className="btn btn-danger" onClick={() => handleAnswer(false)}>
                   <i className="fas fa-times"></i> Needs Practice
                 </button>
@@ -833,21 +840,24 @@ input, textarea {
               </span>
               <div className="d-flex align-items-center">
                 <span className="badge due-display mr-3">
-                  <i className="fas fa-bell"></i> Due: {state.cards.filter(card => card.nextReview <= Date.now()).length}
+			<i className="fas fa-bell"></i> Due:&nbsp;
+			<code>{state.cards.filter(card => card.nextReview <=
+			   Date.now()).length}</code>
                 </span>
-                <div className="progress mr-3" style={{ width: "100px", height: "30px" }}>
+                <div className="progress mr-3" style={{ width: "100px",
+			height: "10px" }}>
                   <div className="progress-bar bg-success" role="progressbar" style={{ width: `${progress}%` }}>
                     {progress}%
                   </div>
                 </div>
                 <div className="btn-group">
-                  <button className="btn btn-secondary top-btn" onClick={() => setActiveTab("review")}>
+                  <button className="btn top-btn" onClick={() => setActiveTab("review")}>
                     <i className="fas fa-eye"></i> Review
                   </button>
-                  <button className="btn btn-light top-btn" onClick={() => setActiveTab("sources")}>
+                  <button className="btn btn-sm top-btn" onClick={() => setActiveTab("sources")}>
                     <i className="fas fa-link"></i> Sources
                   </button>
-                  <button className="btn btn-dark top-btn" onClick={() => setShowHelp(true)}>
+                  <button className="btn btn-sm top-btn" onClick={() => setShowHelp(true)}>
                     <i className="fas fa-question-circle"></i> Help
                   </button>
                 </div>
@@ -856,7 +866,7 @@ input, textarea {
           )}
           
           {/* Main Container */}
-          <div className="container-fluid">
+          <div className="container">
             {/* Main Content Area */}
             <div
               id="mainContent"

@@ -3,8 +3,8 @@
   "short_name": "Flashcards",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#2c3e50",
-  "theme_color": "#343a40",
+  "background_color": "#222",
+  "theme_color": "#222",
   "icons": [
     {
       "src": "icon.png",
