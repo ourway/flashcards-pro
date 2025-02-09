@@ -1,434 +1,363 @@
 [
   {
-    "id": 20001,
     "question": "What was the primary focus of Iceberg Format Version 1?",
     "answer": "Version 1 of the Iceberg format focused on establishing the foundation for **analytic data tables**. It introduced core features like schema evolution, partitioning, and efficient metadata management to enable reliable and performant querying of large datasets in data lakes.",
     "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20002,
     "question": "What key capability was introduced in Iceberg Format Version 2?",
-    "answer": "Iceberg Format Version 2 introduced **row-level deletes**. This major feature added support for efficiently deleting individual rows from Iceberg tables, enabling use cases like GDPR compliance and data correction without rewriting entire partitions.",
+    "answer": "Iceberg Format Version 2 introduced **row-level deletes**. This major feature added support for efficiently deleting individual rows from Iceberg tables, enabling use cases like GDPR compliance and data correction without rewriting entire partitions.\n\n**Example (Trino):**\n```sql\n-- Row-level delete in Trino\nDELETE FROM iceberg.my_catalog.my_table\nWHERE user_id = 1234;\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\"DELETE FROM iceberg.my_catalog.my_table WHERE user_id = 1234\")\n```",
     "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20003,
     "question": "What enhancements were brought in Iceberg Format Version 3?",
     "answer": "Version 3 of the Iceberg format expanded Iceberg's capabilities with **extended types and features**. This included support for decimal types with higher precision, UUID types, fixed-length binary types, and potentially other extended functionalities to enhance data representation and processing within Iceberg.",
     "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20004,
     "question": "What are the main design goals of Apache Iceberg?",
     "answer": "The main design goals of Apache Iceberg are:\n- **Scale:** Support very large tables with petabytes of data and beyond.\n- **Performance:** Enable fast query execution through optimized metadata and data layouts.\n- **Reliability:** Ensure data consistency and atomicity for table operations.\n- **Schema Evolution:** Allow seamless schema changes without rewriting data.\n- **Data Lake Compatibility:** Integrate seamlessly with existing data lake storage and compute engines.\n- **SQL Compatibility:** Provide a table format that supports SQL semantics and operations.",
-    "reference": "https://iceberg.apache.org/spec#goals"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20005,
     "question": "Provide a high-level overview of Apache Iceberg's architecture.",
     "answer": "Apache Iceberg operates as a **table format** layered on top of a data lake storage system. It manages **metadata** about tables (schema, partitioning, snapshots) independently from data files. Query engines interact with Iceberg via a **catalog** to discover tables and retrieve metadata. Iceberg uses **manifests** and **snapshots** to track data files and enable features like time travel and schema evolution. **Optimistic concurrency** ensures consistent table updates.",
-    "reference": "https://iceberg.apache.org/spec#overview"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20006,
     "question": "Explain how Optimistic Concurrency is used in Iceberg.",
-    "answer": "Iceberg uses **optimistic concurrency** to manage concurrent writes. Writers assume that concurrent modifications are rare and attempt to commit changes based on the current table metadata version. If a conflict is detected (metadata version has changed), the commit fails and the writer must retry the operation based on the updated metadata. This approach avoids expensive locking mechanisms and is efficient for data lake workloads.",
-    "reference": "https://iceberg.apache.org/spec#optimistic-concurrency"
+    "answer": "Iceberg uses **optimistic concurrency** to manage concurrent writes. Writers assume that concurrent modifications are rare and attempt to commit changes based on the current table metadata version. If a conflict is detected (because the metadata version has changed), the commit fails and the writer must retry the operation with the updated metadata. This approach avoids expensive locking mechanisms and is efficient for data lake workloads.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20007,
     "question": "What role do Sequence Numbers play in Iceberg?",
     "answer": "Sequence numbers in Iceberg provide a **total ordering of changes** to a table. Each manifest and data file is assigned a sequence number during commits. These numbers are crucial for features like incremental processing, change data capture (CDC), and understanding the order of events in a table's history. They help track the evolution of the table over time.",
-    "reference": "https://iceberg.apache.org/spec#sequence-numbers"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20008,
     "question": "Describe the Row-level Deletes feature in Iceberg and its significance.",
-    "answer": "**Row-level deletes** in Iceberg allow for deleting individual rows without rewriting entire data files or partitions. This is achieved through **delete files** (position and equality deletes) that record which rows should be considered deleted. This feature significantly improves efficiency for data modification operations and enables use cases requiring fine-grained data removal like GDPR compliance.",
-    "reference": "https://iceberg.apache.org/spec#row-level-deletes"
+    "answer": "**Row-level deletes** in Iceberg allow for deleting individual rows without rewriting entire data files or partitions. This is achieved through **delete files** (position and equality deletes) that record which rows should be considered deleted. This feature significantly improves efficiency for data modification operations and enables use cases requiring fine-grained data removal like GDPR compliance.\n\n**Example (Trino):**\n```sql\nDELETE FROM iceberg.my_catalog.my_table\nWHERE region = 'EU';\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\"DELETE FROM iceberg.my_catalog.my_table WHERE region = 'EU'\")\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20009,
     "question": "How does Iceberg manage File System Operations for tables?",
-    "answer": "Iceberg operations involve various file system interactions, including reading and writing metadata files (table metadata, manifests, manifest lists), and data files. These operations are typically handled by the underlying storage system (e.g., Hadoop HDFS, cloud object storage). Iceberg specification outlines requirements for **atomic file operations** to ensure consistency, such as atomic rename for commits.",
-    "reference": "https://iceberg.apache.org/spec#file-system-operations"
+    "answer": "Iceberg operations involve various file system interactions, including reading and writing metadata files (table metadata, manifests, manifest lists) and data files. These operations are typically handled by the underlying storage system (e.g., Hadoop HDFS, cloud object storage). Iceberg outlines requirements for **atomic file operations** (such as atomic rename) to ensure consistency during commits.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20010,
     "question": "Define the term 'Catalog' in the context of Iceberg.",
     "answer": "In Iceberg, a **Catalog** is responsible for managing metadata about tables. It serves as a registry for Iceberg tables, storing the location of the current table metadata file and providing an API to access and manipulate tables. Examples include Hadoop Metastore, Hive Metastore, and AWS Glue Catalog. The catalog enables engines to discover and interact with Iceberg tables.",
-    "reference": "https://iceberg.apache.org/spec#terms"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20011,
     "question": "What is a 'Metadata File' in Iceberg?",
     "answer": "A **Metadata File** in Iceberg is a small, stable file whose location is tracked by the catalog. It's the entry point to the current table metadata. It always points to the latest version of the **Table Metadata** file and is updated atomically during commits.",
-    "reference": "https://iceberg.apache.org/spec#terms"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20012,
     "question": "Define 'Table Metadata' in Iceberg and its purpose.",
     "answer": "**Table Metadata** in Iceberg is a file (JSON or Avro) containing comprehensive information about a table's schema, partitioning, snapshots, locations of manifest lists, and other table properties. It defines the current state of the table and evolves with each commit. It's crucial for query planning, time travel, and schema evolution.",
-    "reference": "https://iceberg.apache.org/spec#terms"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20013,
     "question": "What is an Iceberg 'Snapshot'?",
     "answer": "An Iceberg **Snapshot** represents a consistent, point-in-time view of a table. Each snapshot has a unique ID and references a set of **Manifest Lists**. Snapshots are immutable and enable time travel and version rollback. They capture the table's state at a specific commit.",
-    "reference": "https://iceberg.apache.org/spec#terms"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20014,
     "question": "Describe 'Manifest Lists' in Iceberg.",
     "answer": "**Manifest Lists** are files that list multiple **Manifest Files**. Each manifest list belongs to a snapshot and groups manifest files together. They improve metadata organization and scan performance by providing a higher-level index to manifest files.",
-    "reference": "https://iceberg.apache.org/spec#terms"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20015,
     "question": "What are 'Manifest Files' in Iceberg?",
     "answer": "**Manifest Files** contain metadata about a set of **Data Files**. For each data file, a manifest file records its path, partition values, statistics (like record count, min/max values), and file format. Manifest files are essential for efficient scan planning and data filtering.",
-    "reference": "https://iceberg.apache.org/spec#terms"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20016,
     "question": "Define 'Data Files' in Iceberg.",
-    "answer": "**Data Files** are the actual files storing the table data, typically in formats like Parquet, Avro, or ORC. Iceberg metadata tracks these data files via manifest files. The content and format of data files are managed by Iceberg based on the table schema and configuration.",
-    "reference": "https://iceberg.apache.org/spec#terms"
+    "answer": "**Data Files** are the actual files storing the table data, typically in formats like Parquet, Avro, or ORC. Iceberg metadata tracks these data files via manifest files. The content and format of data files are determined by the table’s schema and configuration.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20017,
     "question": "What are the key Writer Requirements for Iceberg implementations?",
     "answer": "Iceberg writer implementations must adhere to requirements such as:\n- **Atomic Commits:** Ensure changes are applied atomically using file system operations like atomic rename.\n- **Metadata Consistency:** Maintain consistent metadata updates to avoid data corruption or inconsistencies.\n- **Sequence Number Assignment:** Correctly assign and track sequence numbers for manifests and data files.\n- **Metadata File Format:** Write metadata files in the specified format (JSON or Avro).",
-    "reference": "https://iceberg.apache.org/spec#writer-requirements"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20018,
     "question": "Describe the general process of Writing Data Files to an Iceberg table.",
     "answer": "Writing data files to an Iceberg table typically involves:\n1. **Writing Data:** Write data records to data files in a supported format (e.g., Parquet).\n2. **Creating Manifests:** Generate manifest files that list the newly written data files and their metadata.\n3. **Updating Manifest Lists:** Add the new manifest files to a manifest list.\n4. **Creating a New Snapshot:** Create a new snapshot that references the updated manifest list.\n5. **Committing Metadata:** Atomically update the table metadata file to point to the new snapshot.",
-    "reference": "https://iceberg.apache.org/spec#writing-data-files"
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20019,
     "question": "What are the Schema and Data Type capabilities supported by Iceberg?",
-    "answer": "Iceberg supports rich schemas with features like:\n- **Primitive Types:** Standard data types like integers, floats, strings, booleans, dates, timestamps, and binary.\n- **Nested Types:** Structs, lists (arrays), and maps to represent complex data structures.\n- **Semi-structured Types:** Support for evolving schemas and handling data with varying structures.\n- **Schema Evolution:** Ability to add, delete, rename columns without data rewriting.\n- **Default Values:** Specifying default values for columns in the schema.",
-    "reference": "https://iceberg.apache.org/spec#schemas-and-data-types"
+    "answer": "Iceberg supports rich schemas with features like:\n- **Primitive Types:** Standard data types (integers, floats, strings, booleans, dates, timestamps, binary, etc.).\n- **Nested Types:** Structs, lists (arrays), and maps to represent complex data structures.\n- **Semi-structured Types:** Flexible handling of evolving or partially structured data.\n- **Schema Evolution:** Ability to add, delete, rename columns without data rewriting.\n- **Default Values:** Specifying default values for columns in the schema for backward compatibility.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20020,
     "question": "Explain Nested Types in Iceberg schemas.",
-    "answer": "**Nested types** in Iceberg allow defining complex data structures within a table's schema. These include:\n- **Structs:**  Ordered collections of fields, each with a name and type (similar to records or objects).\n- **Lists (Arrays):** Ordered lists of elements of the same data type.\n- **Maps:** Key-value pairs where keys and values have defined data types.  Nesting allows for representing complex hierarchical data.",
-    "reference": "https://iceberg.apache.org/spec#nested-types"
+    "answer": "**Nested types** in Iceberg allow defining complex data structures within a table's schema. These include:\n- **Structs:** Ordered collections of fields, each with a name and type (similar to records or objects).\n- **Lists (Arrays):** Ordered lists of elements of the same data type.\n- **Maps:** Key-value pairs where keys and values have defined data types.\n\nSuch nesting allows for representing complex hierarchical data while still benefiting from Iceberg’s efficient metadata management.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20021,
     "question": "What are Semi-structured Types in Iceberg and why are they important?",
-    "answer": "**Semi-structured types** in Iceberg refers to its ability to handle evolving schemas and data that might not strictly conform to a rigid, pre-defined structure. Schema evolution features and support for nested types enable Iceberg to manage data that is inherently semi-structured or undergoes schema changes over time. This is crucial for modern data lake scenarios.",
-    "reference": "https://iceberg.apache.org/spec#semi-structured-types"
+    "answer": "**Semi-structured types** in Iceberg refers to the table format’s ability to manage data that might not strictly conform to a fixed schema, or that evolves rapidly. Because Iceberg supports schema evolution and nested types, it can handle these changing data structures over time without requiring a complete rewrite of existing data. This is crucial for modern data lake scenarios where data structures often evolve.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20022,
     "question": "List the Primitive Data Types supported by Iceberg.",
-    "answer": "Iceberg supports common primitive data types including:\n- **Boolean:** `boolean`\n- **Integer:** `int`, `long`\n- **Floating-point:** `float`, `double`\n- **String:** `string`\n- **Binary:** `binary`, `fixed[L]` (fixed-length binary)\n- **Date:** `date`\n- **Time:** `time`\n- **Timestamp:** `timestamp`, `timestamptz` (with time zone)\n- **UUID:** `uuid`\n- **Decimal:** `decimal(P, S)` (precision P, scale S)",
-    "reference": "https://iceberg.apache.org/spec#primitive-types"
+    "answer": "Iceberg supports common primitive data types including:\n- **Boolean:** `boolean`\n- **Integer:** `int`, `long`\n- **Floating-point:** `float`, `double`\n- **String:** `string`\n- **Binary:** `binary`, `fixed[L]`\n- **Date:** `date`\n- **Time:** `time`\n- **Timestamp:** `timestamp`, `timestamptz` (with time zone)\n- **UUID:** `uuid`\n- **Decimal:** `decimal(P, S)` (precision P, scale S)",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20023,
     "question": "How are Default Values handled in Iceberg schemas?",
-    "answer": "Iceberg schemas can specify **default values** for columns. When new columns are added via schema evolution, a default value can be assigned. For existing rows written before the column addition, query engines will typically return the default value when the new column is projected. Default values ensure backward compatibility and handle schema changes gracefully.",
-    "reference": "https://iceberg.apache.org/spec#default-values"
+    "answer": "Iceberg schemas can specify **default values** for columns. When new columns are added via schema evolution, a default value can be assigned. For existing rows written before the column addition, query engines typically return the default value when the new column is projected. This allows seamless schema changes without rewriting older data.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20024,
     "question": "Explain the concept of Schema Evolution in Iceberg.",
-    "answer": "**Schema evolution** in Iceberg allows modifying a table's schema (adding, dropping, renaming columns, changing column types, updating nullability) without rewriting existing data files. Iceberg tracks schema versions in metadata. Queries use the schema version valid at the time of the snapshot being queried. This avoids costly and disruptive table migrations for schema changes.",
-    "reference": "https://iceberg.apache.org/spec#schema-evolution"
+    "answer": "**Schema evolution** in Iceberg allows modifying a table's schema—such as adding, dropping, or renaming columns—without rewriting existing data files. Iceberg maintains schema versions in its metadata, so queries use the schema valid at the time of the snapshot they read. This avoids expensive migrations and makes ongoing schema management much simpler.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20025,
     "question": "What is Column Projection in Iceberg and why is it important for performance?",
-    "answer": "**Column projection** is an optimization technique where query engines only read the columns that are actually needed for a query, rather than reading all columns in a data file. Iceberg's metadata allows engines to efficiently determine which data files and which columns within those files are relevant to a query, minimizing I/O and improving query performance, especially for tables with wide schemas.",
-    "reference": "https://iceberg.apache.org/spec#column-projection"
+    "answer": "**Column projection** is an optimization technique where only the columns needed for a query are read from the underlying files. Since many table formats (e.g., Parquet) are columnar, Iceberg's metadata allows query engines to skip reading unnecessary columns, reducing I/O and speeding up queries—especially for wide tables where many columns might be unused in a given query.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20026,
     "question": "What is the purpose of Identifier Field IDs in Iceberg schemas?",
-    "answer": "**Identifier Field IDs** are unique integer IDs assigned to each field (column) in an Iceberg schema. These IDs are used to track columns across schema evolution. When a schema evolves (e.g., renaming a column), the field ID remains the same, allowing Iceberg to maintain column lineage and correctly interpret data even after schema changes. This is crucial for schema evolution and column projection.",
-    "reference": "https://iceberg.apache.org/spec#identifier-field-ids"
+    "answer": "**Identifier Field IDs** are unique integer IDs assigned to each field in an Iceberg schema. These IDs remain constant even if the field's name changes. This approach ensures stable column references across schema evolutions—critical for consistent data reading and query planning even when column names are altered.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20027,
     "question": "Are there Reserved Field IDs in Iceberg? If so, what is their purpose?",
-    "answer": "Yes, Iceberg reserves a range of **Field IDs** (0 to 999). These reserved IDs are intended for internal use and potential future extensions of the Iceberg specification. User-defined schemas should avoid using field IDs in this reserved range to prevent conflicts and ensure compatibility with future Iceberg versions.",
-    "reference": "https://iceberg.apache.org/spec#reserved-field-ids"
+    "answer": "Yes, Iceberg reserves a range of **Field IDs** (0 to 999) for internal use and potential future extensions. User-defined schemas should avoid this range to prevent conflicts and maintain compatibility with future Iceberg versions.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20028,
     "question": "Explain the concept of Row Lineage in Iceberg.",
-    "answer": "**Row Lineage** in Iceberg refers to tracking the origin and transformations of individual rows throughout a table's history. It provides information about which operation (e.g., insert, update, delete) created or modified a specific row and potentially which source data contributed to it. Row lineage enhances data governance, auditability, and debugging capabilities.",
-    "reference": "https://iceberg.apache.org/spec#row-lineage"
+    "answer": "**Row Lineage** in Iceberg involves tracking the origin and transformation history of individual rows. It can indicate which operation (e.g., insert, update, delete) created or changed each row and potentially trace that row back to its source data. This is valuable for auditing, data governance, and debugging data quality issues.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20029,
     "question": "How is Row Lineage Assignment performed in Iceberg?",
-    "answer": "Row lineage assignment in Iceberg is typically done during data writing operations. When data is inserted or modified, writer engines assign lineage information to each row. This lineage information is often stored as metadata within data files or in separate lineage tracking files, depending on the implementation and specific lineage details being tracked.",
-    "reference": "https://iceberg.apache.org/spec#row-lineage-assignment"
+    "answer": "Row lineage assignment is typically performed when data is written or modified. The writing engine tags each row with metadata about its origin and transformation steps (if needed). This metadata is then preserved either in the data files themselves or in specialized lineage files, depending on the implementation.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20030,
     "question": "Provide an example scenario illustrating Row Lineage in Iceberg.",
-    "answer": "Imagine an ETL pipeline: Data from source A is ingested and transformed, then inserted into an Iceberg table. Row lineage could track that rows in the Iceberg table originated from source A, went through transformation X, and were inserted at timestamp T. If a data quality issue arises, row lineage can help trace back the problematic rows to their source and transformation steps.",
-    "reference": "https://iceberg.apache.org/spec#row-lineage-example"
+    "answer": "Consider a pipeline where data from multiple sources is combined and transformed before loading into Iceberg. With row lineage, each row could record which source it came from, what transformations were applied, and when it was loaded. If a downstream analytics job finds anomalies in certain rows, one can trace these rows back to their sources and see exactly how they were transformed.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20031,
     "question": "How can Row Lineage be enabled for Non-empty Iceberg Tables?",
-    "answer": "Enabling row lineage for non-empty Iceberg tables typically requires a data migration or table rewrite process. Since lineage tracking needs to be recorded during data writing, for existing tables, you might need to rewrite the data, incorporating lineage assignment logic during the rewrite process. The exact method depends on the specific lineage implementation and engine capabilities.",
-    "reference": "https://iceberg.apache.org/spec#enabling-row-lineage-for-non-empty-tables"
+    "answer": "Enabling row lineage for an existing table (one that already has data) often involves rewriting or migrating the data to include the necessary lineage metadata. The exact process depends on the engine, but typically you'd perform a table rewrite where each row is reprocessed to assign lineage details. This can be time-consuming, so it's often easier to enable lineage from the start or incrementally if the engine supports it.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20032,
     "question": "Explain Partitioning in Apache Iceberg and its benefits.",
-    "answer": "**Partitioning** in Iceberg divides a table's data into smaller, manageable segments based on partition columns (e.g., date, category). This allows query engines to prune partitions that are not relevant to a query, significantly reducing the amount of data scanned and improving query performance. Iceberg supports hidden partitioning and partition evolution for flexible partitioning strategies.",
-    "reference": "https://iceberg.apache.org/spec#partitioning"
+    "answer": "**Partitioning** in Iceberg divides table data into smaller segments (partitions) based on one or more columns. This helps query engines prune partitions that are irrelevant to a given query, reducing the amount of data read and speeding up query execution. Iceberg supports hidden partitioning and partition evolution so that partitions can change over time without rewriting existing data.\n\n**Example (Trino):**\n```sql\nCREATE TABLE iceberg.my_catalog.sales (\n    id BIGINT,\n    category VARCHAR,\n    sale_date DATE,\n    amount DOUBLE\n)\nWITH (\n    partitioning = ARRAY['day(sale_date)']\n);\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\n    '''\n    CREATE TABLE iceberg.my_catalog.sales (\n        id BIGINT,\n        category STRING,\n        sale_date DATE,\n        amount DOUBLE\n    )\n    USING iceberg\n    PARTITIONED BY (days(sale_date))\n    '''\n)\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20033,
     "question": "What are Partition Transforms in Iceberg and give some examples.",
-    "answer": "**Partition transforms** in Iceberg allow partitioning data based on transformations of partition column values, rather than direct values. Examples include:\n- `year(date_column)`: Partition by year.\n- `month(timestamp_column)`: Partition by month.\n- `day(datetime_column)`: Partition by day.\n- `hour(timestamp_column)`: Partition by hour.\n- `truncate(string_column, width)`: Partition by truncated string values.\n- `bucket(id_column, num_buckets)`: Partition by hash buckets.",
-    "reference": "https://iceberg.apache.org/spec#partition-transforms"
+    "answer": "**Partition transforms** allow data to be partitioned based on transformations of a partition column’s value, rather than using the raw column values. Examples include:\n- `year(date_column)`: Partition by the year of a date.\n- `month(timestamp_column)`: Partition by the month of a timestamp.\n- `day(datetime_column)`: Partition by the day.\n- `hour(timestamp_column)`: Partition by the hour.\n- `truncate(string_column, width)`: Partition by a truncated prefix of a string.\n- `bucket(id_column, num_buckets)`: Partition into hash buckets.\n\n**Example (Trino):**\n```sql\nCREATE TABLE iceberg.my_catalog.logs (\n    user_id BIGINT,\n    event_time TIMESTAMP,\n    payload VARCHAR\n)\nWITH (\n    partitioning = ARRAY['month(event_time)', 'bucket(user_id, 8)']\n);\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\n    '''\n    CREATE TABLE iceberg.my_catalog.logs (\n        user_id BIGINT,\n        event_time TIMESTAMP,\n        payload STRING\n    )\n    USING iceberg\n    PARTITIONED BY (months(event_time), bucket(8, user_id))\n    '''\n)\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20034,
     "question": "Describe the Bucket Transform in detail for Iceberg Partitioning.",
-    "answer": "The `bucket(column, num_buckets)` transform in Iceberg partitions data by hashing the values of the specified `column` and then taking the modulo by `num_buckets`. This distributes data pseudo-randomly into a fixed number of buckets. It is useful for distributing data evenly across partitions, especially for high-cardinality columns, and can improve performance for aggregations and joins.",
-    "reference": "https://iceberg.apache.org/spec#bucket-transform-details"
+    "answer": "The `bucket(column, num_buckets)` transform partitions data by hashing the specified `column` and taking the modulo by `num_buckets`. This distributes data (especially high-cardinality columns) more evenly across partitions, which can improve performance for joins or aggregations.\n\n**Example (Trino):**\n```sql\nCREATE TABLE iceberg.my_catalog.events (\n    event_id BIGINT,\n    user_id BIGINT,\n    event_time TIMESTAMP,\n    detail VARCHAR\n)\nWITH (\n    partitioning = ARRAY['bucket(user_id, 16)']\n);\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\n    '''\n    CREATE TABLE iceberg.my_catalog.events (\n        event_id BIGINT,\n        user_id BIGINT,\n        event_time TIMESTAMP,\n        detail STRING\n    )\n    USING iceberg\n    PARTITIONED BY (bucket(16, user_id))\n    '''\n)\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20035,
     "question": "Explain the Truncate Transform in detail for Iceberg Partitioning.",
-    "answer": "The `truncate(column, width)` transform in Iceberg partitions data by truncating values in the specified `column` to a given `width`. For string columns, it takes the prefix of length `width`. For numeric columns, it divides by `width` and takes the integer part. Truncate transform is useful for creating coarser partitions from fine-grained data, balancing partition size and query filtering effectiveness.",
-    "reference": "https://iceberg.apache.org/spec#truncate-transform-details"
+    "answer": "The `truncate(column, width)` transform partitions data by truncating values in the specified `column` to a fixed length or range. For strings, it takes the prefix of length `width`; for numeric types, it divides by `width` and uses the integer result. This is helpful when you want coarser-grained partitions to reduce the total number of partitions.\n\n**Example (Trino):**\n```sql\nCREATE TABLE iceberg.my_catalog.items (\n    item_id BIGINT,\n    item_name VARCHAR,\n    category VARCHAR\n)\nWITH (\n    partitioning = ARRAY['truncate(category, 3)']\n);\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\n    '''\n    CREATE TABLE iceberg.my_catalog.items (\n        item_id BIGINT,\n        item_name STRING,\n        category STRING\n    )\n    USING iceberg\n    PARTITIONED BY (truncate(category, 3))\n    '''\n)\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20036,
     "question": "What is Partition Evolution in Iceberg and why is it beneficial?",
-    "answer": "**Partition evolution** in Iceberg allows changing the partitioning scheme of a table without rewriting existing data files. Iceberg tracks partition specifications as part of table metadata and versions them. Queries automatically use the correct partition spec based on the snapshot being accessed. This flexibility allows optimizing partitioning strategies as data volume or query patterns change over time.",
-    "reference": "https://iceberg.apache.org/spec#partition-evolution"
+    "answer": "**Partition evolution** allows changing a table’s partition scheme over time without rewriting existing data. Iceberg tracks multiple partition specs in its metadata, so each snapshot uses the correct spec for data written at that time. This flexibility lets you optimize partitioning strategies as data volumes grow or query patterns change.\n\n**Example (Trino):**\n```sql\nALTER TABLE iceberg.my_catalog.sales\nSET PROPERTIES (\n    partitioning = ARRAY['month(sale_date)']\n);\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\n    \"\"\"\n    ALTER TABLE iceberg.my_catalog.sales\n    SET TBLPROPERTIES ('partitioning'='months(sale_date)')\n    \"\"\"\n)\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20037,
     "question": "Explain Sorting in Iceberg and its purpose for data organization.",
-    "answer": "**Sorting** in Iceberg defines the order in which data is written within data files. Specifying a sort order (e.g., by timestamp, then by ID) can improve query performance, especially for range queries, filters, and joins on the sorted columns. Sort order is defined as part of the table metadata and is used when writing data files.",
-    "reference": "https://iceberg.apache.org/spec#sorting"
+    "answer": "**Sorting** in Iceberg defines how data is ordered within each data file. If you sort on a frequently queried column (like date or ID), range queries and filtering can be more efficient. This is configured as part of the table’s write properties, allowing engines to lay out data in a way that can speed up queries.\n\n**Example (Trino):**\n```sql\nCREATE TABLE iceberg.my_catalog.sorted_events (\n    event_id BIGINT,\n    event_time TIMESTAMP,\n    detail VARCHAR\n)\nWITH (\n    partitioning = ARRAY['day(event_time)'],\n    sorted_by = ARRAY['event_time', 'event_id']\n);\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\n    '''\n    CREATE TABLE iceberg.my_catalog.sorted_events (\n        event_id BIGINT,\n        event_time TIMESTAMP,\n        detail STRING\n    )\n    USING iceberg\n    PARTITIONED BY (days(event_time))\n    TBLPROPERTIES (\n      'write.distribution-mode'='hash',\n      'write.sort-columns'='event_time,event_id'\n    )\n    '''\n)\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20038,
     "question": "Describe Manifests in Iceberg and their role in metadata management.",
-    "answer": "**Manifests** in Iceberg are files that list a set of data files belonging to a table snapshot. Each manifest file contains metadata for each listed data file, such as file path, partition values, statistics, and file format. Manifests are crucial for efficient scan planning, data filtering, and tracking data files for each snapshot.",
-    "reference": "https://iceberg.apache.org/spec#manifests"
+    "answer": "**Manifests** are files that list a set of data files for a particular table snapshot. Each manifest includes details such as file path, partition values, statistics, and file format. Manifests help query engines quickly identify which files to read for a query, enabling features like partition pruning and column projection without scanning all data files.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20039,
     "question": "What are the key Manifest Entry Fields in Iceberg Manifest Files?",
-    "answer": "Key manifest entry fields in Iceberg manifest files include:\n- **Data File Path:** Location of the data file.\n- **Partition Values:** Values of the partition columns for the data file.\n- **File Format:** Format of the data file (e.g., Parquet, Avro).\n- **Record Count:** Number of records in the data file.\n- **Statistics:** Column-level statistics like null counts, min/max values.\n- **Sequence Number:** Sequence number assigned to the manifest entry.\n- **File Size:** Size of the data file.",
-    "reference": "https://iceberg.apache.org/spec#manifest-entry-fields"
+    "answer": "Key fields in a manifest entry include:\n- **Data File Path**: The location of the data file.\n- **Partition Values**: The partition columns’ values for that file.\n- **File Format**: The data file format (e.g., Parquet, Avro, ORC).\n- **Record Count**: Number of records in the data file.\n- **Statistics**: Column-level min/max, null counts, etc.\n- **Sequence Number**: The sequence number of the commit that added this file.\n- **File Size**: The size of the data file in bytes.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20040,
     "question": "Explain Sequence Number Inheritance in the context of Iceberg Manifests.",
-    "answer": "**Sequence number inheritance** in Iceberg manifests means that manifest entries inherit the sequence number of the manifest file they belong to, unless explicitly overridden.  This ensures that all data files listed in a manifest are considered part of the same change set defined by the manifest's sequence number, simplifying sequence number management.",
-    "reference": "https://iceberg.apache.org/spec#sequence-number-inheritance"
+    "answer": "When a manifest file is created, its entries typically inherit the manifest’s sequence number. If a particular entry needs a different sequence number (for instance, if it was appended in a separate commit), that can be specified explicitly. This inheritance mechanism keeps the process of tracking sequence numbers simpler for most use cases.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20041,
     "question": "What is First Row ID Inheritance in Iceberg Manifests?",
-    "answer": "**First row ID inheritance** in Iceberg manifests is related to row-level deletes. Manifest entries can inherit a 'first row ID' from the manifest list they belong to. This is used to establish a consistent ordering of row IDs across different data and delete files within a snapshot, which is essential for position-based delete operations.",
-    "reference": "https://iceberg.apache.org/spec#first-row-id-inheritance"
+    "answer": "In scenarios involving row-level deletes, manifest entries can inherit a 'first row ID' from the manifest list. This helps coordinate position-based deletes across multiple files by aligning row ID ranges, ensuring that position deletes can be correctly matched to the right rows within a snapshot.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20042,
     "question": "Describe Snapshots in Iceberg and their role in Time Travel.",
-    "answer": "**Snapshots** in Iceberg represent consistent, point-in-time versions of a table. Each commit creates a new snapshot, identified by a unique ID. Snapshots are immutable and reference manifest lists that define the data files for that version. Time travel queries in Iceberg are enabled by querying specific snapshots, allowing access to historical data.",
-    "reference": "https://iceberg.apache.org/spec#snapshots"
+    "answer": "Each **Snapshot** in Iceberg represents a complete, point-in-time version of the table. Snapshots are immutable, identified by a unique ID, and reference a set of manifests that list the data files. Time travel queries work by referencing a specific snapshot ID or a timestamp, letting you read historical versions of the data.\n\n**Example (Trino):**\n```sql\n-- Querying a historical snapshot by ID\nSELECT *\nFROM iceberg.my_catalog.my_table FOR VERSION AS OF 123456789012345678;\n\n-- Or by timestamp\nSELECT *\nFROM iceberg.my_catalog.my_table FOR TIMESTAMP AS OF TIMESTAMP '2025-01-01 00:00:00';\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\"SELECT * FROM iceberg.my_catalog.my_table VERSION AS OF 123456789012345678\")\n```\n(Some Spark versions may offer a slightly different syntax for time travel.)",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20043,
     "question": "What are Snapshot Row IDs in Iceberg and their purpose?",
-    "answer": "**Snapshot Row IDs** are related to row-level deletes and are assigned to snapshots that include delete operations. They establish a scope for row IDs within a snapshot to ensure consistent interpretation of position-based delete files. Row IDs help in correctly identifying rows to be deleted within a specific version of the table.",
-    "reference": "https://iceberg.apache.org/spec#snapshot-row-ids"
+    "answer": "**Snapshot Row IDs** pertain to row-level deletes. When a snapshot includes delete operations, row IDs help track which rows are deleted in that snapshot. This ensures proper alignment between delete files and data files, so the system knows exactly which rows to omit when reading that snapshot.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20044,
     "question": "What are Manifest Lists in Iceberg and how do they organize Manifests?",
-    "answer": "**Manifest Lists** are files that list multiple **Manifest Files**. Each manifest list belongs to a snapshot and groups manifest files together. They provide a higher-level index to manifest files, improving metadata organization and scan performance. Manifest lists enable engines to efficiently discover and process manifest files for a given snapshot.",
-    "reference": "https://iceberg.apache.org/spec#manifest-lists"
+    "answer": "**Manifest Lists** are files that reference multiple **Manifest Files**. Each snapshot typically has one manifest list that enumerates all the manifests associated with that snapshot. This approach structures metadata in two levels (manifest lists and manifests), making queries more efficient by allowing engines to skip reading unused manifests.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20045,
     "question": "How is First Row ID Assignment performed for Manifest Lists in Iceberg?",
-    "answer": "**First row ID assignment** for manifest lists is part of the mechanism for row-level deletes. When a new manifest list is created as part of a snapshot that includes deletes, it may be assigned a 'first row ID'. This helps in managing row ID ranges across different manifest lists and ensuring correct application of position deletes.",
-    "reference": "https://iceberg.apache.org/spec#first-row-id-assignment"
+    "answer": "When creating a manifest list for a snapshot that includes row-level deletes, the system can assign a 'first row ID' to coordinate row ID ranges across manifests. This ensures that row ID references remain consistent for position-based deletes within that snapshot.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20046,
     "question": "Describe Scan Planning in Iceberg and how it optimizes query execution.",
-    "answer": "**Scan planning** in Iceberg is the process by which query engines determine which data files to read for a given query. Iceberg metadata (table metadata, manifest lists, manifest files) enables efficient scan planning. Engines use metadata to filter out irrelevant partitions and data files based on query predicates, column projection, and statistics, minimizing data I/O and optimizing query performance.",
-    "reference": "https://iceberg.apache.org/spec#scan-planning"
+    "answer": "**Scan planning** is Iceberg’s mechanism for identifying which data files are relevant to a query. By reading metadata in manifests (and manifest lists), query engines can skip partitions and columns not needed by the query. This selective reading greatly reduces I/O, which is often the biggest performance bottleneck in analytics systems.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20047,
     "question": "What are Snapshot References in Iceberg and their purpose?",
-    "answer": "**Snapshot References** in Iceberg are named pointers to specific snapshots.  Commonly used references include 'main' (pointing to the latest snapshot) and potentially others like 'staging' or branch names. Snapshot references provide stable, named access points to different versions of the table, making it easier to manage and query different table states.",
-    "reference": "https://iceberg.apache.org/spec#snapshot-references"
+    "answer": "**Snapshot References** are named pointers to specific snapshots. Common references include 'main' (the latest snapshot) or branches like 'staging'. These references allow you to keep multiple table states available for different use cases, such as development, testing, or production, without losing track of older snapshots.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20048,
     "question": "Explain the Snapshot Retention Policy in Iceberg.",
-    "answer": "Iceberg's **snapshot retention policy** defines how long historical snapshots are retained. It's typically configured based on criteria like age or number of snapshots. Old snapshots are expired and their associated metadata and data files (if no longer referenced by any snapshot) become candidates for cleanup. Retention policy is crucial for managing storage costs and table history.",
-    "reference": "https://iceberg.apache.org/spec#snapshot-retention-policy"
+    "answer": "A **snapshot retention policy** determines how long past snapshots are kept. You can configure this based on a time period or a maximum number of snapshots. When snapshots expire, their associated metadata and data files (if unreferenced) can be cleaned up to save storage.\n\n**Example (Trino):**\n```sql\nCALL iceberg.system.expire_snapshots(\n    table => 'iceberg.my_catalog.my_table',\n    older_than => TIMESTAMP '2025-01-01 00:00:00'\n);\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\n    \"\"\"\n    CALL iceberg.system.expire_snapshots(\n      table => 'iceberg.my_catalog.my_table',\n      older_than => TIMESTAMP '2025-01-01 00:00:00'\n    )\n    \"\"\"\n)\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20049,
     "question": "What is Table Metadata in Iceberg and what information does it contain?",
-    "answer": "**Table Metadata** in Iceberg is a file that holds comprehensive information about a table. It includes:\n- **Table UUID:** Unique identifier.\n- **Schema:** Current and historical schemas.\n- **Partition Spec:** Current and historical partition specifications.\n- **Current Snapshot ID:** ID of the latest snapshot.\n- **Snapshot History:** List of past snapshots.\n- **Metadata File Location:** Location of the metadata file itself.\n- **Properties:** Table-level configuration properties.\n- **Sort Order:** Default sort order for data files.\n- **Format Version:** Version of the Iceberg format.",
-    "reference": "https://iceberg.apache.org/spec#table-metadata"
+    "answer": "**Table Metadata** is the core definition of an Iceberg table. It includes:\n- **Table UUID**: A unique identifier.\n- **Schema**: The current schema plus historical versions.\n- **Partition Spec**: Current and past partition specifications.\n- **Current Snapshot ID**: The latest snapshot.\n- **Snapshot History**: A list of previous snapshots.\n- **Metadata File Location**: Where the metadata file is stored.\n- **Properties**: Table-level configuration options.\n- **Sort Order**: How data is sorted when written.\n- **Format Version**: Which Iceberg format version is used.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20050,
     "question": "List some key Table Metadata Fields in Iceberg.",
-    "answer": "Key table metadata fields in Iceberg include:\n- `table-uuid`\n- `schema` (and `schemas` for history)\n- `partition-spec` (and `partition-specs` for history)\n- `current-snapshot-id`\n- `snapshots` (snapshot history)\n- `metadata-location`\n- `properties`\n- `sort-order` (and `sort-orders` for history)\n- `format-version`",
-    "reference": "https://iceberg.apache.org/spec#table-metadata-fields"
+    "answer": "Important metadata fields include:\n- `table-uuid`\n- `schemas` (and a reference to the current `schema`)\n- `partition-specs` (and the current `partition-spec`)\n- `current-snapshot-id`\n- `snapshots` (history of snapshots)\n- `metadata-location`\n- `properties`\n- `sort-orders` (and the current `sort-order`)\n- `format-version`",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20051,
     "question": "What are Table Statistics in Iceberg and where are they stored?",
-    "answer": "**Table statistics** in Iceberg provide summary information about the overall table data. These can include metrics like total row count, total file size, and potentially column-level aggregates across the entire table. Table statistics are typically stored within the **Table Metadata** file or in separate **Partition Statistics Files** for larger tables.",
-    "reference": "https://iceberg.apache.org/spec#table-statistics"
+    "answer": "**Table statistics** summarize data at the table level, such as total row count or total file size. These statistics may be embedded directly in the table metadata file or stored in a separate file if the table is very large. Query engines can use these summaries for planning and optimization.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20052,
     "question": "Describe Partition Statistics in Iceberg.",
-    "answer": "**Partition statistics** in Iceberg provide granular statistics at the partition level. For each partition, statistics like row count, file count, and potentially column-level aggregates within that partition can be tracked. Partition statistics enable more precise query planning and filtering at the partition level, improving performance for partitioned tables.",
-    "reference": "https://iceberg.apache.org/spec#partition-statistics"
+    "answer": "**Partition statistics** provide detailed information per partition—for example, the number of rows, file count, or column-level stats for each partition. This helps in more granular pruning and query optimization. Large tables often rely on these stats to avoid scanning partitions that aren’t relevant to the query.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20053,
     "question": "What is the Partition Statistics File in Iceberg?",
-    "answer": "For very large tables with numerous partitions, Iceberg may use a separate **Partition Statistics File** to store partition-level statistics, instead of embedding all partition stats directly in the Table Metadata. This helps keep the Table Metadata file size manageable and improves metadata access performance. The Table Metadata would then point to the Partition Statistics File.",
-    "reference": "https://iceberg.apache.org/spec#partition-statistics-file"
+    "answer": "A **Partition Statistics File** is used for very large tables that have numerous partitions. Instead of storing all partition-level statistics in the main Table Metadata file (which could become huge), Iceberg can keep a separate file dedicated to these detailed stats. The main metadata file then points to this partition statistics file.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20054,
     "question": "Explain Commit Conflict Resolution and Retry mechanisms in Iceberg.",
-    "answer": "Iceberg uses **optimistic concurrency** for commits. When a commit fails due to a conflict (metadata version change), writers must implement **conflict resolution and retry logic**. This typically involves:\n1. **Reading the latest Table Metadata.**\n2. **Re-applying changes** based on the updated metadata.\n3. **Retrying the commit** with the new metadata version.\nRetry mechanisms are crucial for ensuring atomicity and consistency in concurrent write scenarios.",
-    "reference": "https://iceberg.apache.org/spec#commit-conflict-resolution-and-retry"
+    "answer": "Iceberg uses **optimistic concurrency** for commits. If another writer updates the table metadata while you’re trying to commit, your commit may fail due to a version conflict. The recommended approach is:\n1. Read the latest metadata again.\n2. Re-apply your intended changes.\n3. Attempt the commit with the updated metadata.\n\nThis ensures atomicity and consistency without needing heavy locking.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20055,
     "question": "Differentiate between File System Tables and Metastore Tables in Iceberg.",
-    "answer": "- **File System Tables:** In Iceberg, 'file system tables' generally refer to tables where the catalog and table metadata location are managed directly on the file system, often used for simpler setups or local development. Table discovery and metadata access might rely on file system paths.\n- **Metastore Tables:** 'Metastore tables' use an external catalog service like Hive Metastore or AWS Glue Catalog to manage table metadata. The catalog provides a centralized registry for tables and their metadata locations, enabling discoverability and management in more complex environments.",
-    "reference": "https://iceberg.apache.org/spec#file-system-tables\nhttps://iceberg.apache.org/spec#metastore-tables"
+    "answer": "- **File System Tables**: Manage table metadata directly on a file system path, typically easier for local development or simple setups. Discovery relies on directory structures.\n- **Metastore Tables**: Use an external catalog (like Hive Metastore or AWS Glue) to store table metadata. This centralizes metadata management, making tables easier to discover and integrate with multiple engines.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20056,
     "question": "What are the different Delete Formats supported by Iceberg for Row-level Deletes?",
-    "answer": "Iceberg supports two main delete formats for row-level deletes:\n- **Deletion Vectors:** (Less common now) A bitmap or similar structure directly within data files to mark rows as deleted.\n- **Delete Files:** Separate files that list rows to be deleted. Iceberg uses two types of delete files: Position Delete Files and Equality Delete Files.",
-    "reference": "https://iceberg.apache.org/spec#delete-formats"
+    "answer": "Iceberg supports two main formats for row-level deletes:\n- **Deletion Vectors**: A legacy approach embedding row-deletion info in the data file.\n- **Delete Files**: Separate files that list rows to delete. These can be **Position Delete Files** (by file path and row position) or **Equality Delete Files** (by column values).",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20057,
     "question": "Describe Deletion Vectors as a Delete Format in Iceberg.",
-    "answer": "**Deletion Vectors** are a legacy approach to row-level deletes in Iceberg. They involve embedding a bitmap or similar structure within data files to mark rows as deleted. While conceptually simple, deletion vectors can be less efficient for large numbers of deletes and are less commonly used compared to delete files.",
-    "reference": "https://iceberg.apache.org/spec#deletion-vectors"
+    "answer": "**Deletion Vectors** embed a bitmap or similar structure in the data file itself, marking which rows are deleted. Although simpler to conceptualize, this approach can be less efficient at scale. Many modern Iceberg engines favor separate delete files instead of deletion vectors.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20058,
     "question": "What are Position Delete Files in Iceberg and how do they work?",
-    "answer": "**Position Delete Files** in Iceberg record the specific file paths and row positions of rows to be deleted. They are efficient for targeted deletes where the exact locations of rows are known (e.g., in compaction or merge operations). Position delete files are typically small and quick to process.",
-    "reference": "https://iceberg.apache.org/spec#position-delete-files"
+    "answer": "**Position Delete Files** record a data file path plus the specific row positions within that file that are deleted. This is efficient when you know exactly which rows to remove (e.g., in merge or compaction scenarios) without rewriting the entire data file.\n\n**Example (Trino):**\n```sql\nDELETE FROM iceberg.my_catalog.my_table\nWHERE event_id = 100;\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\"DELETE FROM iceberg.my_catalog.my_table WHERE event_id = 100\")\n```\n\nInternally, the engine identifies the target file and row positions, then writes a small position delete file referencing them.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20059,
     "question": "Explain Equality Delete Files in Iceberg and their use case.",
-    "answer": "**Equality Delete Files** (or Row-level Delete Files) in Iceberg specify rows to be deleted based on equality predicates on certain columns. They contain data columns and values. Rows in data files that match these predicates are considered deleted. Equality deletes are flexible for deleting rows based on data content and are suitable for GDPR-style deletes or data correction.",
-    "reference": "https://iceberg.apache.org/spec#equality-delete-files"
+    "answer": "**Equality Delete Files** list rows to be deleted based on equality conditions. They contain data for the columns used in the equality comparison. If a row in a data file matches these column values, it’s considered deleted. This is particularly useful for use cases like GDPR, where rows must be removed based on specific personal identifiers.\n\n**Example (Trino):**\n```sql\nDELETE FROM iceberg.my_catalog.users\nWHERE email = 'test@example.com';\n```\n\n**Example (PySpark):**\n```python\nspark.sql(\"DELETE FROM iceberg.my_catalog.users WHERE email = 'test@example.com'\")\n```",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20060,
     "question": "What are Delete File Stats in Iceberg?",
-    "answer": "**Delete File Stats** are statistics associated with delete files (both position and equality delete files). These stats, like record count, file size, and potentially column-level statistics in equality delete files, are used for query planning and optimization. They help engines efficiently process and apply delete operations during query execution.",
-    "reference": "https://iceberg.apache.org/spec#delete-file-stats"
+    "answer": "**Delete File Stats** are metrics about the delete files themselves, such as how many rows they delete or how large they are. Engines use these stats to plan queries more efficiently, applying deletes in a targeted manner without scanning unnecessary data.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20061,
     "question": "What are the Format-specific Requirements for using Avro with Iceberg?",
-    "answer": "When using Avro data files with Iceberg, format-specific requirements include:\n- **Schema Compatibility:** Avro's schema evolution capabilities should be aligned with Iceberg's schema evolution.\n- **Data Type Mapping:**  Mapping between Iceberg's data types and Avro's logical types must be consistent.\n- **Metadata Storage:** Avro's metadata embedding capabilities may be utilized for storing some Iceberg metadata within Avro data files (though typically Iceberg metadata is managed separately).",
-    "reference": "https://iceberg.apache.org/spec#appendix-a-format-specific-requirements"
+    "answer": "When using Avro data files with Iceberg:\n- **Schema Compatibility**: Align Avro’s schema evolution with Iceberg’s schema evolution.\n- **Data Type Mapping**: Ensure Avro logical types map correctly to Iceberg types.\n- **Metadata Storage**: Avro supports embedding certain metadata, but Iceberg typically manages its own metadata files; ensure consistency between them.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20062,
     "question": "What are the Format-specific Requirements for using Parquet with Iceberg?",
-    "answer": "Format-specific requirements for Parquet data files with Iceberg include:\n- **Columnar Format Alignment:** Parquet's columnar nature is well-suited for Iceberg's column projection optimization.\n- **Predicate Pushdown:** Parquet's predicate pushdown capabilities enhance Iceberg's filtering efficiency.\n- **Schema Encoding:** Parquet schema encoding should align with Iceberg's schema representation.\n- **Metadata Storage:** Parquet metadata can be leveraged for storing some statistics used by Iceberg.",
-    "reference": "https://iceberg.apache.org/spec#appendix-a-format-specific-requirements"
+    "answer": "For Parquet data files in Iceberg:\n- **Columnar Format Alignment**: Parquet’s columnar layout is well-suited to Iceberg’s column projection.\n- **Predicate Pushdown**: Parquet can push down predicates, helping Iceberg skip data more efficiently.\n- **Schema Encoding**: Map Parquet types properly to Iceberg.\n- **Metadata Storage**: Parquet includes file metadata that can be leveraged by Iceberg, though the table’s main metadata is still in separate manifests.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20063,
     "question": "What are the Format-specific Requirements for using ORC with Iceberg?",
-    "answer": "Format-specific requirements when using ORC data files with Iceberg include:\n- **Hybrid Row/Columnar:** ORC's hybrid format offers benefits for both row-based and columnar access, which can be utilized by Iceberg.\n- **Predicate Pushdown:** ORC's predicate pushdown capabilities contribute to Iceberg's query filtering.\n- **Schema Evolution:** ORC's schema evolution features should be compatible with Iceberg's schema evolution mechanism.\n- **Metadata Storage:** ORC metadata can be used to store statistics relevant for Iceberg.",
-    "reference": "https://iceberg.apache.org/spec#appendix-a-format-specific-requirements"
+    "answer": "For ORC data files in Iceberg:\n- **Hybrid Row/Columnar Access**: ORC can handle both row-based and columnar operations.\n- **Predicate Pushdown**: ORC’s built-in indexing helps with filtering.\n- **Schema Evolution**: Ensure ORC schema evolution is used consistently with Iceberg’s schema changes.\n- **Metadata Storage**: ORC stores statistics and metadata that can improve query planning.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20064,
-    "question": "What is the 32-bit Hash Requirement mentioned in Appendix B of the Iceberg Spec, and where is it relevant?",
-    "answer": "Appendix B refers to a **32-bit hash requirement**, primarily relevant for the `bucket` partition transform in Iceberg. Implementations should use a consistent 32-bit hash function (often MurmurHash3_x86_32) for bucketing to ensure consistent partition assignments across different engines and table versions. This is important for data consistency and query correctness when using bucket partitioning.",
-    "reference": "https://iceberg.apache.org/spec#appendix-b-32-bit-hash-requirements"
+    "question": "What is the 32-bit Hash Requirement, and where is it relevant?",
+    "answer": "Iceberg uses a consistent 32-bit hash function (commonly MurmurHash3) for `bucket` partition transforms. This ensures that all engines produce the same bucket assignments. Without a standardized hash, different engines might distribute rows differently, causing data inconsistencies.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20065,
     "question": "Describe JSON Serialization in Iceberg for Schemas, Partition Specs, and Sort Orders.",
-    "answer": "Appendix C details **JSON serialization** formats used for various Iceberg metadata components:\n- **Schemas:** Schemas are serialized to JSON, defining columns, data types, and field IDs.\n- **Partition Specs:** Partition specifications are serialized to JSON, defining partition columns and transforms.\n- **Sort Orders:** Sort orders are serialized to JSON, defining sort columns and directions.\nThese JSON formats ensure interoperability and human-readability of Iceberg metadata.",
-    "reference": "https://iceberg.apache.org/spec#appendix-c-json-serialization"
+    "answer": "Iceberg uses JSON to represent schemas, partition specifications, and sort orders in its metadata files. This includes listing fields, field IDs, data types, partition transforms, and sort columns in a structured JSON format. This human-readable approach helps with interoperability between different engines and versions.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20066,
-    "question": "How are Table Metadata and Snapshots serialized in JSON according to Appendix C?",
-    "answer": "According to Appendix C, **Table Metadata** and **Snapshots** in Iceberg also have defined JSON serialization formats. These formats specify how table properties, snapshot information, manifest lists, and other metadata fields are represented in JSON. These structured JSON formats are used for storing and exchanging Iceberg metadata.",
-    "reference": "https://iceberg.apache.org/spec#appendix-c-json-serialization"
+    "question": "How are Table Metadata and Snapshots serialized in JSON?",
+    "answer": "Table metadata and snapshots are also stored in JSON. The table metadata JSON includes fields like the table UUID, schemas, partition specs, snapshots, and properties. Each snapshot entry references manifests and contains commit information. This structured JSON makes it straightforward for any Iceberg-compatible engine to parse and manage the table state.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20067,
     "question": "Explain Name Mapping Serialization in Iceberg JSON metadata.",
-    "answer": "**Name mapping serialization** in Iceberg's JSON metadata, as described in Appendix C, is used to handle column name changes during schema evolution in a way that maintains backward compatibility. It may involve explicitly mapping old column names to new field IDs or providing a mapping for renamed columns in metadata to ensure queries against older snapshots work correctly even after renames.",
-    "reference": "https://iceberg.apache.org/spec#appendix-c-json-serialization"
+    "answer": "Name mapping serialization helps handle column name changes over time while preserving the original field IDs. An Iceberg table may include a mapping of old column names to their new names (or IDs) so queries against older snapshots can still correctly interpret the data, even after renames.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20068,
     "question": "What is Single-value Serialization in Iceberg metadata?",
-    "answer": "**Single-value serialization** (Appendix D) refers to how individual, simple values (like integers, strings, booleans) are serialized within Iceberg metadata files. Iceberg specifies both **Binary single-value serialization** (for compact binary formats like Avro) and **JSON single-value serialization** (for human-readable JSON metadata) to handle these basic values consistently.",
-    "reference": "https://iceberg.apache.org/spec#appendix-d-single-value-serialization"
+    "answer": "**Single-value serialization** refers to how primitive data types (like integers, floats, strings, booleans) are encoded in Iceberg metadata. Iceberg supports both binary encodings (for compact file formats) and JSON encodings (for human-readable metadata files) to represent these values consistently.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20069,
     "question": "Describe Binary Single-value Serialization in Iceberg metadata.",
-    "answer": "**Binary single-value serialization** (Appendix D) outlines how primitive data types are encoded in binary formats (like Avro) within Iceberg metadata. It defines byte representations for integers, floats, booleans, strings, etc., ensuring efficient and compact storage of metadata values when using binary formats like Avro.",
-    "reference": "https://iceberg.apache.org/spec#appendix-d-single-value-serialization"
+    "answer": "Binary single-value serialization covers how individual primitive data types (e.g., integers, floats, booleans) are stored in a binary form, often via Avro or similar formats. This compact representation reduces metadata file size and speeds up reads and writes of metadata at scale.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20070,
     "question": "Explain JSON Single-value Serialization in Iceberg metadata.",
-    "answer": "**JSON single-value serialization** (Appendix D) specifies how primitive data types are represented as JSON values within Iceberg metadata. It defines the JSON format for integers, strings, booleans, nulls, etc., ensuring consistent and human-readable representation of these basic values when Iceberg metadata is stored in JSON format.",
-    "reference": "https://iceberg.apache.org/spec#appendix-d-single-value-serialization"
+    "answer": "**JSON single-value serialization** is how Iceberg represents those same primitive types in JSON form. It defines how to encode integers, strings, booleans, nulls, etc. This makes the metadata more human-readable, which is especially helpful for debugging or manually inspecting the metadata files.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20073,
-    "question": "What are Optional Snapshot Summary Fields mentioned in Appendix F, and what is their purpose?",
-    "answer": "Appendix F mentions **Optional Snapshot Summary Fields**. These are key-value pairs that implementations can optionally add to snapshot metadata to provide summary information about the snapshot. This might include metrics like record count, added/deleted file counts, or other custom summary data. These summary fields can improve metadata access and provide quick insights into snapshot characteristics without needing to process full manifest lists.",
-    "reference": "https://iceberg.apache.org/spec#appendix-f-implementation-notes"
+    "question": "What are Optional Snapshot Summary Fields, and what is their purpose?",
+    "answer": "Implementations can include **optional snapshot summary fields** in the snapshot metadata, storing extra context such as the number of rows added or deleted, the reason for a snapshot (e.g., compaction), or custom information. These fields allow quick insight into what changed in a snapshot without reading all manifests.",
+    "reference": "https://iceberg.apache.org/spec"
   },
   {
-    "id": 20074,
-    "question": "What Metrics are discussed in the Implementation Notes (Appendix F) of the Iceberg Specification?",
-    "answer": "Appendix F may discuss **metrics** related to Iceberg operations, particularly around metadata management and query performance. This could include metrics for metadata read/write times, scan planning times, data file I/O, commit latency, and other performance indicators. These metrics help in monitoring and optimizing Iceberg implementations and table performance.",
-    "reference": "https://iceberg.apache.org/spec#appendix-f-implementation-notes"
+    "question": "What Metrics are often discussed for optimizing Iceberg?",
+    "answer": "Common metrics include:\n- **Metadata I/O**: How long it takes to read and write manifest files.\n- **Scan Planning Time**: How quickly the system prunes irrelevant data files.\n- **Data File I/O**: The amount of data read from or written to storage.\n- **Commit Latency**: Time taken to finalize metadata commits.\n\nMonitoring these helps operators tune configurations and diagnose performance bottlenecks in Iceberg-based systems.",
+    "reference": "https://iceberg.apache.org/spec"
   }
- ]
+]
+

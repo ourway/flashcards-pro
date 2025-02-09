@@ -5,8 +5,6 @@
   <title>Farshid's FlashCards</title>
   <!-- Bootswatch Darkly theme for Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css">
-  <!-- Google Fonts: Roboto -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
   <!-- Font Awesome (without integrity check) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Blueimp MD5 for standard hashing -->
@@ -17,137 +15,212 @@
   <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
   <!-- Babel for on-the-fly JSX (for demo; precompile for production) -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+
   <link rel="manifest" href="/manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=no">
+
   <style>
-    /* Overall page: no scrolling, pure black background, Roboto font */
-    body {
-      overflow: hidden;
-      padding-top: 70px;
-      background-color: #000;
-      font-family: 'Roboto', sans-serif;
-    }
-    .container-fluid {
-      height: 100vh;
-    }
-    .card-custom {
-      margin: 20px auto;
-      max-width: 800px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .progress-bar {
-      transition: width 0.5s ease;
-      font-family: monospace;
-      font-size: 18px;
-    }
-    /* Main content attaches to the top with 20px padding */
-    .main-content {
-      position: relative;
-      height: calc(100vh - 70px - 40px - 40px);
-      overflow-y: auto;
-      padding-top: 20px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-    }
-    /* Flashcard Q/A: black background with white text */
-    .question-box {
-      background-color: #000 !important;
-      color: #fff !important;
-      position: relative;
-    }
-    /* Markdown styles for answer and question */
-    .markdown-body {
-      background-color: #000;
-      color: #fff;
-      padding: 10px;
-      margin-top: 10px;
-    }
-    .markdown-body pre {
-      background-color: #111;
-      padding: 10px;
-      overflow: auto;
-    }
-    .markdown-body code {
-      background-color: #111;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-    /* Navbar: dark gray with faint border */
-    .navbar {
-      background-color: #222 !important;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    /* Due display: larger, monospace */
-    .due-display {
-      font-family: monospace;
-      font-size: 20px;
-    }
-    /* Source Filter Bar: dark gray, clean, horizontal scroll */
-    .source-filter-bar {
-      height: 40px;
-      background-color: #222;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      overflow-x: auto;
-      white-space: nowrap;
-      z-index: 1030;
-    }
-    .source-filter-bar .btn {
-      margin-right: 5px;
-    }
-    /* Footer: dark gray */
-    .footer {
-      height: 40px;
-      background-color: #222;
-      color: white;
-      text-align: center;
-      line-height: 40px;
-      font-size: 14px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      z-index: 1020;
-    }
-    /* Extra spacing for top nav buttons */
-    .top-btn {
-      margin-right: 10px;
-    }
-    /* Help Modal Overlay */
-    .help-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 1050;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .help-content {
-      background: #111;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 600px;
-      width: 90%;
-      color: #fff;
-      font-size: 16px;
-      line-height: 1.5;
-      position: relative;
-    }
-    .help-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 24px;
-      cursor: pointer;
-    }
+    /* Overall page */
+/* Overall page */
+html, body {
+  overscroll-behavior: contain;
+  overflow-scrolling: touch;
+  margin: 0;
+  padding: 0;
+}
+body {
+  overflow: auto;
+  padding-top: 70px; /* avoid hidden content behind the fixed navbar */
+  font-size: 16px;
+  background-color: #000;
+  font-family: -apple-system, system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+/* Slightly smaller base font on tablets and up */
+@media (min-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Prevent iOS zoom on focus */
+input, textarea {
+  font-size: 16px;
+}
+
+/* Let container-fluid auto-size */
+.container-fluid {
+  width: 100%;
+}
+
+.card-custom {
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.progress-bar {
+  transition: width 0.5s ease;
+  font-family: monospace;
+  font-size: 18px;
+}
+
+.main-content {
+  position: relative;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20px;
+  /* extra bottom padding so content isn't hidden behind fixed footer */
+  padding-bottom: 80px;
+}
+
+/* Flashcard Q/A */
+.question-box {
+  background-color: #000 !important;
+  color: #fff !important;
+  position: relative;
+}
+
+/* Markdown body styles */
+.markdown-body {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+.markdown-body pre {
+  background-color: #111;
+  padding: 10px;
+  overflow: auto;
+}
+.markdown-body code {
+  background-color: #111;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Responsive navbar: smaller on phones, bigger on tablets and desktops */
+.navbar {
+  background-color: #222 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 0.3rem 0.6rem; /* slims down on small screens */
+  min-height: 50px;
+}
+@media (min-width: 768px) {
+  /* Tablet/iPad */
+  .navbar {
+    padding: 0.6rem 1rem;
+    min-height: 60px;
+  }
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 992px) {
+  /* Desktop */
+  .navbar {
+    padding: 0.8rem 1.5rem;
+    min-height: 65px;
+  }
+  .navbar-brand {
+    font-size: 1.4rem;
+  }
+}
+@media (min-width: 1200px) {
+  /* Larger desktops */
+  .navbar {
+    padding: 1rem 2rem;
+    min-height: 70px;
+  }
+  .navbar-brand {
+    font-size: 1.6rem;
+  }
+}
+
+/* "Due" display: slightly larger, monospace */
+.due-display {
+  font-family: monospace;
+  font-size: 20px;
+}
+
+/* Source filter bar: fixed at the bottom (above footer), horizontal scroll */
+.source-filter-bar {
+  height: 40px;
+  background-color: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  z-index: 1030;
+}
+.source-filter-bar .btn {
+  margin-right: 5px;
+}
+
+/* Footer: fixed bottom, dark, with a small top border */
+.footer {
+  height: 40px;
+  background-color: #222;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  z-index: 1020;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Extra spacing for top nav buttons */
+.top-btn {
+  margin-right: 10px;
+}
+
+/* Help Modal Overlay */
+.help-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.help-content {
+  background: #111;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+  position: relative;
+}
+.help-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
   </style>
+  
 </head>
 <body>
   <div id="root"></div>
@@ -163,7 +236,7 @@
     }
   </script>
   
-  <script type="text/babel">
+<script type="text/babel" data-presets="env,react">
     const { useState, useEffect, useReducer, useRef } = React;
     const TIME_UNIT = 60000; // 1 minute for testing.
     
@@ -229,7 +302,7 @@
     async function fetchCardsFromURL(url) {
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error(`Network error: ${response.statusText}`);
+	throw new Error('Network error: ' + response.statusText);
       }
       const data = await response.json();
       if (!Array.isArray(data)) {
@@ -323,6 +396,7 @@
       
       // Touch event handlers for tablet gestures.
       function handleTouchStart(e) {
+        // Removing e.preventDefault() so we can scroll on mobile
         const touch = e.touches[0];
         touchStartXRef.current = touch.clientX;
         touchStartYRef.current = touch.clientY;
@@ -333,6 +407,8 @@
         const deltaY = touch.clientY - touchStartYRef.current;
         const currentTime = new Date().getTime();
         const tapLength = currentTime - lastTapRef.current;
+        
+        // Check for double-tap
         if (tapLength < 300 && tapLength > 0) {
           // Double tap toggles fullscreen.
           if (isFullscreen) {
@@ -345,7 +421,8 @@
         } else {
           lastTapRef.current = currentTime;
         }
-        // Swipe detection: horizontal swipe.
+        
+        // Simple horizontal swipe detection
         if (Math.abs(deltaX) > 100 && Math.abs(deltaY) < 50) {
           if (deltaX > 0) {
             handleAnswer(true);
@@ -354,7 +431,46 @@
           }
         }
       }
+
+	function requestNotificationPermission() {
+	  if ("Notification" in window && Notification.permission === "default") {
+	    Notification.requestPermission().then(permission => {
+	      if (permission === "granted") {
+		console.log("Notification permission granted!");
+	      }
+	    });
+	  }
+	}
       
+	function notifyDueCards(dueCount, firstQuestion) {
+	  // Only if the browser supports Notifications & permission is granted
+	  if ("Notification" in window && Notification.permission === "granted") {
+	    navigator.serviceWorker.ready.then(reg => {
+	      // If exactly one card is due, show its question
+	      if (dueCount === 1 && firstQuestion) {
+		reg.showNotification("Flashcards Reminder", {
+		  body: `Time to review: ${firstQuestion}`,
+		  icon: "/icon.png"
+		});
+	      }
+	      // If more than 5 are due, say so
+	      else if (dueCount > 5) {
+		reg.showNotification("Flashcards Reminder", {
+		  body: `Time to review ${dueCount} questions now!`,
+		  icon: "/icon.png"
+		});
+	      }
+	      // Otherwise, fewer than or equal to 5
+	      else {
+		reg.showNotification("Flashcards Reminder", {
+		  body: `It's time to review ${dueCount} question(s).`,
+		  icon: "/icon.png"
+		});
+	      }
+	    });
+	  }
+	}
+
       // Load flashcards from all current sources.
       async function loadAllFlashcards() {
         if (sources.length === 0) return;
@@ -395,29 +511,31 @@
         if (sources.length === 0) return;
         const intervalId = setInterval(() => {
           loadAllFlashcards();
-        }, 30000);
+        }, 300000); // 5 minutes
         return () => clearInterval(intervalId);
       }, [sources, state.cards]);
       
       // Request notification permission.
       useEffect(() => {
-        if ("Notification" in window && Notification.permission === "default") {
-          Notification.requestPermission();
-        }
+	requestNotificationPermission();
       }, []);
       
       // Notify if flashcards are due.
       useEffect(() => {
-        const now = Date.now();
-        const dueCount = state.cards.filter(card => card.nextReview <= now).length;
-        if (dueCount > 0 && "Notification" in window && Notification.permission === "granted") {
-          navigator.serviceWorker.ready.then(reg => {
-            reg.showNotification(`You have ${dueCount} flashcard(s) due for review!`, {
-              body: "Time to practice your flashcards.",
-              icon: "/icon.png"
-            });
-          });
-        }
+	  const now = Date.now();
+	  const dueCards = state.cards.filter(card => card.nextReview <= now);
+
+	  if (dueCards.length > 0) {
+	    // Check last notification time from localStorage
+	    const lastNotificationTime = parseInt(localStorage.getItem("lastNotifTime") || "0", 10);
+	    const TWELVE_HOURS = 12 * 60 * 60 * 1000; // 12 hours in ms
+
+	    // If it's been 12+ hours since the last notification, send a new one
+	    if (now - lastNotificationTime >= TWELVE_HOURS) {
+	      localStorage.setItem("lastNotifTime", now.toString());
+	      notifyDueCards(dueCards.length, dueCards[0]?.question);
+	    }
+	  }
       }, [state.cards]);
       
       // Handler for adding a new URL.
@@ -738,59 +856,63 @@
           )}
           
           {/* Main Container */}
-          <div className="container-fluid" style={{ height: "100vh" }}>
-            {/* Main Content Area with touch handlers */}
-            <div id="mainContent" className="main-content"
-                 onTouchStart={handleTouchStart}
-                 onTouchEnd={handleTouchEnd}>
+          <div className="container-fluid">
+            {/* Main Content Area */}
+            <div
+              id="mainContent"
+              className="main-content"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               {activeTab === "review" ? renderReview() : renderSources()}
             </div>
-            {/* In non-fullscreen mode, show bottom source filter bar and footer */}
-            {!isFullscreen && (
-              <>
-                <div className="source-filter-bar fixed-bottom" style={{ bottom: "40px" }}>
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-12 text-center">
-                        <div className="btn-group btn-group-sm" role="group" aria-label="Source Filter">
-                          {sources.map(src => {
-                            let parts = src.url.split('/');
-                            let displayUrl = parts.pop() || parts.pop();
-                            return (
-                              <button 
-                                key={src.url}
-                                className={`btn ${selectedSource === src.url ? "btn-success" : "btn-secondary"}`}
-                                onClick={() => setSelectedSource(src.url)}
-                              >
-                                {selectedSource === src.url && <i className="fas fa-check" style={{ color: "lime", marginRight: "5px" }}></i>}
-                                <i className="fas fa-link"></i> {displayUrl}
-                              </button>
-                            );
-                          })}
-                          {selectedSource && (
+          </div>
+          
+          {/* In non-fullscreen mode, show bottom source filter bar and footer */}
+          {!isFullscreen && (
+            <>
+              <div className="source-filter-bar" style={{ position: "fixed", bottom: "40px", left: 0, right: 0 }}>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-12 text-center">
+                      <div className="btn-group btn-group-sm" role="group" aria-label="Source Filter">
+                        {sources.map(src => {
+                          let parts = src.url.split('/');
+                          let displayUrl = parts.pop() || parts.pop();
+                          return (
                             <button 
-                              className="btn btn-secondary"
-                              style={{ opacity: 0.7 }}
-                              onClick={() => setSelectedSource(null)}
+                              key={src.url}
+                              className={`btn ${selectedSource === src.url ? "btn-success" : "btn-secondary"}`}
+                              onClick={() => setSelectedSource(src.url)}
                             >
-                              <i className="fas fa-times"></i> Clear selection
+                              {selectedSource === src.url && <i className="fas fa-check" style={{ color: "lime", marginRight: "5px" }}></i>}
+                              <i className="fas fa-link"></i> {displayUrl}
                             </button>
-                          )}
-                        </div>
+                          );
+                        })}
+                        {selectedSource && (
+                          <button 
+                            className="btn btn-secondary"
+                            style={{ opacity: 0.7 }}
+                            onClick={() => setSelectedSource(null)}
+                          >
+                            <i className="fas fa-times"></i> Clear selection
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
-                <footer className="footer fixed-bottom" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                  <div className="container">
-                    <span>
-                      <i className="fas fa-copyright"></i> Farshid's FlashCards © 2025
-                    </span>
-                  </div>
-                </footer>
-              </>
-            )}
-          </div>
+              </div>
+              <footer className="footer">
+                <div className="container">
+                  <span>
+                    <i className="fas fa-copyright"></i> Farshid's FlashCards © 2025
+                  </span>
+                </div>
+              </footer>
+            </>
+          )}
           
           {/* Help Modal */}
           {showHelp && renderHelpModal()}
