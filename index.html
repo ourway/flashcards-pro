@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Farshid's FlashCards</title>
+  <!-- Bootswatch Darkly theme for Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css">
+  <!-- Google Fonts: Roboto -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome (without integrity check) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Blueimp MD5 for standard hashing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+  <!-- Marked.js for Markdown rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Production versions of React & ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <!-- Babel for on-the-fly JSX (for demo; precompile for production) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="manifest" href="/manifest.json">
+  <style>
+    /* Overall page: no scrolling, pure black background, Roboto font */
+    body {
+      overflow: hidden;
+      padding-top: 70px;
+      background-color: #000;
+      font-family: 'Roboto', sans-serif;
+    }
+    .container-fluid {
+      height: 100vh;
+    }
+    .card-custom {
+      margin: 20px auto;
+      max-width: 800px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .progress-bar {
+      transition: width 0.5s ease;
+      font-family: monospace;
+      font-size: 18px;
+    }
+    /* Main content attaches to the top with 20px padding */
+    .main-content {
+      position: relative;
+      height: calc(100vh - 70px - 40px - 40px);
+      overflow-y: auto;
+      padding-top: 20px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    /* Flashcard Q/A: black background with white text */
+    .question-box {
+      background-color: #000 !important;
+      color: #fff !important;
+      position: relative;
+    }
+    /* Markdown styles for answer section */
+    .markdown-body {
+      background-color: #000;
+      color: #fff;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    .markdown-body pre {
+      background-color: #111;
+      padding: 10px;
+      overflow: auto;
+    }
+    .markdown-body code {
+      background-color: #111;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    /* Navbar: dark gray with faint border */
+    .navbar {
+      background-color: #222 !important;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    /* Due display: larger, monospace */
+    .due-display {
+      font-family: monospace;
+      font-size: 20px;
+    }
+    /* Source Filter Bar: dark gray, clean, horizontal scroll */
+    .source-filter-bar {
+      height: 40px;
+      background-color: #222;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+      z-index: 1030;
+    }
+    .source-filter-bar .btn {
+      margin-right: 5px;
+    }
+    /* Footer: dark gray */
+    .footer {
+      height: 40px;
+      background-color: #222;
+      color: white;
+      text-align: center;
+      line-height: 40px;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      z-index: 1020;
+    }
+    /* Extra spacing for top nav buttons */
+    .top-btn {
+      margin-right: 10px;
+    }
+    /* Help Modal Overlay */
+    .help-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .help-content {
+      background: #111;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.5;
+      position: relative;
+    }
+    .help-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => console.log('Service Worker registered', registration))
+          .catch(err => console.log('Service Worker registration failed', err));
+      });
+    }
+  </script>
+  
+  <script type="text/babel">
+    const { useState, useEffect, useReducer } = React;
+    const TIME_UNIT = 60000; // 1 minute for testing.
+    
+    // Generate a unique ID using blueimp-md5 and a padded order.
+    function generateId(url, order) {
+      let hash = md5(url);
+      return `${hash}-${String(order).padStart(5, '0')}`;
+    }
+    
+    // Reducer for flashcards.
+    function flashcardReducer(state, action) {
+      switch(action.type) {
+        case 'SET_CARDS':
+          return { ...state, cards: action.payload, isLoading: false, error: null };
+        case 'MERGE_CARDS':
+          return { ...state, cards: mergeCards(state.cards, action.payload) };
+        case 'UPDATE_CARD':
+          return { ...state, cards: state.cards.map(card => card.id === action.payload.id ? action.payload : card) };
+        case 'RESET_CARDS':
+          return { ...state, cards: [] };
+        case 'SET_LOADING':
+          return { ...state, isLoading: action.payload };
+        case 'SET_ERROR':
+          return { ...state, error: action.payload, isLoading: false };
+        default:
+          return state;
+      }
+    }
+    
+    // Merge fetched flashcards with existing ones.
+    function mergeCards(existing, fetched) {
+      const now = Date.now();
+      const merged = [...existing];
+      fetched.forEach(fCard => {
+        // Ignore any provided id.
+        const index = merged.findIndex(c => c.id === fCard.id);
+        if (index !== -1) {
+          const combinedSources = Array.from(new Set([...(merged[index].sources || []), ...(fCard.sources || [])]));
+          merged[index] = {
+            ...merged[index],
+            question: fCard.question,
+            answer: fCard.answer,
+            reference: fCard.reference || null,
+            sources: combinedSources
+          };
+        } else {
+          merged.push({
+            ...fCard,
+            interval: fCard.interval || 1,
+            lastReviewed: fCard.lastReviewed || null,
+            nextReview: fCard.nextReview || now,
+            repetitions: (fCard.repetitions != null) ? fCard.repetitions : 0,
+            easinessFactor: (fCard.easinessFactor != null) ? fCard.easinessFactor : 2.5,
+            sources: fCard.sources || []
+          });
+        }
+      });
+      merged.sort((a, b) => a.nextReview - b.nextReview);
+      return merged;
+    }
+    
+    // Fetch flashcards from a given URL.
+    async function fetchCardsFromURL(url) {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Network error: ${response.statusText}`);
+      }
+      const data = await response.json();
+      if (!Array.isArray(data)) {
+        throw new Error('Invalid JSON format, expected an array');
+      }
+      return data.map((card, index) => {
+        return {
+          id: generateId(url, index + 1),
+          question: card.question,
+          answer: card.answer,
+          reference: card.reference || null,
+          interval: card.interval || 1,
+          lastReviewed: card.lastReviewed || null,
+          nextReview: card.nextReview || Date.now(),
+          repetitions: (card.repetitions != null) ? card.repetitions : 0,
+          easinessFactor: (card.easinessFactor != null) ? card.easinessFactor : 2.5,
+          sources: [url]
+        };
+      });
+    }
+    
+    function App() {
+      const [state, dispatch] = useReducer(flashcardReducer, {
+        cards: [],
+        isLoading: false,
+        error: null
+      });
+      const [sources, setSources] = useState([]);
+      const [newUrl, setNewUrl] = useState("");
+      const [newUrlError, setNewUrlError] = useState("");
+      const [activeTab, setActiveTab] = useState("review");
+      const [selectedSource, setSelectedSource] = useState(null);
+      const [showAnswer, setShowAnswer] = useState(false);
+      const [isFullscreen, setIsFullscreen] = useState(false);
+      const [showHelp, setShowHelp] = useState(false);
+      
+      // On mount, load flashcards, sources, and active source from localStorage.
+      useEffect(() => {
+        const savedCards = JSON.parse(localStorage.getItem("flashcards") || "[]");
+        if (savedCards.length > 0) {
+          dispatch({ type: "SET_CARDS", payload: savedCards });
+        }
+        const savedSources = JSON.parse(localStorage.getItem("flashcardSources") || "[]");
+        if (savedSources.length > 0) {
+          setSources(savedSources);
+        }
+        const savedSelectedSource = localStorage.getItem("selectedSource");
+        if (savedSelectedSource) {
+          setSelectedSource(savedSelectedSource);
+        }
+      }, []);
+      
+      // Persist flashcards, sources, and selected source.
+      useEffect(() => {
+        localStorage.setItem("flashcards", JSON.stringify(state.cards));
+      }, [state.cards]);
+      useEffect(() => {
+        localStorage.setItem("flashcardSources", JSON.stringify(sources));
+      }, [sources]);
+      useEffect(() => {
+        localStorage.setItem("selectedSource", selectedSource || "");
+      }, [selectedSource]);
+      
+      // Fullscreen functions on the main content container.
+      function enterFullscreen() {
+        const elem = document.getElementById("mainContent");
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+        setIsFullscreen(true);
+      }
+      function exitFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+        setIsFullscreen(false);
+      }
+      
+      // Load flashcards from all current sources.
+      async function loadAllFlashcards() {
+        if (sources.length === 0) return;
+        const now = Date.now();
+        let allFetchedCards = [];
+        let fetchedBySource = {};
+        const updatedSources = sources.map(src => ({ ...src }));
+        for (let src of updatedSources) {
+          try {
+            const fetched = await fetchCardsFromURL(src.url);
+            src.lastLoaded = now;
+            src.lastCardCount = fetched.length;
+            fetchedBySource[src.url] = new Set(fetched.map(card => card.id));
+            allFetchedCards.push(...fetched);
+          } catch (err) {
+            console.error(`Error fetching from ${src.url}: ${err.message}`);
+          }
+        }
+        setSources(updatedSources);
+        const updatedCards = state.cards.map(card => {
+          if (card.sources && Array.isArray(card.sources)) {
+            const newSources = card.sources.filter(srcUrl => {
+              if (fetchedBySource[srcUrl]) {
+                return fetchedBySource[srcUrl].has(card.id);
+              }
+              return true;
+            });
+            return { ...card, sources: newSources };
+          }
+          return card;
+        }).filter(card => card.sources && card.sources.length > 0);
+        const merged = mergeCards(updatedCards, allFetchedCards);
+        dispatch({ type: "SET_CARDS", payload: merged });
+      }
+      
+      // Auto-reload every 30 seconds.
+      useEffect(() => {
+        if (sources.length === 0) return;
+        const intervalId = setInterval(() => {
+          loadAllFlashcards();
+        }, 30000);
+        return () => clearInterval(intervalId);
+      }, [sources, state.cards]);
+      
+      // Request notification permission.
+      useEffect(() => {
+        if ("Notification" in window && Notification.permission === "default") {
+          Notification.requestPermission();
+        }
+      }, []);
+      
+      // Notify if flashcards are due.
+      useEffect(() => {
+        const now = Date.now();
+        const dueCount = state.cards.filter(card => card.nextReview <= now).length;
+        if (dueCount > 0 && "Notification" in window && Notification.permission === "granted") {
+          navigator.serviceWorker.ready.then(reg => {
+            reg.showNotification(`You have ${dueCount} flashcard(s) due for review!`, {
+              body: "Time to practice your flashcards.",
+              icon: "/icon.png"
+            });
+          });
+        }
+      }, [state.cards]);
+      
+      // Handler for adding a new URL.
+      async function handleAddUrl() {
+        if (!newUrl.trim()) return;
+        try {
+          const fetched = await fetchCardsFromURL(newUrl);
+          if (!sources.some(src => src.url === newUrl)) {
+            const now = Date.now();
+            const newSourceObj = { url: newUrl, lastLoaded: now, lastCardCount: fetched.length };
+            const updatedSources = [...sources, newSourceObj];
+            setSources(updatedSources);
+            const merged = mergeCards(state.cards, fetched);
+            dispatch({ type: "SET_CARDS", payload: merged });
+          }
+          setNewUrl("");
+          setNewUrlError("");
+        } catch(e) {
+          setNewUrlError("Failed to load URL: " + e.message);
+        }
+      }
+      
+      // Handler for answering (always uses the first card in the filtered list).
+      const handleAnswer = (correct) => {
+        const filteredCards = selectedSource
+          ? state.cards.filter(card => card.sources.includes(selectedSource))
+          : state.cards;
+        if (filteredCards.length === 0) return;
+        const currentCard = filteredCards[0];
+        const now = Date.now();
+        const quality = correct ? 5 : 2;
+        let { repetitions, easinessFactor, interval } = currentCard;
+        if (quality < 3) {
+          repetitions = 0;
+          interval = 1;
+        } else {
+          repetitions += 1;
+          if (repetitions === 1) {
+            interval = 1;
+          } else if (repetitions === 2) {
+            interval = 6;
+          } else {
+            interval = Math.round(interval * easinessFactor);
+          }
+        }
+        easinessFactor = easinessFactor - 0.8 + 0.28 * quality - 0.02 * quality * quality;
+        if (easinessFactor < 1.3) {
+          easinessFactor = 1.3;
+        }
+        const nextReview = now + interval * TIME_UNIT;
+        const updatedCard = {
+          ...currentCard,
+          repetitions,
+          easinessFactor,
+          interval,
+          lastReviewed: now,
+          nextReview
+        };
+        const remainingCards = state.cards.filter(card => card.id !== currentCard.id);
+        const merged = mergeCards(remainingCards, [updatedCard]);
+        dispatch({ type: "SET_CARDS", payload: merged });
+        setShowAnswer(false);
+      };
+      
+      // Compute filtered cards.
+      const filteredCards = selectedSource
+        ? state.cards.filter(card => card.sources.includes(selectedSource))
+        : state.cards;
+      const nowTime = Date.now();
+      const totalCards = filteredCards.length;
+      const dueCards = filteredCards.filter(card => card.nextReview <= nowTime).length;
+      const progress = totalCards ? Math.round(((totalCards - dueCards) / totalCards) * 100) : 0;
+      
+      // Keyboard shortcuts.
+      useEffect(() => {
+        function handleKeyDown(e) {
+          if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+          // If help modal is open, Esc closes it.
+          if (showHelp && e.key === "Escape") {
+            setShowHelp(false);
+            e.preventDefault();
+            return;
+          }
+          // Toggle fullscreen on "f" key.
+          if (e.key === "f" || e.key === "F") {
+            if (isFullscreen) {
+              exitFullscreen();
+            } else {
+              enterFullscreen();
+            }
+            e.preventDefault();
+            return;
+          }
+          // If in fullscreen, Esc also exits it.
+          if (isFullscreen && e.key === "Escape") {
+            exitFullscreen();
+            e.preventDefault();
+            return;
+          }
+          if (e.key === "r" || e.key === "R") { setActiveTab("review"); e.preventDefault(); }
+          else if (e.key === "s" || e.key === "S") { setActiveTab("sources"); e.preventDefault(); }
+          else if (activeTab === "review") {
+            if (e.key === "Enter") { if (!showAnswer) setShowAnswer(true); e.preventDefault(); }
+            else if (e.key === "Escape") { if (showAnswer) setShowAnswer(false); e.preventDefault(); }
+            else if (e.key === "ArrowLeft") { handleAnswer(false); e.preventDefault(); }
+            else if (e.key === "ArrowRight") { handleAnswer(true); e.preventDefault(); }
+            else if (e.key === "c" || e.key === "C") { if (selectedSource) { setSelectedSource(null); } e.preventDefault(); }
+          }
+        }
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+      }, [activeTab, showAnswer, selectedSource, state.cards, isFullscreen, showHelp]);
+      
+      // Render Help Modal.
+      const renderHelpModal = () => {
+        return (
+          <div className="help-overlay" onClick={() => setShowHelp(false)}>
+            <div className="help-content" onClick={e => e.stopPropagation()}>
+              <button className="help-close" onClick={() => setShowHelp(false)}>&times;</button>
+              <h2>Keyboard Shortcuts & Memorization Technique</h2>
+              <p>
+                <strong>Keyboard Shortcuts:</strong><br/>
+                <code>R</code>: Switch to Review mode<br/>
+                <code>S</code>: Switch to Sources mode<br/>
+                <code>Enter</code>: Reveal Answer<br/>
+                <code>Escape</code>: Hide Answer / Exit Fullscreen / Close Help<br/>
+                <code>ArrowLeft</code>: Mark as Incorrect (Needs Practice)<br/>
+                <code>ArrowRight</code>: Mark as Correct (Mastered)<br/>
+                <code>C</code>: Clear source selection<br/>
+                <code>F</code>: Toggle Fullscreen mode (for the Q/A card only)
+              </p>
+              <p>
+                <strong>Memorization Algorithm:</strong><br/>
+                This app uses a spaced repetition technique (similar to SM‑2). Correct answers increase the review interval, while incorrect answers reset it. This way, challenging cards are reviewed more frequently.
+              </p>
+              <p>
+                Use these shortcuts to navigate quickly and study with minimal distraction.
+              </p>
+            </div>
+          </div>
+        );
+      };
+      
+      // Render Review View.
+      const renderReview = () => {
+        if (totalCards === 0) {
+          return (
+            <div className="alert alert-info mt-3">
+              {selectedSource 
+                ? "No flashcards available for the selected source."
+                : "No flashcards available. Please add source URLs in the Sources tab."}
+            </div>
+          );
+        }
+        const currentCard = filteredCards[0];
+        return (
+          <div className="card card-custom question-box">
+            <div className="card-header">
+              <h4 className="mb-0">
+                <i className="fas fa-eye fa-spin"></i> {currentCard.question}
+              </h4>
+              <small>
+                Last reviewed: {currentCard.lastReviewed ? new Date(currentCard.lastReviewed).toLocaleString() : "Never"}
+              </small>
+            </div>
+            <div className="card-body">
+              {showAnswer ? (
+                <div>
+                  <strong><i className="fas fa-info-circle"></i> Answer:</strong>
+                  <div className="markdown-body" dangerouslySetInnerHTML={{ __html: marked.parse(currentCard.answer) }}></div>
+                  {currentCard.reference && (
+                    <div>
+                      <a href={currentCard.reference} target="_blank" rel="noopener noreferrer" className="text-warning">
+                        <i className="fas fa-external-link-alt"></i> Reference
+                      </a>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button className="btn btn-primary btn-block" onClick={() => setShowAnswer(true)}>
+                  <i className="fas fa-unlock-alt"></i> Reveal Answer
+                </button>
+              )}
+            </div>
+            {showAnswer && (
+              <div className="card-footer d-flex justify-content-between">
+                <button className="btn btn-danger" onClick={() => handleAnswer(false)}>
+                  <i className="fas fa-times"></i> Needs Practice
+                </button>
+                <button className="btn btn-success" onClick={() => handleAnswer(true)}>
+                  <i className="fas fa-check"></i> Mastered
+                </button>
+              </div>
+            )}
+          </div>
+        );
+      };
+      
+      // Render Sources management view.
+      const renderSources = () => {
+        return (
+          <div className="card card-custom">
+            <div className="card-header" style={{ backgroundColor: "#222", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+              <h3><i className="fas fa-link"></i> Manage Flashcard Sources</h3>
+            </div>
+            <div className="card-body">
+              {/* Add URL Form */}
+              <div className="input-group mb-3">
+                <input 
+                  type="url" 
+                  className="form-control" 
+                  placeholder="Enter flashcards URL" 
+                  value={newUrl}
+                  onChange={e => setNewUrl(e.target.value)}
+                  required 
+                  pattern="https?://.+"
+                />
+                <div className="input-group-append">
+                  <button className="btn btn-success" onClick={handleAddUrl}>
+                    <i className="fas fa-plus"></i> Add URL
+                  </button>
+                </div>
+              </div>
+              {newUrlError && <div className="text-danger mb-3">{newUrlError}</div>}
+              
+              {/* Current Sources List */}
+              {sources.length > 0 && (
+                <div className="mt-3">
+                  <h5>Current Sources:</h5>
+                  <ul className="list-group">
+                    {sources.map((src, i) => {
+                      let displayUrl = src.url;
+                      if (displayUrl.toLowerCase().endsWith(".json")) {
+                        displayUrl = displayUrl.slice(0, -5);
+                      }
+                      return (
+                        <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
+                          <div>
+                            <div><i className="fas fa-link"></i> {displayUrl}</div>
+                            <small>
+                              {src.lastLoaded 
+                                ? `Last Loaded: ${new Date(src.lastLoaded).toLocaleString()} - Loaded ${src.lastCardCount} card(s)`
+                                : "Not loaded yet"}
+                            </small>
+                          </div>
+                          <button className="btn btn-danger btn-sm" onClick={() => {
+                            const updatedSources = sources.filter(s => s.url !== src.url);
+                            setSources(updatedSources);
+                            const updatedCards = state.cards.map(card => {
+                              if (card.sources && card.sources.includes(src.url)) {
+                                const newSources = card.sources.filter(s => s !== src.url);
+                                return { ...card, sources: newSources };
+                              }
+                              return card;
+                            }).filter(card => card.sources && card.sources.length > 0);
+                            dispatch({ type: "SET_CARDS", payload: updatedCards });
+                          }}>
+                            <i className="fas fa-trash-alt"></i>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+              
+              <div className="mt-3">
+                <h5>Sample Flashcards JSON</h5>
+                <pre className="bg-dark text-light p-2">
+{`[
+  {
+    "question": "What is the capital of France?",
+    "answer": "Paris",
+    "reference": "https://en.wikipedia.org/wiki/Paris"
+  },
+  {
+    "question": "What is 2+2?",
+    "answer": "4"
+  },
+  {
+    "question": "What is the boiling point of water?",
+    "answer": "100°C",
+    "reference": "https://en.wikipedia.org/wiki/Boiling_point"
+  }
+]`}
+                </pre>
+              </div>
+            </div>
+          </div>
+        );
+      };
+      
+      return (
+        <>
+          {/* Top Navigation (always shown) */}
+          {!isFullscreen && (
+            <nav className="navbar fixed-top" style={{ backgroundColor: "#222", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+              <span className="navbar-brand">
+                <i className="fas fa-book-open"></i> Farshid's FlashCards
+              </span>
+              <div className="d-flex align-items-center">
+                <span className="badge due-display mr-3">
+                  <i className="fas fa-bell"></i> Due: {state.cards.filter(card => card.nextReview <= Date.now()).length}
+                </span>
+                <div className="progress mr-3" style={{ width: "100px", height: "30px" }}>
+                  <div className="progress-bar bg-success" role="progressbar" style={{ width: `${progress}%` }}>
+                    {progress}%
+                  </div>
+                </div>
+                <div className="btn-group">
+                  <button className="btn btn-secondary top-btn" onClick={() => setActiveTab("review")}>
+                    <i className="fas fa-eye"></i> Review
+                  </button>
+                  <button className="btn btn-light top-btn" onClick={() => setActiveTab("sources")}>
+                    <i className="fas fa-link"></i> Sources
+                  </button>
+                  <button className="btn btn-dark top-btn" onClick={() => setShowHelp(true)}>
+                    <i className="fas fa-question-circle"></i> Help
+                  </button>
+                </div>
+              </div>
+            </nav>
+          )}
+          
+          {/* Main Container */}
+          <div className="container-fluid" style={{ height: "100vh" }}>
+            {/* Main Content Area */}
+            <div id="mainContent" className="main-content">
+              {activeTab === "review" ? renderReview() : renderSources()}
+            </div>
+            {/* In non-fullscreen mode, show bottom source filter bar and footer */}
+            {!isFullscreen && (
+              <>
+                <div className="source-filter-bar fixed-bottom" style={{ bottom: "40px" }}>
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-12 text-center">
+                        <div className="btn-group btn-group-sm" role="group" aria-label="Source Filter">
+                          {sources.map(src => {
+                            let displayUrl = src.url;
+                            if (displayUrl.toLowerCase().endsWith(".json")) {
+                              displayUrl = displayUrl.slice(0, -5);
+                            }
+                            return (
+                              <button 
+                                key={src.url}
+                                className={`btn ${selectedSource === src.url ? "btn-success" : "btn-secondary"}`}
+                                onClick={() => setSelectedSource(src.url)}
+                              >
+                                {selectedSource === src.url && <i className="fas fa-check" style={{ color: "lime", marginRight: "5px" }}></i>}
+                                <i className="fas fa-link"></i> {displayUrl}
+                              </button>
+                            );
+                          })}
+                          {selectedSource && (
+                            <button 
+                              className="btn btn-secondary"
+                              style={{ opacity: 0.7 }}
+                              onClick={() => setSelectedSource(null)}
+                            >
+                              <i className="fas fa-times"></i> Clear selection
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <footer className="footer fixed-bottom" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                  <div className="container">
+                    <span>
+                      <i className="fas fa-copyright"></i> Farshid's FlashCards © 2025
+                    </span>
+                  </div>
+                </footer>
+              </>
+            )}
+          </div>
+          
+          {/* Help Modal */}
+          {showHelp && renderHelpModal()}
+        </>
+      );
+    }
+    
+    ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+</body>
+</html>
+

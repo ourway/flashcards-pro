@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1001,
+    "question": "What is Trino?",
+    "answer": "Trino is a distributed SQL query engine designed to query large datasets distributed across one or more diverse data sources.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1002,
+    "question": "What is the primary goal of Trino?",
+    "answer": "To query data where it lives, without needing to move data to a central system, making it ideal for data warehousing, data analysis, and reporting.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1003,
+    "question": "What are some of the data sources Trino can query?",
+    "answer": "Trino can query various data sources, including relational databases (like MySQL, PostgreSQL), NoSQL databases (like Cassandra, MongoDB), object storage (like S3, Azure Blob Storage), and more.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1004,
+    "question": "How does Trino achieve its distributed query processing?",
+    "answer": "Trino uses a massively parallel processing (MPP) architecture, distributing the query execution across multiple nodes in a cluster. This enables it to process large datasets quickly.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1005,
+    "question": "What SQL standard does Trino adhere to?",
+    "answer": "Trino uses standard ANSI SQL, allowing users to leverage their existing SQL skills and tools.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1006,
+    "question": "What is a connector in Trino?",
+    "answer": "A connector is a plugin that enables Trino to connect to and query a specific data source.  Each data source requires a corresponding connector.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1007,
+    "question": "What is a catalog in Trino?",
+    "answer": "A catalog in Trino represents a set of accessible data sources.  It provides a namespace for accessing data using SQL queries.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1008,
+    "question": "What is a schema in Trino?",
+    "answer": "Within a catalog, schemas are used to organize tables.  They provide a logical grouping of tables related to a specific application or domain.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1009,
+    "question": "What is a table in Trino?",
+    "answer": "A table in Trino represents the actual data that you query.  It resides within a specific schema and catalog.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1010,
+    "question": "What is a Trino driver?",
+    "answer": "The Trino driver is responsible for submitting queries to the Trino cluster and retrieving results. It handles communication between the client application and the Trino coordinator.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+    {
+    "id": 1011,
+    "question": "What is a Trino coordinator?",
+    "answer": "The coordinator is the central node in a Trino cluster. It's responsible for parsing, planning, and managing the execution of queries. It distributes tasks to the worker nodes.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+    {
+    "id": 1012,
+    "question": "What is a Trino worker?",
+    "answer": "Worker nodes are the machines in a Trino cluster that are responsible for the actual processing of data. They execute the tasks assigned to them by the coordinator.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1013,
+    "question": "What is a stage in Trino query execution?",
+    "answer": "A stage represents a logical part of a query plan. A query is broken down into multiple stages, each performing a specific operation (e.g., reading data, filtering, joining).",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+  {
+    "id": 1014,
+    "question": "What is a task in Trino?",
+    "answer": "A task is a unit of work assigned to a worker node. Each stage is divided into tasks, which are executed in parallel by the workers.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  },
+    {
+    "id": 1015,
+    "question": "What is a split in Trino?",
+    "answer": "A split represents a subset of data that a task operates on.  Splits allow tasks to process data in parallel, improving performance.",
+    "reference": "https://trino.io/docs/current/overview/concepts.html"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "name": "Flashcards Pro",
+  "short_name": "Flashcards",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#2c3e50",
+  "theme_color": "#343a40",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
