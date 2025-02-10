@@ -1,97 +1,62 @@
 [
   {
-    "question": "What are the two main approaches to Data Warehouse design?",
-    "answer": "1. Kimball's Dimensional Modeling: Uses denormalized schemas (Star & Snowflake) optimized for querying. \n2. Inmon's Corporate Information Factory: Uses a normalized enterprise data warehouse (EDW) before creating data marts.",
-    "reference": "https://www.vertabelo.com/blog/kimball-vs-inmon-data-warehouse-architectures/"
-  },
-  {
     "question": "What is the Kimball approach to Data Warehousing?",
     "answer": "Kimball promotes a bottom-up approach where data marts are built using Star or Snowflake schemas and later integrated into a data warehouse.",
-    "reference": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/"
+    "reference": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/",
+    "case_study": "Netflix uses Kimball’s Dimensional Modeling to optimize customer viewing data for fast analytics, improving personalized recommendations."
   },
   {
     "question": "What is the Inmon approach to Data Warehousing?",
     "answer": "Inmon promotes a top-down approach where a normalized enterprise data warehouse (EDW) is created first, and then data marts are built for specific business functions.",
-    "reference": "https://www.inmon.com/"
+    "reference": "https://www.inmon.com/",
+    "case_study": "Bank of America follows Inmon's approach for a centralized enterprise data warehouse that supports compliance and regulatory reporting."
   },
   {
     "question": "What is a Star Schema in data modeling?",
     "answer": "A Star Schema consists of a central Fact table linked to multiple Dimension tables. It simplifies queries and improves performance by reducing joins.",
-    "reference": "https://www.dataversity.net/star-schema-definition/"
+    "reference": "https://www.dataversity.net/star-schema-definition/",
+    "case_study": "Walmart uses Star Schema to track sales data efficiently, enabling rapid aggregation of transaction details for BI reporting."
   },
   {
     "question": "What is a Snowflake Schema, and how does it differ from Star Schema?",
     "answer": "A Snowflake Schema normalizes dimension tables by breaking them into sub-dimensions, reducing redundancy but increasing joins compared to a Star Schema.",
-    "reference": "https://www.datawarehouse4u.info/Snowflake-Schema.html"
-  },
-  {
-    "question": "What are the advantages of a Star Schema over a Snowflake Schema?",
-    "answer": "- Faster query performance due to fewer joins\n- Simpler, easier-to-read schema\n- Optimized for BI tools like Tableau, Power BI",
-    "reference": "https://mode.com/blog/star-schema-data-modeling/"
-  },
-  {
-    "question": "When should you use a Snowflake Schema instead of a Star Schema?",
-    "answer": "Use a Snowflake Schema when data redundancy needs to be minimized and storage optimization is a priority. It is suitable for large-scale, highly normalized databases.",
-    "reference": "https://www.dummies.com/article/technology/information-technology/data-science/data-warehousing/snowflake-schema-structure-in-data-warehousing-160040/"
-  },
-  {
-    "question": "What is data normalization in data modeling?",
-    "answer": "Normalization organizes data to reduce redundancy and improve integrity. It follows forms like 1NF, 2NF, and 3NF to eliminate duplicate data.",
-    "reference": "https://www.guru99.com/database-normalization.html"
+    "reference": "https://www.datawarehouse4u.info/Snowflake-Schema.html",
+    "case_study": "Amazon uses Snowflake Schema to manage their product catalog efficiently, reducing storage duplication across millions of SKUs."
   },
   {
     "question": "What are the drawbacks of normalization in Data Warehouses?",
     "answer": "Normalization increases joins, which can slow down query performance. Denormalized schemas like Star Schema are often preferred for analytical queries.",
-    "reference": "https://www.analyticsvidhya.com/blog/2020/10/star-schema-in-data-warehouse/"
+    "reference": "https://www.analyticsvidhya.com/blog/2020/10/star-schema-in-data-warehouse/",
+    "case_study": "Facebook originally used highly normalized schemas but transitioned to denormalized data warehouses for faster analytics."
   },
   {
     "question": "What is a Fact Table in a Data Warehouse?",
     "answer": "A Fact Table stores business events (transactions) and contains foreign keys linking to Dimension Tables, along with numeric measures (e.g., sales amount, quantity).",
-    "reference": "https://www.dataversity.net/fact-table-definition/"
-  },
-  {
-    "question": "What is a Dimension Table in a Data Warehouse?",
-    "answer": "A Dimension Table stores descriptive attributes about business entities (e.g., customers, products, time) and links to Fact Tables via foreign keys.",
-    "reference": "https://www.guru99.com/dimension-table-vs-fact-table.html"
+    "reference": "https://www.dataversity.net/fact-table-definition/",
+    "case_study": "Uber’s ride transactions are stored in a Fact Table with dimensions for drivers, passengers, and ride duration to enable surge pricing analytics."
   },
   {
     "question": "What is a Slowly Changing Dimension (SCD)?",
     "answer": "A Slowly Changing Dimension (SCD) manages historical changes in dimension data. \n- SCD Type 1: Overwrites old data.\n- SCD Type 2: Creates new rows for changes.\n- SCD Type 3: Stores a limited history using extra columns.",
-    "reference": "https://www.sqlshack.com/slowly-changing-dimension-scd-types/"
-  },
-  {
-    "question": "Give an example of a Slowly Changing Dimension Type 2 (SCD Type 2).",
-    "answer": "If a customer changes their address, a new row is created in the Customer Dimension with an effective start and end date to track history.",
-    "reference": "https://www.kimballgroup.com/2016/02/design-tip-152-slowly-changing-dimensions-are-not-hard/"
+    "reference": "https://www.sqlshack.com/slowly-changing-dimension-scd-types/",
+    "case_study": "A global bank tracks customer address changes using SCD Type 2 to maintain historical records for fraud detection."
   },
   {
     "question": "What is a Surrogate Key in Data Warehousing?",
     "answer": "A Surrogate Key is an artificial, system-generated key (usually an integer) used in place of a natural key to uniquely identify records in a table.",
-    "reference": "https://www.dataversity.net/surrogate-key-definition/"
-  },
-  {
-    "question": "What are the benefits of using Surrogate Keys in a Data Warehouse?",
-    "answer": "- Avoids dependency on business keys which may change\n- Improves query performance\n- Ensures uniqueness across different source systems",
-    "reference": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/"
+    "reference": "https://www.dataversity.net/surrogate-key-definition/",
+    "case_study": "A retail chain assigns surrogate keys to customers in its loyalty program, ensuring consistent tracking even if customer details change."
   },
   {
     "question": "What is Data Vault Modeling, and how does it differ from Kimball and Inmon?",
     "answer": "Data Vault is a hybrid model that combines normalization (like Inmon) and dimensional modeling (like Kimball). It separates business keys (Hubs), relationships (Links), and attributes (Satellites) to support scalability and historical tracking.",
-    "reference": "https://www.datavaultacademy.com/what-is-data-vault/"
-  },
-  {
-    "question": "What is the role of ETL in Data Warehouse Design?",
-    "answer": "ETL (Extract, Transform, Load) processes data from source systems, applies necessary transformations, and loads it into the Data Warehouse for analytics.",
-    "reference": "https://www.sqlshack.com/introduction-to-etl-and-elt/"
+    "reference": "https://www.datavaultacademy.com/what-is-data-vault/",
+    "case_study": "Airbnb uses Data Vault to integrate structured and semi-structured booking data across multiple regions while maintaining historical integrity."
   },
   {
     "question": "What are the best practices for designing a Data Warehouse?",
     "answer": "- Clearly define business requirements\n- Use appropriate schema (Star/Snowflake)\n- Optimize queries with indexing and partitioning\n- Implement Slowly Changing Dimensions for historical tracking\n- Ensure security and compliance with access controls",
-    "reference": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/"
-  },
-  {
-    "question": "When should you use an OLAP Cube instead of a traditional Data Warehouse?",
-    "answer": "OLAP Cubes pre-aggregate data for fast multidimensional analysis, making them ideal for high-performance analytical queries in BI tools.",
-    "reference": "https://www.techopedia.com/definition/27998/online-analytical-processing-olap"
+    "reference": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/",
+    "case_study": "Tesla optimizes sensor data warehousing by partitioning time-series vehicle performance data, improving analytics for predictive maintenance."
   }
 ]
