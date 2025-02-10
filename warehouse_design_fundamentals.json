@@ -83,5 +83,45 @@
     "question": "How can Data Observability improve Data Governance?",
     "answer": "Data Observability continuously monitors the health and reliability of data pipelines.\n\n### Key Data Observability Metrics:\n| Metric | Description |\n|--------|-------------|\n| Freshness | Detects stale data updates |\n| Schema Drift | Identifies unexpected schema changes |\n| Volume Anomalies | Alerts on missing or duplicate data |\n\n### Case Study:\nAn e-commerce company prevented sales reporting failures by using **Monte Carlo Data Observability** to detect pipeline failures in real time.\n\n### Real-Time Monitoring Architecture:\n- **Prometheus + Grafana** for real-time alerts on data anomalies.\n- **dbt Tests** to validate data transformations.\n- **Apache Superset Dashboards** to track Data SLAs.",
     "reference": "https://www.montecarlodata.com/"
+  },
+  {
+    "question": "What are the key techniques for optimizing query performance in a Data Warehouse?",
+    "answer": "Optimizing queries in a Data Warehouse involves:\n\n### Key Optimization Techniques:\n| Technique | Description |\n|-----------|-------------|\n| Partitioning | Divides large tables into smaller, manageable pieces to improve scan performance |\n| Indexing | Speeds up lookups by creating sorted pointers to data |\n| Materialized Views | Stores pre-aggregated results to reduce computation time |\n| Query Caching | Reuses previously executed query results to avoid recomputation |\n\n### Case Study:\nAirbnb optimized their analytics platform by implementing **partition pruning and query caching in Trino**, reducing query response times by 70%.\n\n### Example SQL for Partitioning:\n```sql\nCREATE TABLE sales (\n    sale_id INT,\n    sale_date DATE,\n    region STRING\n) PARTITIONED BY (sale_date);\n```\n",
+    "reference": "https://trino.io/docs/current/sql/query-optimization.html"
+  },
+  {
+    "question": "What is table partitioning, and how does it improve performance?",
+    "answer": "Partitioning divides a large table into smaller segments based on column values, improving query speed by scanning only relevant partitions.\n\n### Types of Partitioning:\n| Type | Description | Example |\n|------|------------|---------|\n| Range Partitioning | Divides data into fixed ranges | Orders partitioned by year (2019, 2020, 2021) |\n| List Partitioning | Uses predefined category values | Sales partitioned by region (US, EU, APAC) |\n| Hash Partitioning | Distributes data randomly across partitions | User IDs hashed into buckets for even distribution |\n\n### Case Study:\nA telecom company improved query performance by **using date-based partitioning in Amazon Redshift**, reducing scan time from minutes to seconds.\n\n### SQL Example:\n```sql\nALTER TABLE sales ADD PARTITION (sale_date = '2024-01-01');\n```\n",
+    "reference": "https://cloud.google.com/bigquery/docs/partitioned-tables"
+  },
+  {
+    "question": "What is indexing, and when should you use it in a Data Warehouse?",
+    "answer": "Indexing creates a structured lookup for faster data retrieval, reducing the need for full table scans.\n\n### Types of Indexing:\n| Type | Description | Use Case |\n|------|------------|---------|\n| B-Tree Index | Speeds up point lookups | Searching customer IDs |\n| Bitmap Index | Optimized for low-cardinality columns | Gender, Yes/No flags |\n| Covering Index | Stores all required query columns in the index | High-frequency analytical queries |\n\n### Case Study:\nAn e-commerce company reduced dashboard load times by **adding covering indexes on frequently queried columns in PostgreSQL**.\n\n### Example SQL:\n```sql\nCREATE INDEX idx_sales_date ON sales (sale_date);\n```\n",
+    "reference": "https://www.postgresql.org/docs/current/indexes.html"
+  },
+  {
+    "question": "How does query caching improve Data Warehouse performance?",
+    "answer": "Query caching stores the results of previously executed queries, eliminating redundant computations.\n\n### When to Use Query Caching:\n- Frequently accessed dashboards with repeated queries\n- Reports that don’t require real-time data\n- Large aggregations that don’t change often\n\n### Case Study:\nNetflix reduced AWS costs by 40% using **Presto query result caching**, avoiding redundant scans on their data lake.\n\n### Example Trino (Presto) Query Caching:\n```sql\nSET SESSION query_cache_enabled = true;\nSELECT COUNT(*) FROM sales;\n```\n",
+    "reference": "https://trino.io/docs/current/admin/query-caching.html"
+  },
+  {
+    "question": "What are materialized views, and how do they improve performance?",
+    "answer": "Materialized Views store the results of a query physically, reducing expensive recalculations.\n\n### Benefits of Materialized Views:\n- Faster aggregations by precomputing totals\n- Avoids recomputation for complex joins\n- Improves report generation times\n\n### Case Study:\nUber improved real-time analytics by **implementing Materialized Views in BigQuery**, reducing data processing latency by 80%.\n\n### SQL Example:\n```sql\nCREATE MATERIALIZED VIEW monthly_sales AS\nSELECT region, SUM(amount) AS total_sales\nFROM sales\nGROUP BY region;\n```\n",
+    "reference": "https://cloud.google.com/bigquery/docs/materialized-views-intro"
+  },
+  {
+    "question": "What is columnar storage, and why is it beneficial for Data Warehouses?",
+    "answer": "Columnar storage optimizes read performance by storing data column-wise instead of row-wise, improving compression and query speed.\n\n### Benefits of Columnar Storage:\n| Benefit | Description |\n|---------|------------|\n| Faster Aggregations | Reads only necessary columns for queries |\n| Better Compression | Similar values in a column compress better than row storage |\n| Reduced I/O | Avoids unnecessary data scanning |\n\n### Case Study:\nFacebook improved their analytics infrastructure by **switching from row-based to columnar storage in Apache Parquet**, reducing data scan time by 50%.\n\n### Example Columnar Format:\n```plaintext\nRow Storage: \nID  | Name  | Age  | Salary\n1   | Alice | 25   | 50000\n2   | Bob   | 30   | 60000\n\nColumnar Storage:\nID: 1, 2\nName: Alice, Bob\nAge: 25, 30\nSalary: 50000, 60000\n```\n",
+    "reference": "https://parquet.apache.org/documentation/latest/"
+  },
+  {
+    "question": "What is query pruning, and how does it improve performance?",
+    "answer": "Query pruning eliminates unnecessary data scans by filtering only relevant partitions, reducing execution time.\n\n### Example of Query Pruning:\n```sql\nSELECT * FROM sales WHERE sale_date = '2024-01-01';\n```\nIf `sales` is **partitioned by sale_date**, only one partition is scanned instead of the whole table.\n\n### Case Study:\nA financial services firm optimized query performance in Snowflake by **implementing automatic partition pruning**, reducing query time from 3 minutes to 10 seconds.\n",
+    "reference": "https://docs.snowflake.com/en/user-guide/querying-pruning"
+  },
+  {
+    "question": "How does workload management (WLM) improve Data Warehouse performance?",
+    "answer": "Workload management (WLM) assigns different priority levels to queries, ensuring critical workloads run faster.\n\n### WLM Strategies:\n| Strategy | Description |\n|----------|------------|\n| Query Prioritization | Assigns priority levels (low, medium, high) |\n| Resource Allocation | Limits compute resources for non-critical queries |\n| Query Queueing | Prevents overloading by managing query concurrency |\n\n### Case Study:\nA bank reduced report processing times by 60% by **implementing WLM in Redshift to prioritize financial reporting queries**.\n\n### SQL Example for WLM Setup:\n```sql\nALTER SYSTEM SET statement_timeout = '2m';\nALTER SYSTEM SET max_parallel_workers = 8;\n```\n",
+    "reference": "https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm.html"
   }
 ]
