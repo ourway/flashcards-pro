@@ -1,0 +1,87 @@
+[
+  {
+    "question": "What is the recommended approach to handling NULL values in data transformation?",
+    "answer": "Use COALESCE or IFNULL functions to replace NULLs with default values. Ensure NULLs are handled based on business logic to prevent incorrect aggregations.",
+    "reference": "https://www.sqlservertutorial.net/sql-server-basics/sql-server-coalesce/"
+  },
+  {
+    "question": "Why is schema evolution important in data transformation pipelines?",
+    "answer": "Schema evolution allows adding, modifying, or removing columns without breaking downstream processes. Technologies like Apache Iceberg, Delta Lake, and Avro support schema evolution.",
+    "reference": "https://iceberg.apache.org/schemas/"
+  },
+  {
+    "question": "How can data engineers optimize performance in large-scale ETL jobs?",
+    "answer": "Use partitioning, bucketing, and indexing to minimize data scans. Leverage lazy evaluation in Spark and avoid shuffling large datasets unnecessarily.",
+    "reference": "https://spark.apache.org/docs/latest/sql-performance-tuning.html"
+  },
+  {
+    "question": "What is the difference between batch and stream processing in data transformation?",
+    "answer": "Batch processing handles large datasets at scheduled intervals, while stream processing processes data in real-time as it arrives.",
+    "reference": "https://flink.apache.org/faq.html#what-is-stream-processing"
+  },
+  {
+    "question": "How does Change Data Capture (CDC) improve data transformation?",
+    "answer": "CDC captures real-time changes in source databases and propagates them to downstream systems, ensuring near real-time data freshness.",
+    "reference": "https://debezium.io/documentation/reference/2.2/concepts/change-data-capture.html"
+  },
+  {
+    "question": "What is idempotency in data transformation, and why is it important?",
+    "answer": "Idempotency ensures that a transformation produces the same result regardless of how many times it is executed, preventing duplicate or inconsistent records.",
+    "reference": "https://www.databricks.com/glossary/idempotency"
+  },
+  {
+    "question": "How can data engineers prevent data quality issues during transformations?",
+    "answer": "Implement data validation checks, use unit tests for transformations, apply deduplication techniques, and maintain strong data governance practices.",
+    "reference": "https://great-expectations.io/"
+  },
+  {
+    "question": "What is pushdown optimization in data transformation?",
+    "answer": "Pushdown optimization reduces data movement by pushing transformation logic (such as filters and aggregations) to the source system instead of executing them in memory.",
+    "reference": "https://docs.snowflake.com/en/user-guide/query-pushdown"
+  },
+  {
+    "question": "How can window functions enhance data transformation processes?",
+    "answer": "Window functions allow computations across partitions of data, enabling advanced transformations like moving averages, ranking, and cumulative sums without group-by limitations.",
+    "reference": "https://mode.com/sql-tutorial/sql-window-functions/"
+  },
+  {
+    "question": "Why should data transformations be performed incrementally rather than as full reloads?",
+    "answer": "Incremental transformations improve efficiency by processing only new or changed data, reducing computation time and costs.",
+    "reference": "https://www.databricks.com/glossary/incremental-processing"
+  },
+  {
+    "question": "What are best practices for handling late-arriving data in transformation pipelines?",
+    "answer": "Use watermarking and event-time processing (in Flink or Spark Structured Streaming) to handle late-arriving events while ensuring correct ordering.",
+    "reference": "https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#handling-late-data"
+  },
+  {
+    "question": "How does data lineage tracking improve data transformation workflows?",
+    "answer": "Data lineage helps track data movement and transformations, ensuring transparency, debugging capabilities, and compliance with regulations like GDPR.",
+    "reference": "https://openlineage.io/"
+  },
+  {
+    "question": "What is the advantage of using dbt (Data Build Tool) for data transformations?",
+    "answer": "dbt enables SQL-based transformations with version control, modularity, and automated documentation, making data engineering workflows more scalable.",
+    "reference": "https://docs.getdbt.com/docs/introduction"
+  },
+  {
+    "question": "What role does caching play in optimizing data transformations?",
+    "answer": "Caching intermediate results reduces redundant computations, improving performance for iterative transformations in Spark, Trino, and other frameworks.",
+    "reference": "https://spark.apache.org/docs/latest/rdd-programming-guide.html#rdd-persistence"
+  },
+  {
+    "question": "What is the importance of data deduplication in transformation processes?",
+    "answer": "Deduplication removes redundant records, ensuring accurate reporting and reducing storage costs, often achieved using window functions or DISTINCT clauses.",
+    "reference": "https://www.databricks.com/blog/2020/10/21/simple-and-fast-data-deduplication-using-spark-structured-streaming.html"
+  },
+  {
+    "question": "How can parallel processing improve the performance of data transformations?",
+    "answer": "Parallelizing transformations across distributed systems (e.g., Spark RDDs, Flink parallelism) reduces processing time and enhances scalability.",
+    "reference": "https://spark.apache.org/docs/latest/tuning.html"
+  },
+  {
+    "question": "Why should data transformations be modularized?",
+    "answer": "Modular transformations improve maintainability, reusability, and debugging by breaking transformations into smaller, independent steps.",
+    "reference": "https://docs.getdbt.com/docs/best-practices/modularizing-models"
+  }
+]
