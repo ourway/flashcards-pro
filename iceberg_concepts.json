@@ -358,6 +358,70 @@
     "question": "What Metrics are often discussed for optimizing Iceberg?",
     "answer": "Common metrics include:\n- **Metadata I/O**: How long it takes to read and write manifest files.\n- **Scan Planning Time**: How quickly the system prunes irrelevant data files.\n- **Data File I/O**: The amount of data read from or written to storage.\n- **Commit Latency**: Time taken to finalize metadata commits.\n\nMonitoring these helps operators tune configurations and diagnose performance bottlenecks in Iceberg-based systems.",
     "reference": "https://iceberg.apache.org/spec"
+  },
+  {
+    "question": "What is schema evolution in Apache Iceberg, and how do you add a new column to an existing table?",
+    "answer": "Schema evolution in Iceberg allows altering a table schema without rewriting the entire dataset. To add a new column:\n\n```sql\nALTER TABLE my_table ADD COLUMN new_column STRING;\n```\n\nYou can also rename or drop columns without affecting existing data.",
+    "reference": "https://iceberg.apache.org/docs/latest/schema-evolution/"
+  },
+  {
+    "question": "How does Iceberg support hidden partitioning, and how can you define a partition using transformations?",
+    "answer": "Iceberg supports hidden partitioning by automatically managing partition columns.\n\nExample:\n\n```sql\nCREATE TABLE sales (\n    id BIGINT,\n    amount DECIMAL(10,2),\n    sale_date TIMESTAMP\n) PARTITIONED BY (years(sale_date), months(sale_date));\n```\n\nQueries do not need to explicitly include partition columns, simplifying queries.",
+    "reference": "https://iceberg.apache.org/docs/latest/partitioning/"
+  },
+  {
+    "question": "What is time travel in Iceberg, and how do you query past table versions?",
+    "answer": "Time travel allows querying historical table versions.\n\nQuery a table from a specific snapshot ID:\n\n```sql\nSELECT * FROM my_table.snapshot_at('SNAPSHOT_ID');\n```\n\nQuery data as of a timestamp:\n\n```sql\nSELECT * FROM my_table FOR SYSTEM_TIME AS OF TIMESTAMP '2024-01-01 12:00:00';\n```\n\nUseful for debugging and auditing.",
+    "reference": "https://iceberg.apache.org/docs/latest/time-travel/"
+  },
+  {
+    "question": "How does Iceberg manage retention, and how do you remove old snapshots?",
+    "answer": "Iceberg supports automatic snapshot expiration to free storage while ensuring consistency.\n\nExample:\n\n```sql\nCALL system.expire_snapshots(\n    table => 'my_table',\n    older_than => TIMESTAMP '2024-02-01 00:00:00'\n);\n```\n\nThis deletes old snapshots but retains necessary history.",
+    "reference": "https://iceberg.apache.org/docs/latest/maintenance/"
+  },
+  {
+    "question": "What is Iceberg’s merge-on-read feature, and how do you use it?",
+    "answer": "Merge-on-read enables updates without rewriting entire files.\n\nExample:\n\n```sql\nMERGE INTO my_table AS t\nUSING updates AS u\nON t.id = u.id\nWHEN MATCHED THEN\n  UPDATE SET t.amount = u.amount\nWHEN NOT MATCHED THEN\n  INSERT (id, amount) VALUES (u.id, u.amount);\n```\n\nThis improves efficiency in write-heavy workloads.",
+    "reference": "https://iceberg.apache.org/docs/latest/merge-on-read/"
+  },
+  {
+    "question": "How can Iceberg optimize file compaction for better query performance?",
+    "answer": "Iceberg supports file compaction to merge small files and improve read performance.\n\nRun a compaction:\n\n```sql\nCALL system.rewrite_data_files('my_table');\n```\n\nThis merges small files for better performance.",
+    "reference": "https://iceberg.apache.org/docs/latest/maintenance/"
+  },
+  {
+    "question": "How does Iceberg support row-level deletes, and what is the SQL syntax for deleting records?",
+    "answer": "Iceberg supports row-level deletes using **position deletes** without rewriting files.\n\nExample:\n\n```sql\nDELETE FROM my_table WHERE amount < 100;\n```\n\nThis marks rows as deleted without affecting file structure.",
+    "reference": "https://iceberg.apache.org/docs/latest/deletes/"
+  },
+  {
+    "question": "How can you roll back an Iceberg table to a previous snapshot?",
+    "answer": "Rolling back to a previous snapshot helps undo accidental changes.\n\nExample:\n\n```sql\nCALL system.rollback_to_snapshot('my_table', SNAPSHOT_ID);\n```\n\nEnsures data consistency and recovery.",
+    "reference": "https://iceberg.apache.org/docs/latest/time-travel/"
+  },
+  {
+    "question": "How does Iceberg support incremental data processing, and how can you query only changed data?",
+    "answer": "Iceberg allows incremental scans to query only changed data.\n\nExample:\n\n```sql\nSELECT * FROM my_table CHANGES BETWEEN SNAPSHOT 'SNAPSHOT_ID_OLD' AND 'SNAPSHOT_ID_NEW';\n```\n\nUseful for streaming ingestion and analytics.",
+    "reference": "https://iceberg.apache.org/docs/latest/incremental-planning/"
+  },
+  {
+    "question": "What are Iceberg metadata tables, and how can they be used for troubleshooting?",
+    "answer": "Iceberg metadata tables provide insights into snapshots, partitions, and history.\n\nList all snapshots:\n\n```sql\nSELECT * FROM my_table.history;\n```\n\nInspect file-level details:\n\n```sql\nSELECT * FROM my_table.files;\n```\n\nUseful for debugging data operations.",
+    "reference": "https://iceberg.apache.org/docs/latest/metadata/"
+  },
+  {
+    "question": "How can you monitor Iceberg table size, file count, and data metrics?",
+    "answer": "Iceberg stores table-level metrics in metadata tables.\n\nTo check table size and file count:\n\n```sql\nSELECT * FROM my_table.files;\n```\n\nTo check record counts per partition:\n\n```sql\nSELECT partition, record_count FROM my_table.partitions;\n```\n\nTo view aggregated column statistics:\n\n```sql\nSELECT column_name, min_value, max_value, null_count\nFROM my_table.columns;\n```",
+    "reference": "https://iceberg.apache.org/docs/latest/observability/"
+  },
+  {
+    "question": "What are Iceberg’s table statistics, and how can you use them for query optimization?",
+    "answer": "Iceberg tracks column statistics like min/max values, null counts, and distinct counts.\n\nExample to get column statistics:\n\n```sql\nSELECT column_name, min_value, max_value, null_count, distinct_count\nFROM my_table.columns;\n```\n\nThis helps optimize query performance by avoiding unnecessary scans.",
+    "reference": "https://iceberg.apache.org/docs/latest/observability/"
+  },
+  {
+    "question": "How does Iceberg provide query observability and debugging?",
+    "answer": "Iceberg enables observability via metadata tables and query logs.\n\nTo track query performance:\n\n```sql\nSELECT operation, snapshot_id, committed_at\nFROM my_table.history;\n```\n\nTo check failed jobs or long-running queries:\n\n```sql\nSELECT * FROM system.query_history;\n```\n\nThese help analyze performance bottlenecks and optimize queries.",
+    "reference": "https://iceberg.apache.org/docs/latest/observability/"
   }
 ]
-
