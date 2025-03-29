@@ -48,6 +48,15 @@
       padding: 0.3rem 0.6rem;
       min-height: 50px;
     }
+    h3,.h3 {
+        font-size: 1.5rem;
+    }
+    h4,.h4 {
+        font-size: 1.2rem;
+    }
+    h2,.h2 {
+        font-size: 1.8rem;
+    }
 
     /* Left Sidebar (Desktop Only) */
     .sidebar {
@@ -97,7 +106,7 @@
     .bottom-bar {
       display: none; /* hidden by default (desktop) */
       position: fixed;
-      bottom: 40px; /* above the footer */
+      bottom: 0px; /* above the footer */
       left: 0;
       right: 0;
       background-color: #2c2c2c;
@@ -216,9 +225,18 @@
 
     /* Responsive: Hide sidebar and show bottom bar on mobile */
     @media (max-width: 767px) {
-      .due_and_progress {
-        display: none;
-      }
+        .body {
+            font-size: 0.7rem;
+        }
+        .card-body {
+          padding: 5px;
+        }
+        .main-content {
+          padding: 2px;
+        }
+        .due_and_progress {
+          display: none;
+        }
       .btn-help {
         display: none;
       }
@@ -227,6 +245,7 @@
       }
       .main-content.review-mode {
         margin-left: 0;
+          padding: 5px;
       }
       .bottom-bar {
         display: block;
@@ -641,7 +660,7 @@
               )}
             </div>
             {showAnswer && (
-              <div className="card-footer d-flex justify-content-between" style={{ backgroundColor: "#222" }}>
+              <div className="card-footer d-flex justify-content-between" style={{ backgroundColor: "#222", marginBottom: "10px"}}>
                 <button className="btn btn-danger" onClick={() => handleAnswer(false)}>
                   <i className="fas fa-times"></i> Needs Practice
                 </button>
@@ -778,16 +797,14 @@
               </div>
               {activeTab === "review" && (
                 <>
-                <div class="due_and_progress">
-                  <span className="badge badge-pill badge-info ml-auto">
+                <span className="badge badge-pill badge-info ml-auto due_and_progress">
                     <i className="fas fa-bell"></i> Due: <code>{dueCardsCount}</code>
                   </span>
-                  <div className="progress ml-3" style={{ width: "100px", height: "10px" }}>
+                  <div className="progress ml-3 due_and_progress" style={{ width: "100px", height: "10px" }}>
                     <div className="progress-bar bg-success" role="progressbar" style={{ width: `${progress}%` }}>
                       {progress}%
                     </div>
                   </div>
-                </div>
                 </>
               )}
               <button className="btn btn-sm btn-help btn-secondary ml-auto" onClick={() => setShowHelp(true)}>
