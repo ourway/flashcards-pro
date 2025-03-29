@@ -17,7 +17,8 @@
   <!-- Babel for on-the-fly JSX -->
   <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
   <link rel="icon" href="/icon.png">
-  <link rel="manifest" href="/manifest.json">
+  <!-- Service Worker is disabled by commenting out registration. -->
+  <!-- <link rel="manifest" href="/manifest.json"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=no">
   <style>
     /* Overall page styles */
@@ -44,7 +45,8 @@
       padding: 0.3rem 0.6rem;
       min-height: 50px;
     }
-    /* Sidebar for Review mode */
+
+    /* Left Sidebar (Desktop Only) */
     .sidebar {
       width: 260px;
       background-color: #2c2c2c;
@@ -87,7 +89,45 @@
       margin-right: 6px;
       font-size: 0.9em;
     }
-    /* Adjust main content margin when sidebar is visible in Review mode */
+
+    /* Bottom bar for topics (Mobile Only) */
+    .bottom-bar {
+      display: none; /* hidden by default (desktop) */
+      position: fixed;
+      bottom: 40px; /* above the footer */
+      left: 0;
+      right: 0;
+      background-color: #2c2c2c;
+      padding: 6px;
+      overflow-x: auto;
+      white-space: nowrap;
+      z-index: 1050;
+    }
+    .bottom-bar ul {
+      list-style: none;
+      display: inline-flex;
+      margin: 0;
+      padding: 0;
+    }
+    .bottom-bar li {
+      background-color: #3a3a3a;
+      color: #ddd;
+      margin-right: 6px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .bottom-bar li.active {
+      background-color: #007bff;
+    }
+    .bottom-bar li i {
+      margin-right: 4px;
+    }
+
+    /* Main content area */
     .main-content.review-mode {
       margin-left: 260px;
       padding: 20px;
@@ -96,23 +136,7 @@
       margin: 0;
       padding: 20px;
     }
-    /* Expand/collapse toggle button for sidebar */
-    .toggle-sidebar-btn {
-      position: fixed;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1050;
-    }
-    /* Responsive adjustments */
-    @media (max-width: 767px) {
-      .sidebar {
-        width: 220px;
-      }
-      .main-content.review-mode {
-        margin-left: 220px;
-      }
-    }
+
     /* Footer styles */
     footer.footer {
       height: 40px;
@@ -128,6 +152,7 @@
       right: 0;
       z-index: 1020;
     }
+
     /* Flashcard Q/A and markdown styles */
     .question-box {
       background-color: #000 !important;
@@ -150,6 +175,7 @@
       padding: 2px 4px;
       border-radius: 4px;
     }
+
     /* Help modal styles */
     .help-overlay {
       position: fixed;
@@ -184,11 +210,24 @@
       font-size: 24px;
       cursor: pointer;
     }
+
+    /* Responsive: Hide sidebar and show bottom bar on mobile */
+    @media (max-width: 767px) {
+      .sidebar {
+        display: none;
+      }
+      .main-content.review-mode {
+        margin-left: 0;
+      }
+      .bottom-bar {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
   <div id="root"></div>
-  <!-- Service Worker Registration -->
+  <!-- Service Worker Registration is disabled
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -198,6 +237,7 @@
       });
     }
   </script>
+  -->
   <script type="text/babel" data-presets="env,react">
     const { useState, useEffect, useReducer, useRef } = React;
     const TIME_UNIT = 60000; // 1 minute unit
@@ -315,7 +355,8 @@
       const [showAnswer, setShowAnswer] = useState(false);
       const [isFullscreen, setIsFullscreen] = useState(false);
       const [sidebarVisible, setSidebarVisible] = useState(true);
-      const [showHelp, setShowHelp] = useState(false); // Added to fix ReferenceError
+      const [showHelp, setShowHelp] = useState(false);
+
       const lastTapRef = useRef(0);
       const touchStartXRef = useRef(0);
       const touchStartYRef = useRef(0);
@@ -426,7 +467,9 @@
         }
       }
 
-      // Notification functions.
+      // Notification functions (disabled by removing service worker).
+      // You could still keep them if you want local notifications for PWA,
+      // but we'll keep them for reference, with no service worker actually running.
       function requestNotificationPermission() {
         if ("Notification" in window && Notification.permission === "default") {
           Notification.requestPermission().then(permission => {
@@ -436,15 +479,8 @@
       }
       function notifyDueCards(dueCount, firstQuestion) {
         if ("Notification" in window && Notification.permission === "granted") {
-          navigator.serviceWorker.ready.then(reg => {
-            let bodyText = dueCount === 1 ? `Time to review: ${firstQuestion}` :
-                           dueCount > 5 ? `Time to review ${dueCount} questions now!` :
-                           `It's time to review ${dueCount} question(s).`;
-            reg.showNotification("Flashcards Reminder", {
-              body: bodyText,
-              icon: "/icon.png"
-            });
-          });
+          // Would require an active service worker, which is disabled now.
+          console.log("Would show notification: " + dueCount + " due cards.");
         }
       }
       useEffect(() => {
@@ -748,44 +784,57 @@
               </button>
             </nav>
           )}
-          {/* Expandable Left Sidebar in Review Mode */}
+
+          {/* Left Sidebar (Desktop) */}
           {activeTab === "review" && !isFullscreen && (
-            <>
-              {sidebarVisible ? (
-                <div className="sidebar">
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <h6>Topics</h6>
-                    <button className="btn btn-sm btn-secondary" onClick={() => setSidebarVisible(false)}>
-                      <i className="fas fa-angle-double-left"></i>
-                    </button>
-                  </div>
-                  <ul>
-                    {sources.map(src => (
-                      <li key={src.url} className={selectedSource === src.url ? "active" : ""}
-                          title={humanizeTopicName(src.url)}
-                          onClick={() => { setSelectedSource(src.url); setShowAnswer(false); }}>
-                        <i className="fas fa-tag"></i> {humanizeTopicName(src.url)}
-                      </li>
-                    ))}
-                    {selectedSource && (
-                      <li onClick={() => { setSelectedSource(null); setShowAnswer(false); }} title="Clear selection">
-                        <i className="fas fa-times"></i> Clear
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              ) : (
-                <button className="btn btn-secondary toggle-sidebar-btn" onClick={() => setSidebarVisible(true)}>
-                  <i className="fas fa-bars"></i> Topics
-                </button>
-              )}
-            </>
+            <div className="sidebar d-none d-md-block">
+              <div className="d-flex justify-content-between align-items-center mb-2">
+                <h6>Topics</h6>
+              </div>
+              <ul>
+                {sources.map(src => (
+                  <li key={src.url} className={selectedSource === src.url ? "active" : ""}
+                      title={humanizeTopicName(src.url)}
+                      onClick={() => { setSelectedSource(src.url); setShowAnswer(false); }}>
+                    <i className="fas fa-tag"></i> {humanizeTopicName(src.url)}
+                  </li>
+                ))}
+                {selectedSource && (
+                  <li onClick={() => { setSelectedSource(null); setShowAnswer(false); }} title="Clear selection">
+                    <i className="fas fa-times"></i> Clear
+                  </li>
+                )}
+              </ul>
+            </div>
           )}
+
+          {/* Bottom Bar (Mobile) */}
+          {activeTab === "review" && !isFullscreen && (
+            <div className="bottom-bar d-md-none">
+              <ul>
+                {sources.map(src => (
+                  <li key={src.url}
+                      className={selectedSource === src.url ? "active" : ""}
+                      title={humanizeTopicName(src.url)}
+                      onClick={() => { setSelectedSource(src.url); setShowAnswer(false); }}>
+                    <i className="fas fa-tag"></i> {humanizeTopicName(src.url)}
+                  </li>
+                ))}
+                {selectedSource && (
+                  <li onClick={() => { setSelectedSource(null); setShowAnswer(false); }} title="Clear selection">
+                    <i className="fas fa-times"></i> Clear
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
+
           {/* Main Content */}
           <div id="mainContent" className={`main-content ${activeTab === "review" ? "review-mode" : "sources-mode"}`}
                onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             {activeTab === "review" ? renderReview() : renderSources()}
           </div>
+
           {/* Footer */}
           {!isFullscreen && (
             <footer className="footer">
@@ -796,6 +845,7 @@
               </div>
             </footer>
           )}
+
           {/* Help Modal */}
           {showHelp && (
             <div className="help-overlay" onClick={() => setShowHelp(false)}>
