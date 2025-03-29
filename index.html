@@ -5,235 +5,189 @@
   <title>BrainFuel</title>
   <!-- Bootswatch Darkly theme for Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css">
-  <!-- Font Awesome (without integrity check) -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Blueimp MD5 for standard hashing -->
+  <!-- Blueimp MD5 for hashing -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
   <!-- Marked.js for Markdown rendering -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <!-- Production versions of React & ReactDOM -->
+  <!-- React & ReactDOM -->
   <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-  <!-- Babel for on-the-fly JSX (for demo; precompile for production) -->
-  <!-- icon -->
+  <!-- Babel for on-the-fly JSX -->
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
   <link rel="icon" href="/icon.png">
-<script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
-
   <link rel="manifest" href="/manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=no">
-
   <style>
-    /* Overall page */
-/* Overall page */
-html, body {
-  overscroll-behavior: contain;
-  overflow-scrolling: touch;
-  margin: 0;
-  background-color: #000;
-  padding: 0;
-}
-body {
-  overflow: auto;
-  padding-top: 70px; /* avoid hidden content behind the fixed navbar */
-  font-size: 16px;
-  background-color: #000;
-  font-family: -apple-system, system-ui, sans-serif;
-  line-height: 1.5;
-  /* webkit font optimisation */
-  -webkit-font-smoothing: antialiased;
-
-}
-  .card-header {
-	  .background-color: #222;
-  }
-
-/* Slightly smaller base font on tablets and up */
-@media (min-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-}
-
-/* Prevent iOS zoom on focus */
-input, textarea {
-  font-size: 16px;
-}
-
-/* Let container-fluid auto-size */
-.container-fluid {
-  width: 100%;
-}
-
-.card-custom {
-  margin: 20px auto;
-  max-width: 800px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.progress-bar {
-  transition: width 0.5s ease;
-  font-family: monospace;
-  font-size: 18px;
-}
-
-.main-content {
-  position: relative;
-  width: 100%;
-  overflow-y: auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 20px;
-  /* extra bottom padding so content isn't hidden behind fixed footer */
-  padding-bottom: 80px;
-}
-
-/* Flashcard Q/A */
-.question-box {
-  background-color: #000 !important;
-  color: #fff !important;
-  position: relative;
-}
-
-/* Markdown body styles */
-.markdown-body {
-  background-color: #000;
-  color: #fff;
-  padding: 10px;
-  margin-top: 10px;
-}
-.markdown-body pre {
-  background-color: #111;
-  padding: 10px;
-  overflow: auto;
-}
-.markdown-body code {
-  background-color: #111;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Responsive navbar: smaller on phones, bigger on tablets and desktops */
-.navbar {
-  background-color: #222 !important;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding: 0.3rem 0.6rem; /* slims down on small screens */
-  min-height: 50px;
-}
-@media (min-width: 768px) {
-  /* Tablet/iPad */
-  .navbar {
-    padding: 0.6rem 1rem;
-    min-height: 60px;
-  }
-  .navbar-brand {
-    font-size: 1.2rem;
-  }
-}
-@media (min-width: 992px) {
-  /* Desktop */
-  .navbar {
-    padding: 0.8rem 1.5rem;
-    min-height: 65px;
-  }
-  .navbar-brand {
-    font-size: 1.4rem;
-  }
-}
-@media (min-width: 1200px) {
-  /* Larger desktops */
-  .navbar {
-    padding: 1rem 2rem;
-    min-height: 70px;
-  }
-  .navbar-brand {
-    font-size: 1.6rem;
-  }
-}
-
-/* "Due" display: slightly larger, monospace */
-.due-display {
-  font-family: monospace;
-  font-size: 16px;
-}
-
-/* Source filter bar: fixed at the bottom (above footer), horizontal scroll */
-.source-filter-bar {
-  height: 40px;
-  background-color: #222;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  overflow-x: auto;
-  white-space: nowrap;
-  z-index: 1030;
-}
-.source-filter-bar .btn {
-  margin-right: 5px;
-}
-
-/* Footer: fixed bottom, dark, with a small top border */
-.footer {
-  height: 40px;
-  background-color: #222;
-  color: white;
-  text-align: center;
-  line-height: 40px;
-  font-size: 14px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  z-index: 1020;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-/* Extra spacing for top nav buttons */
-.top-btn {
-  margin-right: 10px;
-}
-
-/* Help Modal Overlay */
-.help-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 1050;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.help-content {
-  background: #111;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
-  color: #fff;
-  font-size: 16px;
-  line-height: 1.5;
-  position: relative;
-}
-.help-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-}
-
+    /* Overall page styles */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: -apple-system, system-ui, sans-serif;
+    }
+    body {
+      padding-top: 70px;
+      font-size: 16px;
+      overflow: auto;
+      background-color: #000;
+    }
+    .card-custom {
+      margin: 20px auto;
+      max-width: 800px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .navbar {
+      background-color: #222 !important;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 0.3rem 0.6rem;
+      min-height: 50px;
+    }
+    /* Sidebar for Review mode */
+    .sidebar {
+      width: 260px;
+      background-color: #2c2c2c;
+      color: #ddd;
+      min-height: calc(100vh - 70px);
+      position: fixed;
+      top: 70px;
+      left: 0;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 0.9em;
+      font-weight: 300;
+    }
+    .sidebar h6 {
+      margin: 0 0 10px 0;
+      font-weight: 400;
+      font-size: 1.1em;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar li {
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      background-color: #3a3a3a;
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar li.active {
+      background-color: #007bff;
+    }
+    .sidebar li i {
+      margin-right: 6px;
+      font-size: 0.9em;
+    }
+    /* Adjust main content margin when sidebar is visible in Review mode */
+    .main-content.review-mode {
+      margin-left: 260px;
+      padding: 20px;
+    }
+    .main-content.sources-mode {
+      margin: 0;
+      padding: 20px;
+    }
+    /* Expand/collapse toggle button for sidebar */
+    .toggle-sidebar-btn {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1050;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+      .sidebar {
+        width: 220px;
+      }
+      .main-content.review-mode {
+        margin-left: 220px;
+      }
+    }
+    /* Footer styles */
+    footer.footer {
+      height: 40px;
+      background-color: #222;
+      color: white;
+      text-align: center;
+      line-height: 40px;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1020;
+    }
+    /* Flashcard Q/A and markdown styles */
+    .question-box {
+      background-color: #000 !important;
+      color: #fff !important;
+      position: relative;
+    }
+    .markdown-body {
+      background-color: #000;
+      color: #fff;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    .markdown-body pre {
+      background-color: #111;
+      padding: 10px;
+      overflow: auto;
+    }
+    .markdown-body code {
+      background-color: #111;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    /* Help modal styles */
+    .help-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .help-content {
+      background: #111;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.5;
+      position: relative;
+    }
+    .help-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
   </style>
-  
 </head>
 <body>
   <div id="root"></div>
-  
   <!-- Service Worker Registration -->
   <script>
     if ('serviceWorker' in navigator) {
@@ -244,43 +198,57 @@ input, textarea {
       });
     }
   </script>
-  
-<script type="text/babel" data-presets="env,react">
+  <script type="text/babel" data-presets="env,react">
     const { useState, useEffect, useReducer, useRef } = React;
-    const TIME_UNIT = 60000; // 1 minute for testing.
-    
-    // Generate a unique ID using blueimp-md5 and padded order.
+    const TIME_UNIT = 60000; // 1 minute unit
+
+    // Predefined topics loaded from relative URLs.
+    const DEFAULT_SOURCES = [
+      { url: "topics/data_transformation_concepts.json" },
+      { url: "topics/trino_concepts.json" },
+      { url: "topics/iceberg_concepts.json" },
+      { url: "topics/trino_queries.json" },
+      { url: "topics/linux_commands.json" },
+      { url: "topics/warehouse_design_fundamentals.json" },
+      { url: "topics/pyspark.json" }
+    ];
+
+    // Programmatically convert a URL into a human-readable topic name.
+    function humanizeTopicName(url) {
+      let parts = url.split('/');
+      let fileName = parts[parts.length - 1] || "";
+      if (fileName.endsWith('.json')) {
+        fileName = fileName.slice(0, -5);
+      }
+      return fileName
+              .split('_')
+              .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(' ');
+    }
+
+    // Generate a unique ID using md5 and padded order.
     function generateId(url, order) {
       let hash = md5(url);
       return `${hash}-${String(order).padStart(5, '0')}`;
     }
-    
+
     // Reducer for flashcards.
     function flashcardReducer(state, action) {
       switch(action.type) {
         case 'SET_CARDS':
           return { ...state, cards: action.payload, isLoading: false, error: null };
-        case 'MERGE_CARDS':
-          return { ...state, cards: mergeCards(state.cards, action.payload) };
         case 'UPDATE_CARD':
           return { ...state, cards: state.cards.map(card => card.id === action.payload.id ? action.payload : card) };
-        case 'RESET_CARDS':
-          return { ...state, cards: [] };
-        case 'SET_LOADING':
-          return { ...state, isLoading: action.payload };
-        case 'SET_ERROR':
-          return { ...state, error: action.payload, isLoading: false };
         default:
           return state;
       }
     }
-    
-    // Merge fetched flashcards with existing ones.
+
+    // Merge fetched flashcards with existing ones (to preserve metadata).
     function mergeCards(existing, fetched) {
       const now = Date.now();
       const merged = [...existing];
       fetched.forEach(fCard => {
-        // Ignore any provided id.
         const index = merged.findIndex(c => c.id === fCard.id);
         if (index !== -1) {
           const combinedSources = Array.from(new Set([...(merged[index].sources || []), ...(fCard.sources || [])]));
@@ -306,12 +274,12 @@ input, textarea {
       merged.sort((a, b) => a.nextReview - b.nextReview);
       return merged;
     }
-    
+
     // Fetch flashcards from a given URL.
     async function fetchCardsFromURL(url) {
       const response = await fetch(url);
       if (!response.ok) {
-	throw new Error('Network error: ' + response.statusText);
+        throw new Error('Network error: ' + response.statusText);
       }
       const data = await response.json();
       if (!Array.isArray(data)) {
@@ -332,7 +300,7 @@ input, textarea {
         };
       });
     }
-    
+
     function App() {
       const [state, dispatch] = useReducer(flashcardReducer, {
         cards: [],
@@ -340,36 +308,40 @@ input, textarea {
         error: null
       });
       const [sources, setSources] = useState([]);
+      const [activeTab, setActiveTab] = useState("review"); // "review" or "sources"
       const [newUrl, setNewUrl] = useState("");
       const [newUrlError, setNewUrlError] = useState("");
-      const [activeTab, setActiveTab] = useState("review");
       const [selectedSource, setSelectedSource] = useState(null);
       const [showAnswer, setShowAnswer] = useState(false);
       const [isFullscreen, setIsFullscreen] = useState(false);
-      const [showHelp, setShowHelp] = useState(false);
-      
-      // Refs for touch events.
+      const [sidebarVisible, setSidebarVisible] = useState(true);
+      const [showHelp, setShowHelp] = useState(false); // Added to fix ReferenceError
       const lastTapRef = useRef(0);
       const touchStartXRef = useRef(0);
       const touchStartYRef = useRef(0);
-      
-      // On mount, load flashcards, sources, and active source from localStorage.
+
+      // On mount, load saved sources, selected topic, and flashcard metadata.
       useEffect(() => {
+        const savedSources = JSON.parse(localStorage.getItem("flashcardSources") || "[]");
+        const savedSelectedSource = localStorage.getItem("selectedSource") || "";
+        // Merge defaults with saved sources (avoiding duplicates)
+        const mergedSources = [...DEFAULT_SOURCES];
+        savedSources.forEach(src => {
+          if (!mergedSources.some(s => s.url === src.url)) {
+            mergedSources.push(src);
+          }
+        });
+        setSources(mergedSources);
+        if (savedSelectedSource) {
+          setSelectedSource(savedSelectedSource);
+        }
         const savedCards = JSON.parse(localStorage.getItem("flashcards") || "[]");
         if (savedCards.length > 0) {
           dispatch({ type: "SET_CARDS", payload: savedCards });
         }
-        const savedSources = JSON.parse(localStorage.getItem("flashcardSources") || "[]");
-        if (savedSources.length > 0) {
-          setSources(savedSources);
-        }
-        const savedSelectedSource = localStorage.getItem("selectedSource");
-        if (savedSelectedSource) {
-          setSelectedSource(savedSelectedSource);
-        }
       }, []);
-      
-      // Persist flashcards, sources, and selected source.
+
+      // Persist flashcards, sources, and selected topic.
       useEffect(() => {
         localStorage.setItem("flashcards", JSON.stringify(state.cards));
       }, [state.cards]);
@@ -379,33 +351,59 @@ input, textarea {
       useEffect(() => {
         localStorage.setItem("selectedSource", selectedSource || "");
       }, [selectedSource]);
-      
-      // Fullscreen functions on the main content container.
+
+      // Load flashcards from all sources on mount and when sources change.
+      useEffect(() => {
+        loadAllFlashcards();
+      }, [sources]);
+
+      // Fetch flashcards from all sources and merge with existing metadata.
+      async function loadAllFlashcards() {
+        if (sources.length === 0) return;
+        let allFetchedCards = [];
+        for (let src of sources) {
+          try {
+            const fetched = await fetchCardsFromURL(src.url);
+            allFetchedCards.push(...fetched);
+          } catch (err) {
+            console.error(`Error fetching from ${src.url}: ${err.message}`);
+          }
+        }
+        const merged = mergeCards(state.cards, allFetchedCards);
+        dispatch({ type: "SET_CARDS", payload: merged });
+      }
+
+      // Manual reload of a single source.
+      async function reloadSource(src) {
+        try {
+          const fetched = await fetchCardsFromURL(src.url);
+          const now = Date.now();
+          const updatedSource = { ...src, lastLoaded: now, lastCardCount: fetched.length };
+          setSources(sources.map(s => s.url === src.url ? updatedSource : s));
+          const merged = mergeCards(state.cards, fetched);
+          dispatch({ type: "SET_CARDS", payload: merged });
+        } catch (err) {
+          console.error(`Error reloading ${src.url}: ${err.message}`);
+        }
+      }
+
+      // Fullscreen functions.
       function enterFullscreen() {
         const elem = document.getElementById("mainContent");
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-          elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-          elem.msRequestFullscreen();
-        }
+        if (elem.requestFullscreen) elem.requestFullscreen();
+        else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+        else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
         setIsFullscreen(true);
       }
       function exitFullscreen() {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        }
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
         setIsFullscreen(false);
       }
-      
-      // Touch event handlers for tablet gestures.
+
+      // Touch event handlers.
       function handleTouchStart(e) {
-        // Removing e.preventDefault() so we can scroll on mobile
         const touch = e.touches[0];
         touchStartXRef.current = touch.clientX;
         touchStartYRef.current = touch.clientY;
@@ -416,158 +414,56 @@ input, textarea {
         const deltaY = touch.clientY - touchStartYRef.current;
         const currentTime = new Date().getTime();
         const tapLength = currentTime - lastTapRef.current;
-        
-        // Check for double-tap
         if (tapLength < 300 && tapLength > 0) {
-          // Double tap toggles fullscreen.
-          if (isFullscreen) {
-            exitFullscreen();
-          } else {
-            enterFullscreen();
-          }
+          isFullscreen ? exitFullscreen() : enterFullscreen();
           lastTapRef.current = 0;
           return;
         } else {
           lastTapRef.current = currentTime;
         }
-        
-        // Simple horizontal swipe detection
         if (Math.abs(deltaX) > 100 && Math.abs(deltaY) < 50) {
-          if (deltaX > 0) {
-            handleAnswer(true);
-          } else {
-            handleAnswer(false);
-          }
+          deltaX > 0 ? handleAnswer(true) : handleAnswer(false);
         }
       }
 
-	function requestNotificationPermission() {
-	  if ("Notification" in window && Notification.permission === "default") {
-	    Notification.requestPermission().then(permission => {
-	      if (permission === "granted") {
-		console.log("Notification permission granted!");
-	      }
-	    });
-	  }
-	}
-      
-	function notifyDueCards(dueCount, firstQuestion) {
-	  // Only if the browser supports Notifications & permission is granted
-	  if ("Notification" in window && Notification.permission === "granted") {
-	    navigator.serviceWorker.ready.then(reg => {
-	      // If exactly one card is due, show its question
-	      if (dueCount === 1 && firstQuestion) {
-		reg.showNotification("Flashcards Reminder", {
-		  body: `Time to review: ${firstQuestion}`,
-		  icon: "/icon.png"
-		});
-	      }
-	      // If more than 5 are due, say so
-	      else if (dueCount > 5) {
-		reg.showNotification("Flashcards Reminder", {
-		  body: `Time to review ${dueCount} questions now!`,
-		  icon: "/icon.png"
-		});
-	      }
-	      // Otherwise, fewer than or equal to 5
-	      else {
-		reg.showNotification("Flashcards Reminder", {
-		  body: `It's time to review ${dueCount} question(s).`,
-		  icon: "/icon.png"
-		});
-	      }
-	    });
-	  }
-	}
-
-      // Load flashcards from all current sources.
-      async function loadAllFlashcards() {
-        if (sources.length === 0) return;
-        const now = Date.now();
-        let allFetchedCards = [];
-        let fetchedBySource = {};
-        const updatedSources = sources.map(src => ({ ...src }));
-        for (let src of updatedSources) {
-          try {
-            const fetched = await fetchCardsFromURL(src.url);
-            src.lastLoaded = now;
-            src.lastCardCount = fetched.length;
-            fetchedBySource[src.url] = new Set(fetched.map(card => card.id));
-            allFetchedCards.push(...fetched);
-          } catch (err) {
-            console.error(`Error fetching from ${src.url}: ${err.message}`);
-          }
+      // Notification functions.
+      function requestNotificationPermission() {
+        if ("Notification" in window && Notification.permission === "default") {
+          Notification.requestPermission().then(permission => {
+            if (permission === "granted") console.log("Notification permission granted!");
+          });
         }
-        setSources(updatedSources);
-        const updatedCards = state.cards.map(card => {
-          if (card.sources && Array.isArray(card.sources)) {
-            const newSources = card.sources.filter(srcUrl => {
-              if (fetchedBySource[srcUrl]) {
-                return fetchedBySource[srcUrl].has(card.id);
-              }
-              return true;
+      }
+      function notifyDueCards(dueCount, firstQuestion) {
+        if ("Notification" in window && Notification.permission === "granted") {
+          navigator.serviceWorker.ready.then(reg => {
+            let bodyText = dueCount === 1 ? `Time to review: ${firstQuestion}` :
+                           dueCount > 5 ? `Time to review ${dueCount} questions now!` :
+                           `It's time to review ${dueCount} question(s).`;
+            reg.showNotification("Flashcards Reminder", {
+              body: bodyText,
+              icon: "/icon.png"
             });
-            return { ...card, sources: newSources };
-          }
-          return card;
-        }).filter(card => card.sources && card.sources.length > 0);
-        const merged = mergeCards(updatedCards, allFetchedCards);
-        dispatch({ type: "SET_CARDS", payload: merged });
-      }
-      
-      // Auto-reload every 30 seconds.
-      useEffect(() => {
-        if (sources.length === 0) return;
-        const intervalId = setInterval(() => {
-          loadAllFlashcards();
-        }, 300000); // 5 minutes
-        return () => clearInterval(intervalId);
-      }, [sources, state.cards]);
-      
-      // Request notification permission.
-      useEffect(() => {
-	requestNotificationPermission();
-      }, []);
-      
-      // Notify if flashcards are due.
-      useEffect(() => {
-	  const now = Date.now();
-	  const dueCards = state.cards.filter(card => card.nextReview <= now);
-
-	  if (dueCards.length > 0) {
-	    // Check last notification time from localStorage
-	    const lastNotificationTime = parseInt(localStorage.getItem("lastNotifTime") || "0", 10);
-	    const TWELVE_HOURS = 12 * 60 * 60 * 1000; // 12 hours in ms
-
-	    // If it's been 12+ hours since the last notification, send a new one
-	    if (now - lastNotificationTime >= TWELVE_HOURS) {
-	      localStorage.setItem("lastNotifTime", now.toString());
-	      notifyDueCards(dueCards.length, dueCards[0]?.question);
-	    }
-	  }
-      }, [state.cards]);
-      
-      // Handler for adding a new URL.
-      async function handleAddUrl() {
-        if (!newUrl.trim()) return;
-        try {
-          const fetched = await fetchCardsFromURL(newUrl);
-          if (!sources.some(src => src.url === newUrl)) {
-            const now = Date.now();
-            const newSourceObj = { url: newUrl, lastLoaded: now, lastCardCount: fetched.length };
-            const updatedSources = [...sources, newSourceObj];
-            setSources(updatedSources);
-            const merged = mergeCards(state.cards, fetched);
-            dispatch({ type: "SET_CARDS", payload: merged });
-          }
-          setNewUrl("");
-          setNewUrlError("");
-        } catch(e) {
-          setNewUrlError("Failed to load URL: " + e.message);
+          });
         }
       }
-      
-      // Handler for answering (always uses the first card in the filtered list).
+      useEffect(() => {
+        requestNotificationPermission();
+      }, []);
+      useEffect(() => {
+        const now = Date.now();
+        const dueCards = state.cards.filter(card => card.nextReview <= now);
+        if (dueCards.length > 0) {
+          const lastNotificationTime = parseInt(localStorage.getItem("lastNotifTime") || "0", 10);
+          const TWELVE_HOURS = 12 * 60 * 60 * 1000;
+          if (now - lastNotificationTime >= TWELVE_HOURS) {
+            localStorage.setItem("lastNotifTime", now.toString());
+            notifyDueCards(dueCards.length, dueCards[0]?.question);
+          }
+        }
+      }, [state.cards]);
+
+      // Handler for answering a card.
       const handleAnswer = (correct) => {
         const filteredCards = selectedSource
           ? state.cards.filter(card => card.sources.includes(selectedSource))
@@ -582,18 +478,12 @@ input, textarea {
           interval = 1;
         } else {
           repetitions += 1;
-          if (repetitions === 1) {
-            interval = 1;
-          } else if (repetitions === 2) {
-            interval = 6;
-          } else {
-            interval = Math.round(interval * easinessFactor);
-          }
+          if (repetitions === 1) interval = 1;
+          else if (repetitions === 2) interval = 6;
+          else interval = Math.round(interval * easinessFactor);
         }
         easinessFactor = easinessFactor - 0.8 + 0.28 * quality - 0.02 * quality * quality;
-        if (easinessFactor < 1.3) {
-          easinessFactor = 1.3;
-        }
+        if (easinessFactor < 1.3) easinessFactor = 1.3;
         const nextReview = now + interval * TIME_UNIT;
         const updatedCard = {
           ...currentCard,
@@ -608,16 +498,16 @@ input, textarea {
         dispatch({ type: "SET_CARDS", payload: merged });
         setShowAnswer(false);
       };
-      
-      // Compute filtered cards.
+
+      // Compute flashcards filtered by the selected topic (if any).
       const filteredCards = selectedSource
         ? state.cards.filter(card => card.sources.includes(selectedSource))
         : state.cards;
       const nowTime = Date.now();
       const totalCards = filteredCards.length;
-      const dueCards = filteredCards.filter(card => card.nextReview <= nowTime).length;
-      const progress = totalCards ? Math.round(((totalCards - dueCards) / totalCards) * 100) : 0;
-      
+      const dueCardsCount = filteredCards.filter(card => card.nextReview <= nowTime).length;
+      const progress = totalCards ? Math.round(((totalCards - dueCardsCount) / totalCards) * 100) : 0;
+
       // Keyboard shortcuts.
       useEffect(() => {
         function handleKeyDown(e) {
@@ -628,11 +518,7 @@ input, textarea {
             return;
           }
           if (e.key === "f" || e.key === "F") {
-            if (isFullscreen) {
-              exitFullscreen();
-            } else {
-              enterFullscreen();
-            }
+            isFullscreen ? exitFullscreen() : enterFullscreen();
             e.preventDefault();
             return;
           }
@@ -641,66 +527,50 @@ input, textarea {
             e.preventDefault();
             return;
           }
-          if (e.key === "r" || e.key === "R") { setActiveTab("review"); e.preventDefault(); }
-          else if (e.key === "s" || e.key === "S") { setActiveTab("sources"); e.preventDefault(); }
-          else if (activeTab === "review") {
-            if (e.key === "Enter") { if (!showAnswer) setShowAnswer(true); e.preventDefault(); }
-            else if (e.key === "Escape") { if (showAnswer) setShowAnswer(false); e.preventDefault(); }
-            else if (e.key === "ArrowLeft") { handleAnswer(false); e.preventDefault(); }
-            else if (e.key === "ArrowRight") { handleAnswer(true); e.preventDefault(); }
-            else if (e.key === "c" || e.key === "C") { if (selectedSource) { setSelectedSource(null); } e.preventDefault(); }
+          if (e.key === "r" || e.key === "R") {
+            setActiveTab("review");
+            e.preventDefault();
+          } else if (e.key === "s" || e.key === "S") {
+            setActiveTab("sources");
+            e.preventDefault();
+          } else if (activeTab === "review") {
+            if (e.key === "Enter") {
+              if (!showAnswer) setShowAnswer(true);
+              e.preventDefault();
+            } else if (e.key === "Escape") {
+              if (showAnswer) setShowAnswer(false);
+              e.preventDefault();
+            } else if (e.key === "ArrowLeft") {
+              handleAnswer(false);
+              e.preventDefault();
+            } else if (e.key === "ArrowRight") {
+              handleAnswer(true);
+              e.preventDefault();
+            } else if (e.key === "c" || e.key === "C") {
+              if (selectedSource) setSelectedSource(null);
+              e.preventDefault();
+            }
           }
         }
         document.addEventListener("keydown", handleKeyDown);
         return () => document.removeEventListener("keydown", handleKeyDown);
       }, [activeTab, showAnswer, selectedSource, state.cards, isFullscreen, showHelp]);
-      
-      // Render Help Modal.
-      const renderHelpModal = () => {
-        return (
-          <div className="help-overlay" onClick={() => setShowHelp(false)}>
-            <div className="help-content" onClick={e => e.stopPropagation()}>
-              <button className="help-close" onClick={() => setShowHelp(false)}>&times;</button>
-              <h2>Keyboard Shortcuts & Memorization Technique</h2>
-              <p>
-                <strong>Keyboard Shortcuts:</strong><br/>
-                <code>R</code>: Switch to Review mode<br/>
-                <code>S</code>: Switch to Sources mode<br/>
-                <code>Enter</code>: Reveal Answer<br/>
-                <code>Escape</code>: Hide Answer / Exit Fullscreen / Close Help<br/>
-                <code>ArrowLeft</code>: Mark as Incorrect (Needs Practice)<br/>
-                <code>ArrowRight</code>: Mark as Correct (Mastered)<br/>
-                <code>C</code>: Clear source selection<br/>
-                <code>F</code>: Toggle Fullscreen (for the Q/A card only)
-              </p>
-              <p>
-                <strong>Memorization Algorithm:</strong><br/>
-                This app uses a spaced repetition technique (similar to SM‑2). Correct answers increase the review interval,
-                while incorrect answers reset it. This ensures that challenging cards are reviewed more frequently.
-              </p>
-              <p>
-                Use these shortcuts to navigate quickly and study with minimal distraction.
-              </p>
-            </div>
-          </div>
-        );
-      };
-      
-      // Render the Review View.
+
+      // Render Review View.
       const renderReview = () => {
         if (totalCards === 0) {
           return (
             <div className="alert alert-info mt-3">
-              {selectedSource 
-                ? "No flashcards available for the selected source."
-                : "No flashcards available. Please add source URLs in the Sources tab."}
+              {selectedSource
+                ? "No flashcards available for the selected topic."
+                : "No flashcards available. Please add a source URL in the Sources tab."}
             </div>
           );
         }
         const currentCard = filteredCards[0];
         return (
           <div className="card card-custom question-box">
-	    <div className="card-header" style={{ backgroundColor: "#222"}}>
+            <div className="card-header" style={{ backgroundColor: "#222" }}>
               <h4 className="mb-0" dangerouslySetInnerHTML={{ __html: marked.parse(currentCard.question) }}></h4>
               <small>
                 Last reviewed: {currentCard.lastReviewed ? new Date(currentCard.lastReviewed).toLocaleString() : "Never"}
@@ -726,7 +596,7 @@ input, textarea {
               )}
             </div>
             {showAnswer && (
-              <div className="card-footer d-flex justify-content-between" style={{ backgroundColor: "#222"}} >
+              <div className="card-footer d-flex justify-content-between" style={{ backgroundColor: "#222" }}>
                 <button className="btn btn-danger" onClick={() => handleAnswer(false)}>
                   <i className="fas fa-times"></i> Needs Practice
                 </button>
@@ -738,8 +608,8 @@ input, textarea {
           </div>
         );
       };
-      
-      // Render the Sources Management View.
+
+      // Render Sources Management View.
       const renderSources = () => {
         return (
           <div className="card card-custom">
@@ -749,63 +619,76 @@ input, textarea {
             <div className="card-body">
               {/* Add URL Form */}
               <div className="input-group mb-3">
-                <input 
-                  type="url" 
-                  className="form-control" 
-                  placeholder="Enter flashcards URL" 
+                <input
+                  type="url"
+                  className="form-control"
+                  placeholder="Enter flashcards URL"
                   value={newUrl}
                   onChange={e => setNewUrl(e.target.value)}
-                  required 
+                  required
                   pattern="https?://.+"
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-success" onClick={handleAddUrl}>
+                  <button className="btn btn-success" onClick={async () => {
+                    if (!newUrl.trim()) return;
+                    try {
+                      const fetched = await fetchCardsFromURL(newUrl);
+                      if (!sources.some(src => src.url === newUrl)) {
+                        const now = Date.now();
+                        const newSourceObj = { url: newUrl, lastLoaded: now, lastCardCount: fetched.length };
+                        setSources([...sources, newSourceObj]);
+                        const merged = mergeCards(state.cards, fetched);
+                        dispatch({ type: "SET_CARDS", payload: merged });
+                      }
+                      setNewUrl("");
+                      setNewUrlError("");
+                    } catch(e) {
+                      setNewUrlError("Failed to load URL: " + e.message);
+                    }
+                  }}>
                     <i className="fas fa-plus"></i> Add URL
                   </button>
                 </div>
               </div>
               {newUrlError && <div className="text-danger mb-3">{newUrlError}</div>}
-              
               {/* Current Sources List */}
               {sources.length > 0 && (
                 <div className="mt-3">
                   <h5>Current Sources:</h5>
                   <ul className="list-group">
-                    {sources.map((src, i) => {
-                      // Show only the last part of the URL.
-                      let parts = src.url.split('/');
-                      let displayUrl = parts.pop() || parts.pop();
+                    {sources.map((src) => {
+                      const label = humanizeTopicName(src.url);
                       return (
-                        <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
+                        <li key={src.url} className="list-group-item d-flex justify-content-between align-items-center">
                           <div>
-                            <div><i className="fas fa-link"></i> {displayUrl}</div>
+                            <div><i className="fas fa-tag"></i> {label}</div>
                             <small>
                               {src.lastLoaded 
                                 ? `Last Loaded: ${new Date(src.lastLoaded).toLocaleString()} - Loaded ${src.lastCardCount} card(s)`
                                 : "Not loaded yet"}
                             </small>
                           </div>
-                          <button className="btn btn-danger btn-sm" onClick={() => {
-                            const updatedSources = sources.filter(s => s.url !== src.url);
-                            setSources(updatedSources);
-                            const updatedCards = state.cards.map(card => {
-                              if (card.sources && card.sources.includes(src.url)) {
-                                const newSources = card.sources.filter(s => s !== src.url);
-                                return { ...card, sources: newSources };
-                              }
-                              return card;
-                            }).filter(card => card.sources && card.sources.length > 0);
-                            dispatch({ type: "SET_CARDS", payload: updatedCards });
-                          }}>
-                            <i className="fas fa-trash-alt"></i>
-                          </button>
+                          <div>
+                            <button className="btn btn-info btn-sm mr-1" onClick={() => reloadSource(src)}>
+                              <i className="fas fa-sync"></i>
+                            </button>
+                            <button className="btn btn-danger btn-sm" onClick={() => {
+                              const updatedSources = sources.filter(s => s.url !== src.url);
+                              setSources(updatedSources);
+                              // Remove flashcards from this source.
+                              const updatedCards = state.cards.filter(card => !(card.sources && card.sources.includes(src.url)));
+                              dispatch({ type: "SET_CARDS", payload: updatedCards });
+                              if (selectedSource === src.url) setSelectedSource(null);
+                            }}>
+                              <i className="fas fa-trash-alt"></i>
+                            </button>
+                          </div>
                         </li>
                       );
                     })}
                   </ul>
                 </div>
               )}
-              
               <div className="mt-3">
                 <h5>Sample Flashcards JSON</h5>
                 <pre className="bg-dark text-light p-2">
@@ -831,110 +714,116 @@ input, textarea {
           </div>
         );
       };
-      
+
       return (
         <>
-          {/* Top Navigation (always shown when not fullscreen) */}
+          {/* Top Navigation */}
           {!isFullscreen && (
             <nav className="navbar fixed-top" style={{ backgroundColor: "#222", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
               <span className="navbar-brand">
                 <i className="fas fa-book-open"></i> BrainFuel
               </span>
-              <div className="d-flex align-items-center">
-                <span className="badge due-display mr-3">
-			<i className="fas fa-bell"></i> Due:&nbsp;
-			<code>{state.cards.filter(card => card.nextReview <=
-			   Date.now()).length}</code>
-                </span>
-                <div className="progress mr-3" style={{ width: "100px",
-			height: "10px" }}>
-                  <div className="progress-bar bg-success" role="progressbar" style={{ width: `${progress}%` }}>
-                    {progress}%
-                  </div>
-                </div>
-                <div className="btn-group">
-                  <button className="btn top-btn" onClick={() => setActiveTab("review")}>
-                    <i className="fas fa-eye"></i> Review
-                  </button>
-                  <button className="btn btn-sm top-btn" onClick={() => setActiveTab("sources")}>
-                    <i className="fas fa-link"></i> Sources
-                  </button>
-                  <button className="btn btn-sm top-btn" onClick={() => setShowHelp(true)}>
-                    <i className="fas fa-question-circle"></i> Help
-                  </button>
-                </div>
+              <div className="btn-group ml-3">
+                <button className={`btn ${activeTab === "review" ? "btn-primary" : "btn-secondary"}`} onClick={() => { setActiveTab("review"); setShowAnswer(false); }}>
+                  <i className="fas fa-eye"></i> Review
+                </button>
+                <button className={`btn ${activeTab === "sources" ? "btn-primary" : "btn-secondary"}`} onClick={() => setActiveTab("sources")}>
+                  <i className="fas fa-link"></i> Sources
+                </button>
               </div>
-            </nav>
-          )}
-          
-          {/* Main Container */}
-          <div className="container">
-            {/* Main Content Area */}
-            <div
-              id="mainContent"
-              className="main-content"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              {activeTab === "review" ? renderReview() : renderSources()}
-            </div>
-          </div>
-          
-          {/* In non-fullscreen mode, show bottom source filter bar and footer */}
-          {!isFullscreen && (
-            <>
-              <div className="source-filter-bar" style={{ position: "fixed", bottom: "40px", left: 0, right: 0 }}>
-                <div className="container">
-                  <div className="row">
-                    <div className="col-12 text-center">
-                      <div className="btn-group btn-group-sm" role="group" aria-label="Source Filter">
-                        {sources.map(src => {
-                          let parts = src.url.split('/');
-                          let displayUrl = parts.pop() || parts.pop();
-                          return (
-                            <button 
-                              key={src.url}
-                              className={`btn ${selectedSource === src.url ? "btn-success" : "btn-secondary"}`}
-                              onClick={() => {
-				setSelectedSource(src.url); setShowAnswer(false)}
-				}
-                            >
-                              {selectedSource === src.url && <i className="fas fa-check" style={{ color: "lime", marginRight: "5px" }}></i>}
-                              <i className="fas fa-link"></i> {displayUrl}
-                            </button>
-                          );
-                        })}
-                        {selectedSource && (
-                          <button 
-                            className="btn btn-secondary"
-                            style={{ opacity: 0.7 }}
-                            onClick={() => {setSelectedSource(null); setShowAnswer(false)}
-				}
-                          >
-                            <i className="fas fa-times"></i> Clear selection
-                          </button>
-                        )}
-                      </div>
+              {activeTab === "review" && (
+                <>
+                  <span className="badge badge-pill badge-info ml-auto">
+                    <i className="fas fa-bell"></i> Due: <code>{dueCardsCount}</code>
+                  </span>
+                  <div className="progress ml-3" style={{ width: "100px", height: "10px" }}>
+                    <div className="progress-bar bg-success" role="progressbar" style={{ width: `${progress}%` }}>
+                      {progress}%
                     </div>
                   </div>
+                </>
+              )}
+              <button className="btn btn-sm btn-secondary ml-auto" onClick={() => setShowHelp(true)}>
+                <i className="fas fa-question-circle"></i> Help
+              </button>
+            </nav>
+          )}
+          {/* Expandable Left Sidebar in Review Mode */}
+          {activeTab === "review" && !isFullscreen && (
+            <>
+              {sidebarVisible ? (
+                <div className="sidebar">
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <h6>Topics</h6>
+                    <button className="btn btn-sm btn-secondary" onClick={() => setSidebarVisible(false)}>
+                      <i className="fas fa-angle-double-left"></i>
+                    </button>
+                  </div>
+                  <ul>
+                    {sources.map(src => (
+                      <li key={src.url} className={selectedSource === src.url ? "active" : ""}
+                          title={humanizeTopicName(src.url)}
+                          onClick={() => { setSelectedSource(src.url); setShowAnswer(false); }}>
+                        <i className="fas fa-tag"></i> {humanizeTopicName(src.url)}
+                      </li>
+                    ))}
+                    {selectedSource && (
+                      <li onClick={() => { setSelectedSource(null); setShowAnswer(false); }} title="Clear selection">
+                        <i className="fas fa-times"></i> Clear
+                      </li>
+                    )}
+                  </ul>
                 </div>
-              </div>
-              <footer className="footer">
-                <div className="container">
-                  <span>
-                    <i className="fas fa-copyright"></i> Farshid Ashouri © 2025
-                  </span>
-                </div>
-              </footer>
+              ) : (
+                <button className="btn btn-secondary toggle-sidebar-btn" onClick={() => setSidebarVisible(true)}>
+                  <i className="fas fa-bars"></i> Topics
+                </button>
+              )}
             </>
           )}
-          
+          {/* Main Content */}
+          <div id="mainContent" className={`main-content ${activeTab === "review" ? "review-mode" : "sources-mode"}`}
+               onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+            {activeTab === "review" ? renderReview() : renderSources()}
+          </div>
+          {/* Footer */}
+          {!isFullscreen && (
+            <footer className="footer">
+              <div className="container">
+                <span>
+                  <i className="fas fa-copyright"></i> Farshid Ashouri © 2025
+                </span>
+              </div>
+            </footer>
+          )}
           {/* Help Modal */}
-          {showHelp && renderHelpModal()}
+          {showHelp && (
+            <div className="help-overlay" onClick={() => setShowHelp(false)}>
+              <div className="help-content" onClick={e => e.stopPropagation()}>
+                <button className="help-close" onClick={() => setShowHelp(false)}>&times;</button>
+                <h2>Keyboard Shortcuts & Memorization Technique</h2>
+                <p>
+                  <strong>Keyboard Shortcuts:</strong><br/>
+                  <code>R</code>: Switch to Review mode<br/>
+                  <code>S</code>: Switch to Sources mode<br/>
+                  <code>Enter</code>: Reveal Answer<br/>
+                  <code>Escape</code>: Hide Answer / Exit Fullscreen / Close Help<br/>
+                  <code>ArrowLeft</code>: Mark as Incorrect<br/>
+                  <code>ArrowRight</code>: Mark as Correct<br/>
+                  <code>C</code>: Clear topic selection<br/>
+                  <code>F</code>: Toggle Fullscreen
+                </p>
+                <p>
+                  <strong>Memorization Algorithm:</strong><br/>
+                  Uses spaced repetition (similar to SM‑2). Correct answers increase the review interval, while incorrect answers reset it.
+                </p>
+              </div>
+            </div>
+          )}
         </>
       );
     }
-    
+
     ReactDOM.render(<App />, document.getElementById("root"));
   </script>
 </body>

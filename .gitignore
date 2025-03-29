@@ -1,0 +1,76 @@
+# --- Python ---
+
+# Virtual Environment Folders (Explicitly requested)
+.venv/
+venv/
+env/
+
+# Python cache files and compiled/optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+wheels/
+*.egg
+pip-wheel-metadata/
+develop-eggs/
+parts/
+sdist/
+var/
+
+# --- Operating System Files ---
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# --- IDE / Editor Configuration ---
+# VS Code
+.vscode/
+# PyCharm
+.idea/
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+# Atom
+.atom/
+# Vim
+*.swp
+*.swo
+# Komodo Edit
+*.komodoproject
+
+# --- Log Files ---
+*.log
+logs/
+*.log.[0-9]
+
+# --- Runtime Files ---
+*.pid
+*.seed
+*.pid.lock
+
+# --- Secrets (Uncomment and add specific files if you use them) ---
+# .env
+# secrets.yaml
+# *.pem
+# config.py
+
+# --- Other ---
+# Add any other project-specific generated files or folders below
+# For example, if you had node_modules for frontend build tools:
+# node_modules/
