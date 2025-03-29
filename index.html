@@ -39,6 +39,9 @@
       max-width: 800px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
+    .btn {
+        font-size: 0.7rem;
+    }
     .navbar {
       background-color: #222 !important;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -213,6 +216,9 @@
 
     /* Responsive: Hide sidebar and show bottom bar on mobile */
     @media (max-width: 767px) {
+      .btn-help {
+        display: none;
+      }
       .sidebar {
         display: none;
       }
@@ -779,7 +785,7 @@
                   </div>
                 </>
               )}
-              <button className="btn btn-sm btn-secondary ml-auto" onClick={() => setShowHelp(true)}>
+              <button className="btn btn-sm btn-help btn-secondary ml-auto" onClick={() => setShowHelp(true)}>
                 <i className="fas fa-question-circle"></i> Help
               </button>
             </nav>
@@ -792,6 +798,11 @@
                 <h6>Topics</h6>
               </div>
               <ul>
+                {selectedSource && (
+                  <li onClick={() => { setSelectedSource(null); setShowAnswer(false); }} title="Clear selection">
+                    <i className="fas fa-times"></i> Clear
+                  </li>
+                )}
                 {sources.map(src => (
                   <li key={src.url} className={selectedSource === src.url ? "active" : ""}
                       title={humanizeTopicName(src.url)}
@@ -799,11 +810,6 @@
                     <i className="fas fa-tag"></i> {humanizeTopicName(src.url)}
                   </li>
                 ))}
-                {selectedSource && (
-                  <li onClick={() => { setSelectedSource(null); setShowAnswer(false); }} title="Clear selection">
-                    <i className="fas fa-times"></i> Clear
-                  </li>
-                )}
               </ul>
             </div>
           )}
