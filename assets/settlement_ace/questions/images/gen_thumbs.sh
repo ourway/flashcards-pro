@@ -11,12 +11,12 @@ find . -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) -print0 | whi
   # Get the filename without the extension
   name_no_ext="${filename%.*}"
   # Define the output filename
-  output_filename="./thumbnails/${name_no_ext}_32x32.jpg"
+  output_filename="./thumbnails/${name_no_ext}_48x48.jpg"
 
   # Check if the thumbnail already exists
   if [ ! -f "$output_filename" ]; then
     # Resize the image and save it to the thumbnails directory
-    magick "$file" -resize 32x32 "$output_filename"
+    magick "$file" -resize 48x48! "$output_filename"
     echo "Resized $filename to $output_filename"
   else
     echo "Thumbnail $output_filename already exists. Skipping."
