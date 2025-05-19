@@ -56,20 +56,6 @@
         "ulid": "01JVJAKTDQ3BPZEMC7J3ETKCWA"
       },
       {
-        "correct_answer": "Selling alcohol to anyone under 18 and buying alcohol for people under 18",
-        "hint": "Remember, underage drinking is a serious issue, and both selling and providing alcohol to minors are against the law.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "go to surgery without booking an appointment",
-          "go to hospital without a letter from your GP"
-        ],
-        "number_of_views": 0,
-        "question": "Which actions are considered criminal offenses?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDQ88G1Y9BXZNHFVQDZ"
-      },
-      {
         "correct_answer": "Cavaliers and Roundheads",
         "hint": "Picture the Cavaliers as the King's loyal knights and the Roundheads as Parliament's disciplined soldiers, clashing in a historic conflict.",
         "is_active": true,
@@ -526,19 +512,6 @@
         "ulid": "01JVJAKTDSYEB79TQ7MMH94WY0"
       },
       {
-        "correct_answer": "False",
-        "hint": "Envisage the National Citizen Service as an available option rather than a compulsory requirement for 16 and 17-year-olds.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it mandatory for individuals aged 16 and 17 to participate in the National Citizen Service programme?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDSPTA1449MQKXJWX15"
-      },
-      {
         "correct_answer": "True",
         "hint": "Imagine the electoral register as the gatekeeper, determining who is permitted to vote in various elections.",
         "is_active": true,
@@ -719,21 +692,6 @@
         "question": "What is the minimum age requirement to run for election as an MP in the UK?",
         "type_of_media": null,
         "ulid": "01JVJAKTDSB2AVQ7KPBGMFKQT3"
-      },
-      {
-        "correct_answer": "16",
-        "hint": "The moment you are old enough to start learning to drive in the UK (16 years), you can also try your luck in the National Lottery.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "15",
-          "17",
-          "18"
-        ],
-        "number_of_views": 0,
-        "question": "At what age can someone legally participate in the UK's National Lottery?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDSJ5WDRK2GSRMESGB3"
       },
       {
         "correct_answer": "Westminster",
@@ -1621,21 +1579,6 @@
         "ulid": "01JVJAKTDWMZKRJMEGD99Z9D7P"
       },
       {
-        "correct_answer": "31st October",
-        "hint": "Remember Halloween: 'October ends with a fright, on the thirty-first night!'",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "31st January",
-          "31st March",
-          "31st July"
-        ],
-        "number_of_views": 0,
-        "question": "On what date does the spooky and spirited Halloween festival take place each year?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDWDQ22PE04FJTTHVZ6"
-      },
-      {
         "correct_answer": "False",
         "hint": "Picture Anglo-Saxon ships arriving, carrying warriors with pagan beliefs, later to be converted by missionaries.",
         "is_active": true,
@@ -1978,21 +1921,6 @@
         "ulid": "01JVJAKTDXSFJNMQ9C1HHH33XQ"
       },
       {
-        "correct_answer": "Typically 18, but at 16 you can have a drink with a meal",
-        "hint": "Think of the common age for adulthood around the world: 18. But remember, British laws allow a little flexibility for younger diners.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Usually 19, but at 16 you can have a drink with a meal",
-          "Usually 18, but at 15 you can have a drink with a meal",
-          "Usually 21, but at 18 you can have a drink with a meal"
-        ],
-        "number_of_views": 0,
-        "question": "What is the legal age for consuming alcohol in a hotel or restaurant in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDXHPW5H7582DYANKBM"
-      },
-      {
         "correct_answer": "1314",
         "hint": "Remember the year by thinking: 'Bruce won in '13, then 14' to secure Scotland's freedom!",
         "is_active": true,
@@ -2138,21 +2066,6 @@
         "question": "Name the capital city that serves as the heart of Northern Ireland.",
         "type_of_media": null,
         "ulid": "01JVJAKTDXZRF2YFQWQSD95J0J"
-      },
-      {
-        "correct_answer": "Frank Launder",
-        "hint": "The correct answer shares the same initials as 'First Love'.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "David Lean",
-          "Alfred Hitchcock",
-          "Mary Peters"
-        ],
-        "number_of_views": 0,
-        "question": "Which film director was at the helm of the 1954 British movie, the Belles of St Trinian's?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDYA0M0S5NT7M7NFKQR"
       },
       {
         "correct_answer": "1833",
@@ -2405,19 +2318,6 @@
         "ulid": "01JVJAKTDYJQ0NE6KY4ZGRKAXV"
       },
       {
-        "correct_answer": "No, it's illegal",
-        "hint": "Recall the absolute commitment of the UK to the protection of female rights and bodily integrity.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Yes, it's correct"
-        ],
-        "number_of_views": 0,
-        "question": "Is Female Genital Mutilation (FGM), also referred to as cutting or female circumcision, legal in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDYAXWHY068NS6B1D4T"
-      },
-      {
         "correct_answer": "Self-assessment",
         "hint": "Think about the autonomy of being your own boss, which extends to assessing and paying your own taxes.",
         "is_active": true,
@@ -2618,19 +2518,6 @@
         "ulid": "01JVJAKTDZ2XQ8XGT9BXCY92EQ"
       },
       {
-        "correct_answer": "False",
-        "hint": "Youth Courts prioritize privacy; the media is restricted from revealing the identity of young offenders.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "In Youth Courts, is the name or photographs of the accused young person allowed to be published in newspapers or used by the media?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDZV8J6PPS6YHP5VH6B"
-      },
-      {
         "correct_answer": "When Charles I was executed",
         "hint": "The execution of Charles I marked the end of the monarchy and the beginning of the Commonwealth.",
         "is_active": true,
@@ -2768,21 +2655,6 @@
         "question": "For whom does the police force provide help and protection?",
         "type_of_media": null,
         "ulid": "01JVJAKTDZF6E3NKS7A7M0Z25X"
-      },
-      {
-        "correct_answer": "16",
-        "hint": "Picture a family dinner: a 'sweet sixteen' can sip wine responsibly with a parent's consent.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "17",
-          "18",
-          "21"
-        ],
-        "number_of_views": 0,
-        "question": "If accompanied by someone over 18 during a meal, what is the minimum age at which a person can legally drink wine?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTDZM5YNTX90Q09JCZ61"
       },
       {
         "correct_answer": "True",
@@ -3886,21 +3758,6 @@
         "ulid": "01JVJAKTE3XM5H5QCC8N8QDXBV"
       },
       {
-        "correct_answer": "A form of plague",
-        "hint": "Think of a great catastrophe in 1348 that took a massive toll on human life. It came in the form of a disease.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Lack of water",
-          "A battle",
-          "Lack of food"
-        ],
-        "number_of_views": 0,
-        "question": "What is referred to as the 'Black Death' in history?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE3QZE9FG0Y6CRPDE38"
-      },
-      {
         "correct_answer": "International crises and threats to peace",
         "hint": "The UN Security Council basically springs into action when global peace and stability are under threat.",
         "is_active": true,
@@ -3945,19 +3802,6 @@
         "ulid": "01JVJAKTE324BXM5DFP769AM06"
       },
       {
-        "correct_answer": "False",
-        "hint": "The National Citizen Service leans more towards community service and personal development than military training",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Does the National Citizen Service offer military training to young people?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE3YNVWR7KFMPAJJQ72"
-      },
-      {
         "correct_answer": "St Andrew's Day",
         "hint": "Think of a patron saint associated with Scotland. The holiday being referred to is in honor of this saint.",
         "is_active": true,
@@ -3971,21 +3815,6 @@
         "question": "What holiday is officially celebrated in Scotland on 30th November?",
         "type_of_media": null,
         "ulid": "01JVJAKTE3W5ZC094N563GNPDX"
-      },
-      {
-        "correct_answer": "Organise events",
-        "hint": "Schools often engage in fun, creative activities to generate income for school-related expenses",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Ask parents for money",
-          "Ask the local council for extra funding",
-          "Reduce teachers' wages"
-        ],
-        "number_of_views": 0,
-        "question": "Which of the following is a way for schools to raise funds?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE3RW721JQRQD30A8WB"
       },
       {
         "correct_answer": "1833",
@@ -4205,19 +4034,6 @@
         "question": "If a person aged 10 to 17 in England, Wales, and Northern Ireland is accused of a crime, where is their case typically heard?",
         "type_of_media": null,
         "ulid": "01JVJAKTE41T7C5GHM0QHVHD46"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "Imagine a 16th birthday surprise with the gift of a lottery ticket - that's because only then it is legal in the UK to buy one.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is it against the law for people under 16 to purchase a lottery ticket?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE47RAR2H7NHAW9GDFR"
       },
       {
         "correct_answer": "1922",
@@ -4770,21 +4586,6 @@
         "ulid": "01JVJAKTE68SVHX4H3N20KDMQB"
       },
       {
-        "correct_answer": "Father's Day",
-        "hint": "Think of the third week of June as a time when 'Father Time' gets some special recognition.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Remembrance Day",
-          "Mother's Day",
-          "Halloween"
-        ],
-        "number_of_views": 0,
-        "question": "What event is celebrated every year on the third Sunday in June?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE6K59NP2Q5CHQY2W6P"
-      },
-      {
         "correct_answer": "£1,000",
         "hint": "Make sure your TV licence is valid to avoid a fine as hefty as a 'grand'.",
         "is_active": true,
@@ -5242,21 +5043,6 @@
         "question": "What system is implemented to elect Members of Parliament (MPs)?",
         "type_of_media": null,
         "ulid": "01JVJAKTE79GBG71H52SDK3FKP"
-      },
-      {
-        "correct_answer": "16",
-        "hint": "This age is older than fifteen but younger than seventeen, also the age when you can get married or register a civil partnership with parental consent in the UK.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "17",
-          "18",
-          "21"
-        ],
-        "number_of_views": 0,
-        "question": "At what minimum age can one consume alcohol with a meal in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE7S5X1J5BZ1D01826Q"
       },
       {
         "correct_answer": "Yes, this is correct",
@@ -5795,21 +5581,6 @@
         "ulid": "01JVJAKTE9JRZHKWVR7KAF5C1F"
       },
       {
-        "correct_answer": "17 years old",
-        "hint": "Think of turning 'seventeen' and finally getting the keys to your first motorcycle!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "16 years old",
-          "18 years old",
-          "21 years old"
-        ],
-        "number_of_views": 0,
-        "question": "What's the youngest age at which you can legally ride a motorcycle?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE9R7TBQSWJDRHZ1DQE"
-      },
-      {
         "correct_answer": "False",
         "hint": "Picture an apple falling from a tree, inspiring a scientist to discover gravity, not compose a symphony.",
         "is_active": true,
@@ -5821,23 +5592,6 @@
         "question": "Was Isaac Newton a famous musician from the 18th century?",
         "type_of_media": null,
         "ulid": "01JVJAKTE9CNNXAG4WTDFY2TEK"
-      },
-      {
-        "correct_answer": "Right to life",
-        "hint": "The right to life is fundamental. Without it, no other rights matter.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Right to fight",
-          "Prohibition of speech",
-          "Right to wear any clothes",
-          "Freedom of expression (speech)",
-          "Prohibition of slavery and forced labour"
-        ],
-        "number_of_views": 0,
-        "question": "Which of these rights are protected by the European Convention on Human Rights?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE9WQP966CMYBVYTPYZ"
       },
       {
         "correct_answer": "False",
@@ -5976,21 +5730,6 @@
         "question": "Is respecting others' rights to their own opinions expected in the UK?",
         "type_of_media": null,
         "ulid": "01JVJAKTE9RSP7696B2NAY9756"
-      },
-      {
-        "correct_answer": "16",
-        "hint": "Picture a 'sweet sixteen' birthday party, a mark of maturity in many cultures, including legally participating in the UK's National Lottery.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "17",
-          "18",
-          "19"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age for participating in the National Lottery?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTE90WHJJX4G3M6GEGBK"
       },
       {
         "correct_answer": "Conservative",
@@ -6525,21 +6264,6 @@
         "ulid": "01JVJAKTEBEE1ZAB84KTVRGEKP"
       },
       {
-        "correct_answer": "25th December",
-        "hint": "Christmas comes at the end of the year, on the 25th day of December.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "1st January",
-          "7th January",
-          "23rd March"
-        ],
-        "number_of_views": 0,
-        "question": "When is Christmas Day celebrated?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEB4DNFSCVJG4E34KBF"
-      },
-      {
         "correct_answer": "The Prime Minister",
         "hint": "The Prime Minister, the head of the government, has the power to nominate people to the House of Lords as life peers.",
         "is_active": true,
@@ -6785,21 +6509,6 @@
         "question": "Which monarch commissioned the creation of the Domesday Book?",
         "type_of_media": null,
         "ulid": "01JVJAKTEBA6VY4ERSKDGM65KD"
-      },
-      {
-        "correct_answer": "1649",
-        "hint": "Remember Charles I's execution with the rhyme: 'Charles met his fate in sixteen forty-nine, a king's reign did decline.'",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "1646",
-          "1658",
-          "1653"
-        ],
-        "number_of_views": 0,
-        "question": "In what year did Charles I face execution?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEBS56T2WKW93EVEBT8"
       },
       {
         "correct_answer": "Park",
@@ -7360,20 +7069,6 @@
         "ulid": "01JVJAKTEDQ9RA913BPCCBFKGC"
       },
       {
-        "correct_answer": "She spent much of her childhood in France and was only a week old when she became queen.",
-        "hint": "Mary, Queen of Scots, was a young queen who grew up in France and faced many challenges.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "She was Elizabeth I's sister",
-          "She died of the Black Death"
-        ],
-        "number_of_views": 0,
-        "question": "Which of the following statements are true about Mary, Queen of Scots?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTED48QDX77RTPWVB4EQ"
-      },
-      {
         "correct_answer": "Hamlet",
         "hint": "Hamlet, a play by Shakespeare, is famous for its iconic 'To be or not to be' soliloquy.",
         "is_active": true,
@@ -7744,19 +7439,6 @@
         "ulid": "01JVJAKTEDBC6ZAM1ZJEQDM2S8"
       },
       {
-        "correct_answer": "No, it's three weeks",
-        "hint": "Remember Mother's Day as 'Mother's 3-day' from Easter. It's celebrated three weeks before, not two.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Yes"
-        ],
-        "number_of_views": 0,
-        "question": "Is Mothering Sunday celebrated two weeks before Easter?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEEQGT8ASCNBNZ3V1RM"
-      },
-      {
         "correct_answer": "Yes",
         "hint": "Think of 1707 as when England and Scotland moved from '17-0-7eparation' to '1-70-7ogetherness'.",
         "is_active": true,
@@ -7855,21 +7537,6 @@
         "ulid": "01JVJAKTEEAJE5WKET9Q83SG78"
       },
       {
-        "correct_answer": "Yearly",
-        "hint": "Think of voting as an 'annual' assembly event, hence, the register is updated yearly.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Weekly",
-          "Daily",
-          "Monthly"
-        ],
-        "number_of_views": 0,
-        "question": "How often does the electoral register get updated?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEER325WV5BY2F2TFK3"
-      },
-      {
         "correct_answer": "18",
         "hint": "Recall that the legal age for almost all 'adult' activities is often 18, and that includes buying alcohol.",
         "is_active": true,
@@ -7898,19 +7565,6 @@
         "question": "Who carries the responsibility for managing the economy?",
         "type_of_media": null,
         "ulid": "01JVJAKTEENH4ANGAHHQJGZY3S"
-      },
-      {
-        "correct_answer": "False",
-        "hint": "Life peers' legacy lives within their lifetime, it doesn't transfer to their offspring.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it true that life peers in the House of Lords can bequeath their title to their first-born child?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEE9R5JD9T25A5KD1ZQ"
       },
       {
         "correct_answer": "False",
@@ -8027,21 +7681,6 @@
         "ulid": "01JVJAKTEEQF51DC43YR10ZGFQ"
       },
       {
-        "correct_answer": "Youth Skills Development",
-        "hint": "Think of it as a programme that provides outdoor activities and education to empower the youth and help them participate in community projects.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Army recruitment",
-          "Mortgage Advisory",
-          "A shelter for the homeless"
-        ],
-        "number_of_views": 0,
-        "question": "What is the primary aim of the National Citizen Service programme?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEFT7BA4YV2FENVDD85"
-      },
-      {
         "correct_answer": "False",
         "hint": "Remember, Cleves is in Germany, not Spain. Anne was a political marriage for Henry, but the unity didn't last long.",
         "is_active": true,
@@ -8111,20 +7750,6 @@
         "question": "What were supporters of King Charles I known as during the Civil War?",
         "type_of_media": null,
         "ulid": "01JVJAKTEFF4AVXQSD1VN27P7B"
-      },
-      {
-        "correct_answer": "Free",
-        "hint": "The name of the school type reflects the cost to parents and is the opposite of 'paid'.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Premium",
-          "Affordable"
-        ],
-        "number_of_views": 0,
-        "question": "What type of school can parents and community groups apply to open in their local area in England?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEF3K2GGSNQV5BX8NHY"
       },
       {
         "correct_answer": "Crown Court",
@@ -8429,21 +8054,6 @@
         "question": "Which saint is the patron of Scotland?",
         "type_of_media": null,
         "ulid": "01JVJAKTEFVFC394W2R4N5ME7V"
-      },
-      {
-        "correct_answer": "She was executed",
-        "hint": "Unfortunately, Mary's 20-year sentence did not end in relief; it ended with an axe.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "She became Queen of England",
-          "She was sent to France",
-          "She escaped to Denmark"
-        ],
-        "number_of_views": 0,
-        "question": "What was Mary, Queen of Scots' fate after enduring 20 years of imprisonment?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEFF515NZMVBDK7EVZN"
       },
       {
         "correct_answer": "Lent",
@@ -8998,19 +8608,6 @@
         "question": "Did the Bill of Rights establish the rights of Parliament and set limitations on the king's power?",
         "type_of_media": null,
         "ulid": "01JVJAKTEHVW7ZTGCP4FXJ4K5G"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "Think of this programme as a great outdoor school for youths.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Does the National Citizen Service programme provide an opportunity for 16 and 17 year olds to engage in outdoor activities and develop their skills?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEH4CK4NEGBKYBH96R8"
       },
       {
         "correct_answer": "False",
@@ -9724,21 +9321,6 @@
         "ulid": "01JVJAKTEKP0FXT5JJXR1163T3"
       },
       {
-        "correct_answer": "Selling Tobacco to under 18's",
-        "hint": "Imagine a stern face saying, 'No tobacco for those under eighteen!'",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Discrimination in the workplace",
-          "Housing disputes",
-          "Owing Money"
-        ],
-        "number_of_views": 0,
-        "question": "Which of the following actions constitutes a criminal offense?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEK464977MECKRV7ACM"
-      },
-      {
         "correct_answer": "Golf",
         "hint": "Picture a lone golfer on the Scottish Highlands in the 15th century.",
         "is_active": true,
@@ -9765,20 +9347,6 @@
         "question": "Until what age can individuals use their driver's license?",
         "type_of_media": null,
         "ulid": "01JVJAKTEKDE2PZXVWHJB9RYNN"
-      },
-      {
-        "correct_answer": "Cards and Gifts",
-        "hint": "Think of something simple yet meaningful that children can offer to their fathers. A beautiful card with messages of love and maybe a gift.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Driving cars together",
-          "Playing football"
-        ],
-        "number_of_views": 0,
-        "question": "What are some common gifts children give their fathers on Father's Day?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEK9EQVGHTSMRX2EGHT"
       },
       {
         "correct_answer": "Oliver Cromwell",
@@ -10022,21 +9590,6 @@
         "question": "Where did the MacDonalds of Glencoe originate from?",
         "type_of_media": null,
         "ulid": "01JVJAKTEM12FVEY90DFYTR8VV"
-      },
-      {
-        "correct_answer": "At least 17",
-        "hint": "Remember in the UK you can start driving lessons at 17 and apply for a provisional licence a little earlier.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "At least 18",
-          "At least 19",
-          "At least 20"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age requirement to drive a motor vehicle in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEMR153R2YN16XZVME4"
       },
       {
         "correct_answer": "True",
@@ -10381,21 +9934,6 @@
         "ulid": "01JVJAKTEN8KMASQKCZES806Y7"
       },
       {
-        "correct_answer": "1969",
-        "hint": "Picture the late 1960s, a time of social unrest, as the starting point for the Troubles.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "1921",
-          "1922",
-          "1957"
-        ],
-        "number_of_views": 0,
-        "question": "In what year did the Troubles, a period of conflict, begin?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEN9106WVDEYBXKTABM"
-      },
-      {
         "correct_answer": "Areas of protected countryside",
         "hint": "National parks are like nature's sanctuaries, preserving beautiful landscapes.",
         "is_active": true,
@@ -10655,21 +10193,6 @@
         "question": "What are some examples of British overseas territories?",
         "type_of_media": null,
         "ulid": "01JVJAKTENXCN1S66G2D7E9XC9"
-      },
-      {
-        "correct_answer": "16th birthday",
-        "hint": "Think of 'Sweet 16', a popular milestone age, also when young people get their National Insurance number.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "14th birthday",
-          "17th birthday",
-          "18th birthday"
-        ],
-        "number_of_views": 0,
-        "question": "At what age do young people in the UK receive their National Insurance number?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTENMQNS63X3AT8QC55P"
       },
       {
         "correct_answer": "True",
@@ -11647,21 +11170,6 @@
         "ulid": "01JVJAKTER1ETKY3XC0RWDWWW5"
       },
       {
-        "correct_answer": "Shrove Tuesday",
-        "hint": "Picture a 'shriving' (confessing) your sins before Lent while enjoying delicious pancakes on Shrove Tuesday.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Christmas Day",
-          "Good Friday",
-          "April Fool's Day"
-        ],
-        "number_of_views": 0,
-        "question": "What is the festive name for the day preceding Lent, often celebrated with pancakes?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTER77SWVSEE0Z2N3K1J"
-      },
-      {
         "correct_answer": "A long-running murder mystery play in London's West End since 1952, written by Agatha Christie",
         "hint": "Envision a 'mousetrap' set on a stage, catching audiences with its thrilling mystery for decades.",
         "is_active": true,
@@ -11861,19 +11369,6 @@
         "question": "In England, Wales, and Scotland, do Magistrates and Justices of the Peace work unpaid and without needing legal qualifications?",
         "type_of_media": null,
         "ulid": "01JVJAKTERWYX949E305TCC9GW"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "Think of the Commonwealth as a family of nations, and remember that Pakistan is a part of this family.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Does Pakistan belong to the Commonwealth?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTER7XJGH2AM8DYWM67G"
       },
       {
         "correct_answer": "30th November",
@@ -12785,19 +12280,6 @@
       },
       {
         "correct_answer": "True",
-        "hint": "Imagine the aroma of roast turkey mingling with the sweet, spicy scent of Christmas pudding – a classic holiday tradition!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is it true that families traditionally enjoy a Christmas dinner of roast turkey and Christmas pudding?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEVCG7FTFYM2MXESQGY"
-      },
-      {
-        "correct_answer": "True",
         "hint": "Picture a graduation ceremony where the valedictorian, representing academic excellence, is statistically more likely to be female.",
         "is_active": true,
         "link_to_media": null,
@@ -13331,21 +12813,6 @@
         "question": "Which international organization works to prevent war and maintain peace?",
         "type_of_media": null,
         "ulid": "01JVJAKTEWZESQT8VHJJ82ZN97"
-      },
-      {
-        "correct_answer": "Guy Fawkes Night, November 5",
-        "hint": "Remember, remember, the fifth of November, the gunpowder treason and plot.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Remembrance Day, November 11",
-          "Mothering Sunday",
-          "Great Victory Day, November 20"
-        ],
-        "number_of_views": 0,
-        "question": "What event from 1605 is commemorated on November 5th?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEW2AYFXNWV1S656NKA"
       },
       {
         "correct_answer": "Over 150 years old",
@@ -14246,21 +13713,6 @@
         "ulid": "01JVJAKTEYRBF4WHESAC6DS9J8"
       },
       {
-        "correct_answer": "16",
-        "hint": "Think of sweet sixteen, when you can dream big with a lottery ticket!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "17",
-          "18",
-          "21"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age to legally purchase a lottery ticket or scratch card in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEY75DNFDSX3RSHNJ2F"
-      },
-      {
         "correct_answer": "Shelters and Refuges",
         "hint": "Imagine a 'safe harbor' during a storm; shelters and refuges offer protection and support during turbulent times.",
         "is_active": true,
@@ -14538,21 +13990,6 @@
         "ulid": "01JVJAKTEZKWXGWGJ1B7ZQ82QN"
       },
       {
-        "correct_answer": "It celebrates the end of Ramadan",
-        "hint": "Just as breakfast breaks a long night's fast, think of Eid al-Fitr as a huge break from the month-long fast of Ramadan.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "The struggle for religious freedom",
-          "The founding of the Muslim community",
-          "Signifies that the prophet Ibrahim was willing to sacrifice his son when God ordered him to"
-        ],
-        "number_of_views": 0,
-        "question": "What is the significance of Eid al-Fitr in Islamic tradition?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEZTQT0Z7DC7N01KNYM"
-      },
-      {
         "correct_answer": "10%",
         "hint": "Think of the phrase 'a perfect 10'. After the war, near-about '10%' of the UK population had foreign roots through their parents or grandparents.",
         "is_active": true,
@@ -14566,19 +14003,6 @@
         "question": "What percentage of the UK population can trace their lineage to an immigrant parent or grandparent due to post-war immigration?",
         "type_of_media": null,
         "ulid": "01JVJAKTEZ6VD8KX23DJP7TBHR"
-      },
-      {
-        "correct_answer": "False",
-        "hint": "Remember, jury duty can catch you between when you can just vote to when you can retire - so that's between 18 to 70 years!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it true that anyone aged 18-75 and listed on the electoral register can be summoned to serve on a jury?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTEZE5NKA7E11BC37FM2"
       },
       {
         "correct_answer": "False",
@@ -15354,20 +14778,6 @@
         "ulid": "01JVJAKTF1DMMZHE4FYNHYMKH2"
       },
       {
-        "correct_answer": "Motor cycle and Car",
-        "hint": "At 17, you can get on the fast track to learning to drive cars and motor cycles. Fire engines and heavy goods vehicles will have to wait.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Fire engine",
-          "Heavy goods vehicle"
-        ],
-        "number_of_views": 0,
-        "question": "At the age of 17, which two types of vehicles are you permitted to learn to drive?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTF1YRXMS6E8P3AG329R"
-      },
-      {
         "correct_answer": "Channel Islands",
         "hint": "Imagine a majestic crown on a channel, symbolizing its unique status and connection to the UK!",
         "is_active": true,
@@ -16071,19 +15481,6 @@
       },
       {
         "correct_answer": "False",
-        "hint": "Picture a bouncer at a pub, checking IDs. You need to be older than 16 to legally buy alcohol in the UK.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it permissible for a 16-year-old to purchase alcohol in a shop or pub in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTF32R76AFSWKMJGX362"
-      },
-      {
-        "correct_answer": "False",
         "hint": "The National Citizen Service focuses on outdoor activities, skill development, and community projects, not military training.",
         "is_active": true,
         "link_to_media": null,
@@ -16107,21 +15504,6 @@
         "question": "During the citizenship ceremony, do new citizens pledge to uphold democratic values?",
         "type_of_media": null,
         "ulid": "01JVJAKTF3CTKJJYJ19SZZFC83"
-      },
-      {
-        "correct_answer": "Free Secondary Education",
-        "hint": "Think of 'Butler' serving up 'secondary' education for all, free of charge, like a helpful waiter.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Free Primary Education",
-          "Free University Education",
-          "Free College Education"
-        ],
-        "number_of_views": 0,
-        "question": "The Butler Act is most famously associated with establishing which type of education as free?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTF3PFAYVV2FSYK9BB9G"
       },
       {
         "correct_answer": "Hansard",
@@ -16278,21 +15660,6 @@
         "question": "Which breathtaking UK landmark captured the heart of the nation, being voted as Britain's favourite view?",
         "type_of_media": null,
         "ulid": "01JVJAKTF42E2WTSMHZS05X9NX"
-      },
-      {
-        "correct_answer": "70%",
-        "hint": "Imagine seven out of every ten people aligning themselves with the cross.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "80%",
-          "50%",
-          "60%"
-        ],
-        "number_of_views": 0,
-        "question": "According to the 2009 Citizenship Survey, what proportion of people considered themselves Christian?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTF4SH17NWB9HFPGTJNF"
       },
       {
         "correct_answer": "The Tower of London",
@@ -16869,20 +16236,6 @@
         "ulid": "01JVJAKTF52A161R17WZKMFDV1"
       },
       {
-        "correct_answer": "Health and Education",
-        "hint": "Think about two fundamental areas that directly affect the everyday lives of citizens.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Immigration",
-          "Foreign affairs"
-        ],
-        "number_of_views": 0,
-        "question": "What are the two areas on which the devolved administrations can legislate?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTF5AS7TD0B577KMA35E"
-      },
-      {
         "correct_answer": "False",
         "hint": "Remember, the idea of democratic accessibility extends to all, regardless of electoral registration.",
         "is_active": true,
@@ -17082,21 +16435,6 @@
         "question": "Who assumed the role of Prime Minister in the UK in the year 1945?",
         "type_of_media": null,
         "ulid": "01JVJAKTF6ZW1FNZYY9648WKWT"
-      },
-      {
-        "correct_answer": "Edward VI",
-        "hint": "Think of Edward, who continued his father's Protestant path after Henry VIII's death, paving the way for the Book of Common Prayer.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Henry VII",
-          "Henry VIII",
-          "King Richard III"
-        ],
-        "number_of_views": 0,
-        "question": "During whose reign was the Book of Common Prayer drafted for use in the Church of England?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTF6WXA7RNQD4VPH6VZM"
       },
       {
         "correct_answer": "The monarch",
@@ -17575,19 +16913,6 @@
         "question": "What legislative act established the United Kingdom of Great Britain and Ireland?",
         "type_of_media": null,
         "ulid": "01JVJAKTF7MMKK5T14Q71DAAXC"
-      },
-      {
-        "correct_answer": "Yes, it's correct",
-        "hint": "The law is clear: no cigarettes for those who are still teens.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "No, but you can sell them secretly"
-        ],
-        "number_of_views": 0,
-        "question": "Is it legal to sell cigarettes to individuals under 18 years old?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTF7PXX7YDJ3JYTYHGSC"
       },
       {
         "correct_answer": "The Queen",
@@ -18528,19 +17853,6 @@
         "ulid": "01JVJAKTF96HH1QMMKDQ9G7030"
       },
       {
-        "correct_answer": "False",
-        "hint": "While laws vary by country, generally the legal drinking age is 18 or 21, not 16.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it legal for individuals who are 16 years old or older to consume alcohol with a meal in a hotel or restaurant?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTF9HNP2DFEAPE21VRSH"
-      },
-      {
         "correct_answer": "the Bronze Age",
         "hint": "Just like the color, bronze age was when everything from tools to weapons were made from bronze.",
         "is_active": true,
@@ -19107,19 +18419,6 @@
         "question": "Did the Bill of Rights establish the rights of Parliament and limit the King's power?",
         "type_of_media": null,
         "ulid": "01JVJAKTFBJV642GK2RFSXZ0G5"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "Remember the legal age to smoke as the same as the legal age to vote: 18.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is selling tobacco products to individuals under 18 years old considered a criminal act?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFBSRZA9JA82P5R9KKQ"
       },
       {
         "correct_answer": "Debt",
@@ -19809,21 +19108,6 @@
         "question": "What unique feature does the York Minster have?",
         "type_of_media": null,
         "ulid": "01JVJAKTFCWH582SGCTXNTN9VK"
-      },
-      {
-        "correct_answer": "Very Poor",
-        "hint": "Remember, during the Industrial Revolution, there weren't any laws to protect workers. This led to dire working conditions, with excessive hours and dangerous environments.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Average",
-          "Best in the World",
-          "Acceptable"
-        ],
-        "number_of_views": 0,
-        "question": "Can you describe the working conditions during the Industrial Revolution?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFDX423V3X3EK2BNEJT"
       },
       {
         "correct_answer": "True",
@@ -21186,21 +20470,6 @@
         "ulid": "01JVJAKTFG0QD5A8DPJVNX6EDW"
       },
       {
-        "correct_answer": "Coalition",
-        "hint": "Picture two teams joining forces to build a sandcastle together – a coalition!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "National",
-          "All-party",
-          "One-party"
-        ],
-        "number_of_views": 0,
-        "question": "What type of governing arrangement emerged following the 2010 General Election?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFGA4BX7EJ47BRMTHY1"
-      },
-      {
         "correct_answer": "False",
         "hint": "Carrying a weapon isn't just a disagreement; it's a serious crime, not a simple civil matter.",
         "is_active": true,
@@ -21299,19 +20568,6 @@
         "question": "What is a traditional Christmas dinner in Britain?",
         "type_of_media": null,
         "ulid": "01JVJAKTFHR6SAJ2N3WM5DS4K6"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "Think of Halloween as a night of spooky fun, where costumes and treats go hand in hand.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is it a common practice for young people to dress up in costumes and play 'trick or treat' on Halloween?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFH9397SPCBHWTDS82A"
       },
       {
         "correct_answer": "Yes, always",
@@ -21424,21 +20680,6 @@
         "question": "Is it correct that a person cannot be prosecuted if they are violent towards their partner?",
         "type_of_media": null,
         "ulid": "01JVJAKTFH36N8RT4WC2BS3AR4"
-      },
-      {
-        "correct_answer": "St Patrick",
-        "hint": "Think about green and shamrocks, symbols associated with the Irish and St. Patrick's Day.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "St David",
-          "St Andrew",
-          "St George"
-        ],
-        "number_of_views": 0,
-        "question": "Which Patron Saint's day falls on the 17th of March?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFH4Q4N0VWHY27056S0"
       },
       {
         "correct_answer": "Achieve goals in democracy and development",
@@ -21824,21 +21065,6 @@
         "question": "Around the year 1801, what was the approximate population of the United Kingdom?",
         "type_of_media": null,
         "ulid": "01JVJAKTFJZ5V8B6K66G7QJGEZ"
-      },
-      {
-        "correct_answer": "The MacDonalds of Glencoe",
-        "hint": "Remember the MacDonalds of Glencoe; their refusal echoed through the glen, a tragic tale of oath and clan.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "The MacLaine of Lochbuie",
-          "The McDowalls of Garthland",
-          "The Macpherson of Cluny"
-        ],
-        "number_of_views": 0,
-        "question": "Which Scottish clan faced dire consequences for refusing to swear an oath?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFJQCDKQBERAXHBN6NK"
       },
       {
         "correct_answer": "Wales",
@@ -22424,20 +21650,6 @@
         "ulid": "01JVJAKTFKQGKET26HEVKJJ0D9"
       },
       {
-        "correct_answer": "Up to 3 specially trained magistrates and a District Judge",
-        "hint": "Picture a team of three magistrates and a judge, working together to ensure fairness in youth cases.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "A sheriff",
-          "Up to 5 specially trained magistrates"
-        ],
-        "number_of_views": 0,
-        "question": "In England, Wales, and Northern Ireland, who typically presides over Youth Court cases?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFK8GG0GQAZC7RM6TYZ"
-      },
-      {
         "correct_answer": "Margaret Thatcher",
         "hint": "Think of the 'Iron Lady' and her enduring impact on British politics.",
         "is_active": true,
@@ -22712,21 +21924,6 @@
         "question": "Which resource provides information about people's lives in England shortly after the Norman Conquest?",
         "type_of_media": null,
         "ulid": "01JVJAKTFMZZVGBW32872N97JT"
-      },
-      {
-        "correct_answer": "Taking care of yourself and your family",
-        "hint": "Think of your citizen's duty as a guardian: guarding your own well-being and that of your family.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Going to the library regularly",
-          "Maintaining an allotment",
-          "Frequenting the cinema"
-        ],
-        "number_of_views": 0,
-        "question": "What is one of your responsibilities as a UK citizen?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFMB80FE6CBAWYRT300"
       },
       {
         "correct_answer": "A period when new ideas about politics, philosophy and science emerged",
@@ -23453,19 +22650,6 @@
         "ulid": "01JVJAKTFPF4FWVDQP8YJF2EK2"
       },
       {
-        "correct_answer": "True",
-        "hint": "To remember this, think: 'sweet 16, now you're insured!'",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is it true that all youngsters receive a National Insurance number shortly before their 16th birthday?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFPNYY5R4G3JEKMEFV9"
-      },
-      {
         "correct_answer": "False",
         "hint": "Think 'Ulster fry' sounds 'unusually Welsh', because it isn't! It's Northern Irish.",
         "is_active": true,
@@ -23492,19 +22676,6 @@
         "question": "Which of the following is not primarily known as a music festival?",
         "type_of_media": null,
         "ulid": "01JVJAKTFPGDXF1P96TWF9QGHB"
-      },
-      {
-        "correct_answer": "False",
-        "hint": "To remember, think: '18 to sip, not 17 to flip'.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it legal to purchase alcohol in the UK if you are 17 years old?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFPYMY4PAH3ZNECX6SZ"
       },
       {
         "correct_answer": "St David",
@@ -24094,19 +23265,6 @@
         "question": "In which year did the United Kingdom formally adopt the European Convention on Human Rights and Fundamental Freedoms?",
         "type_of_media": null,
         "ulid": "01JVJAKTFQAQ27V7MZJR6QRMKN"
-      },
-      {
-        "correct_answer": "Yes, this is correct",
-        "hint": "Imagine the Industrial Revolution as a time before safety nets, where workers toiled without protection, highlighting the need for labor laws.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "No, there were strict laws to protect employees"
-        ],
-        "number_of_views": 0,
-        "question": "Is it accurate to say that during the Industrial Revolution, there were no laws in place to protect employees from dangerous working conditions and long hours?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFQS1WEXB9P03KPW25B"
       },
       {
         "correct_answer": "Ernst  Rutherford",
@@ -24849,20 +24007,6 @@
         "ulid": "01JVJAKTFTBPAET6B32AZVXYPG"
       },
       {
-        "correct_answer": "Great Expectations and Oliver Twist",
-        "hint": "These two novels depict the life of the humble and poor, one is about a young orphan and another is about an individual with 'great' aspirations.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Harry Potter",
-          "Pride and Prejudice"
-        ],
-        "number_of_views": 0,
-        "question": "Can you identify two novels authored by Charles Dickens?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFTGAQNRED3Q94VXQMR"
-      },
-      {
         "correct_answer": "70m",
         "hint": "Consider the gigantic embroidery commemorating the Battle of Hastings. Its length equals seventy times a standard meter stick.",
         "is_active": true,
@@ -25004,21 +24148,6 @@
         "ulid": "01JVJAKTFTWJ85H5FTMQ8Z6WK6"
       },
       {
-        "correct_answer": "The National Citizen Service",
-        "hint": "Think National, think Citizen, visualize service connecting to development.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Youth Opportunities",
-          "The Youth Development Service",
-          "The Teenage Programme"
-        ],
-        "number_of_views": 0,
-        "question": "Which initiative aids in the growth and development of teenagers' skills?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFTGD2VCVBSE66X056X"
-      },
-      {
         "correct_answer": "National Insurance is deducted from employees' pay by their employer",
         "hint": "Imagine your boss handing you your pay-check minus the insurance contribution.",
         "is_active": true,
@@ -25031,21 +24160,6 @@
         "question": "Do employees have to handle their National Insurance contributions independently?",
         "type_of_media": null,
         "ulid": "01JVJAKTFTM73J1SRQKD732A37"
-      },
-      {
-        "correct_answer": "Children's Hearings System",
-        "hint": "Imagine a child in a hearing room, a system of justice designed for every child.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Self-Assessment",
-          "Youth Skills Development",
-          "Programme for Excellence"
-        ],
-        "number_of_views": 0,
-        "question": "What method does Scotland employ to handle juvenile delinquents?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFTCA2YYRVZQK5C0TCA"
       },
       {
         "correct_answer": "Falkland Islands",
@@ -25356,21 +24470,6 @@
         "ulid": "01JVJAKTFV2F8RE8VYMTCNXV5F"
       },
       {
-        "correct_answer": "16- and 17-year-olds",
-        "hint": "Envision the age of 'sweet 16' and 'seventeen,' a time of growth and learning, life buzzing with activities and community involvement through the National Citizen Service programme.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "All children up to the age of 17",
-          "Pensioners",
-          "18- to 30-year-olds"
-        ],
-        "number_of_views": 0,
-        "question": "Who are the primary beneficiaries of the National Citizen Service programme?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFV36BTB7DZGFXB4Y1Y"
-      },
-      {
         "correct_answer": "A large fleet of ships",
         "hint": "Imagine an enormous flotilla of Spanish ships sailing across the sea with the intent of conquest, a mighty armada that became a symbol of Spanish power.",
         "is_active": true,
@@ -25590,19 +24689,6 @@
         "ulid": "01JVJAKTFV3CC3VFET7AJPNE1J"
       },
       {
-        "correct_answer": "False",
-        "hint": "Consider the rules around citizenship and age, not all residents can vote.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it correct to say anyone living in the United Kingdom can vote in all elections?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFVQ7C8DYTGWPCHB8GC"
-      },
-      {
         "correct_answer": "Prince of Wales",
         "hint": "Think of the dragon, the symbol of Wales, as its prince.",
         "is_active": true,
@@ -25691,20 +24777,6 @@
         "ulid": "01JVJAKTFVYGQXNZNR92A89ZCZ"
       },
       {
-        "correct_answer": "Fathers and Mothers",
-        "hint": "Think about the people who usually care for you from the day you're born.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Uncles",
-          "Aunts"
-        ],
-        "number_of_views": 0,
-        "question": "Which two family members are commemorated with a special day in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFV5QZA9PZR2HQN01RY"
-      },
-      {
         "correct_answer": "The Prime Minister",
         "hint": "Imagine a prime number residing in a house with a 10 for an address. Remember, Prime number at number 10.",
         "is_active": true,
@@ -25745,19 +24817,6 @@
         "question": "Is it true that by the year 1600, English had become the preferred language for official documents, royal court, and Parliament in England?",
         "type_of_media": null,
         "ulid": "01JVJAKTFWJ8RY2E156XG69PJQ"
-      },
-      {
-        "correct_answer": "False",
-        "hint": "Imagine opening Christmas presents and boxing the leftovers the next day. That's when Boxing Day is!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Does Boxing Day fall a day before Christmas Day and is considered as a public holiday?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFWZEEMMG2EDJEZ63TM"
       },
       {
         "correct_answer": "2 million",
@@ -26177,21 +25236,6 @@
         "ulid": "01JVJAKTFXC6T0GFV6F2V9980Z"
       },
       {
-        "correct_answer": "Recycling your waste",
-        "hint": "Think of being an Eco-Samurai, where your weapon is your recycling bin, turning waste into resources and protecting nature.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Studying your area",
-          "Not smoking in public",
-          "Going shopping carefully"
-        ],
-        "number_of_views": 0,
-        "question": "What's one practical approach you can take to contribute to environmental sustainability?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFXSVFCV9QE9RZKFWCK"
-      },
-      {
         "correct_answer": "By-election",
         "hint": "Think of a 'bye' as a farewell to the previous MP and an 'election' as the process to choose their replacement, together forming 'By-election'.",
         "is_active": true,
@@ -26235,20 +25279,6 @@
         "question": "Why does the year 1969 stand out in British history?",
         "type_of_media": null,
         "ulid": "01JVJAKTFX0RQZVQHAYPVJ1HQC"
-      },
-      {
-        "correct_answer": "Health and Education",
-        "hint": "Think of the building blocks of a strong society in a region: Healthy individuals and educated minds, which are covered by 'Health and Education' laws.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Defence",
-          "Social security"
-        ],
-        "number_of_views": 0,
-        "question": "What are the two main sectors on which the devolved administrations can legislate?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFX330S5C2JQBCRGB0F"
       },
       {
         "correct_answer": "Respect and obey the law, Treat others with fairness",
@@ -26377,21 +25407,6 @@
         "ulid": "01JVJAKTFXKSN98702HP7WHK82"
       },
       {
-        "correct_answer": "Members of the public can meet their MP to discuss issues.",
-        "hint": "Visualize a 'surgery' where the MPs 'operate' on public issues rather than medical ones.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "They meet local councillors to discuss local issues.",
-          "They discuss local health issues with doctors.",
-          "They invite members of the press along to talk over national issues."
-        ],
-        "number_of_views": 0,
-        "question": "What takes place when members of Parliament (MPs) conduct surgeries?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFXWT5PF8N74KNY7ZS7"
-      },
-      {
         "correct_answer": "Joseph Turner and John Constable",
         "hint": "'Turn' to the canvas of landscapes and 'Constable' the art scene to remember these names.",
         "is_active": true,
@@ -26508,21 +25523,6 @@
         "question": "Which figure had a significant influence on the development and evolution of the English language?",
         "type_of_media": null,
         "ulid": "01JVJAKTFXAEBV7K95ZMXHDB24"
-      },
-      {
-        "correct_answer": "17",
-        "hint": "Picture a 17-year-old getting their first driving license and taking out a car or motorcycle for a drive. ",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "21",
-          "18",
-          "25"
-        ],
-        "number_of_views": 0,
-        "question": "What is the youngest age at which a person can legally drive a car or motorcycle in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFXG27DADN3ZA6QBPS0"
       },
       {
         "correct_answer": "False",
@@ -26663,21 +25663,6 @@
         "question": "What is the total number of Olympic gold medals won by the celebrated Scottish cyclist, Sir Chris Hoy?",
         "type_of_media": null,
         "ulid": "01JVJAKTFYJXE43N9G63W2MQRE"
-      },
-      {
-        "correct_answer": "Give gifts/cards to their mother",
-        "hint": "Think of Mother's Day as a time for heartfelt gestures; a gift or card is a classic way to show appreciation.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Take their mother for a Chinese meal",
-          "Take their mother to a park",
-          "Take their mother to the cinema"
-        ],
-        "number_of_views": 0,
-        "question": "What is a traditional activity for children on Mother's Day?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFYFXXKVPS3BV132MB8"
       },
       {
         "correct_answer": "Northern Ireland and the Republic of Ireland",
@@ -26988,21 +25973,6 @@
         "ulid": "01JVJAKTFYCN8NENH4R0J1PBMM"
       },
       {
-        "correct_answer": "Free secondary education in England and Wales",
-        "hint": "The act bridged the gap between primary and higher education for students in England and Wales.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Free primary education in England, Wales and Scotland",
-          "Free university fees in England, Wales, Scotland and Northern Ireland",
-          "Free primary and secondary education in England, Wales and Scotland"
-        ],
-        "number_of_views": 0,
-        "question": "What did 'the Butler Act' introduce in 1944 in terms of education?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTFYN9CER8YDK7P7DZA2"
-      },
-      {
         "correct_answer": "Small claims procedure",
         "hint": "Think small! This procedure is designed for minor issues that don't demand a full-blown legal process.",
         "is_active": true,
@@ -27296,21 +26266,6 @@
         "ulid": "01JVJAKTFZN56J9PAB5J3PP82V"
       },
       {
-        "correct_answer": "Father's Day",
-        "hint": "Think about a day when you traditionally make your dad feel special!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Halloween",
-          "Boxing Day",
-          "Remembrance Day"
-        ],
-        "number_of_views": 0,
-        "question": "What annual event is celebrated on the third Sunday in June each year?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG0F6Y7XPED7BQN39RQ"
-      },
-      {
         "correct_answer": "Managing Crime",
         "hint": "'Home' security involves managing potential threats, including crime.",
         "is_active": true,
@@ -27455,21 +26410,6 @@
         "ulid": "01JVJAKTG0QXHE55SEHR52WPW7"
       },
       {
-        "correct_answer": "24th of December",
-        "hint": "Christmas Eve is the night before Christmas Day, which is celebrated on the 25th of December.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "25th of December",
-          "26th of December",
-          "23rd of December"
-        ],
-        "number_of_views": 0,
-        "question": "On which date do people celebrate Christmas Eve?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG04Y0NWNJTJFJ7WYY8"
-      },
-      {
         "correct_answer": "Pancake Day",
         "hint": "Think of a tasty treat traditionally prepared and eaten the day before Lent begins.",
         "is_active": true,
@@ -27483,21 +26423,6 @@
         "question": "What is the name of the day that precedes Lent?",
         "type_of_media": null,
         "ulid": "01JVJAKTG0BCSD15GMJQJ2G9ZP"
-      },
-      {
-        "correct_answer": "17",
-        "hint": "The age is more than 16 but less than 18. The UK driving age is the age when you can start to learn.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "16",
-          "18",
-          "21"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age requirement to operate a car or motorcycle in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG0NKPZ2RZXZCREP397"
       },
       {
         "correct_answer": "1656",
@@ -28309,20 +27234,6 @@
         "ulid": "01JVJAKTG2MQQF3Y2JY6SSDKBH"
       },
       {
-        "correct_answer": "UK residents who are citizens of the Commonwealth and UK-born and naturalised adult citizens",
-        "hint": "Remember the UK is a common home for its citizens by birth or naturalisation and those from the Commonwealth living in it.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Only individuals born in the UK",
-          "Citizens from other parts of Europe"
-        ],
-        "number_of_views": 0,
-        "question": "Who among the following are eligible to vote in all UK elections?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG2YWD82F1DN7WYGPXY"
-      },
-      {
         "correct_answer": "True",
         "hint": "Remember the naval victory in 1588; it made Queen Elizabeth famous among the English with a popular 'armada' of supporters.",
         "is_active": true,
@@ -28737,21 +27648,6 @@
         "question": "Which country are the cities Norwich, Plymouth and Leeds situated in?",
         "type_of_media": null,
         "ulid": "01JVJAKTG3F4WJA5W5H0MZ4S39"
-      },
-      {
-        "correct_answer": "County Court",
-        "hint": "Imagine a county fairy bringing back all the gold coins you lost, just like a County Court helps you get back your money.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Youth Court",
-          "Coroner's Court",
-          "Magistrates' Court"
-        ],
-        "number_of_views": 0,
-        "question": "Which court should you approach to reclaim money that is owed to you?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG3FY8V3JKPB3M9Y7BV"
       },
       {
         "correct_answer": "Ernest Rutherford",
@@ -29405,21 +28301,6 @@
         "ulid": "01JVJAKTG57MWSCZZH4K040RT3"
       },
       {
-        "correct_answer": "NSPCC",
-        "hint": "NSPCC: The first letter of each word reminds you of the charity's focus: 'N'urturing 'S'afe 'P'laces for 'C'hildren and 'C'aring for them.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "The National Trust",
-          "Crisis and Shelter",
-          "PDSA"
-        ],
-        "number_of_views": 0,
-        "question": "Which of these charities focuses on helping children?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG5FFHJDGDKDGT5WGGB"
-      },
-      {
         "correct_answer": "False",
         "hint": "St. Valentine's Day is for celebrating love, but it's not the typical day for a wedding.",
         "is_active": true,
@@ -29721,21 +28602,6 @@
         "question": "Is it customary to open Christmas presents during Easter celebrations?",
         "type_of_media": null,
         "ulid": "01JVJAKTG6HFWSB0544TYM92H6"
-      },
-      {
-        "correct_answer": "18",
-        "hint": "Think of '18' as the age when you're considered an adult, responsible for your own bets.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "14",
-          "16",
-          "17"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age requirement to enter a betting shop or gambling club?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG61SRHPTN9S2Q731PF"
       },
       {
         "correct_answer": "Barber",
@@ -30251,19 +29117,6 @@
         "ulid": "01JVJAKTG81HD8K20B9B4XYP4H"
       },
       {
-        "correct_answer": "True",
-        "hint": "Think of pancakes as a yummy, traditional way of using up certain ingredients before fasting during Lent.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is it true that pancakes, traditionally made to consume ingredients like egg, fat, and milk before Lent's fasting period, are still eaten today?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG8WFK2SPC5R9FF0V6R"
-      },
-      {
         "correct_answer": "Anglo-Saxon",
         "hint": "Imagine, while the elite spoke in Norman French, the peasants held firmly onto their Anglo-Saxon tongue.",
         "is_active": true,
@@ -30335,21 +29188,6 @@
         "question": "Which religion was followed by Queen Elizabeth I?",
         "type_of_media": null,
         "ulid": "01JVJAKTG85SJ5VDWR6CAB6H6G"
-      },
-      {
-        "correct_answer": "There is a Children's Hearings System",
-        "hint": "Consider the heart in 'Children’s Hearings System', it puts the youth at the heart of the process.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Youth Court",
-          "Crown Court",
-          "Sheriff Court"
-        ],
-        "number_of_views": 0,
-        "question": "In Scotland, where are the cases involving young individuals heard?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG8BPN0MFNXA14CKFSY"
       },
       {
         "correct_answer": "True",
@@ -30956,21 +29794,6 @@
         "question": "Where was Anne Boleyn executed?",
         "type_of_media": null,
         "ulid": "01JVJAKTG96ET754PYFEQDJ8JV"
-      },
-      {
-        "correct_answer": "Halloween",
-        "hint": "On October 31st, the UK celebrates Halloween, a night of costumes and spooky fun.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Valentine's Day",
-          "Bonfire Night",
-          "Hogmanay"
-        ],
-        "number_of_views": 0,
-        "question": "Which festival is celebrated on October 31st in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTG94C3TF4VGAR5GYW63"
       },
       {
         "correct_answer": "Robert the Bruce",
@@ -31636,21 +30459,6 @@
         "ulid": "01JVJAKTGBCMMQKRBBPWA3G4Z9"
       },
       {
-        "correct_answer": "25 December",
-        "hint": "'25' has the same number of letters as 'gift', think of it as a gift receiving day.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "26 December",
-          "1 January",
-          "31 December"
-        ],
-        "number_of_views": 0,
-        "question": "On what date is Christmas Day, which commemorates the birth of Jesus Christ, officially observed?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGBCTDVXM4ZJRVVY2D9"
-      },
-      {
         "correct_answer": "False",
         "hint": "Residency in the UK doesn't necessarily mean employment. Think of job hunting as a separate chore.",
         "is_active": true,
@@ -31761,20 +30569,6 @@
         "question": "Who is credited as the leader of the newly established republic?",
         "type_of_media": null,
         "ulid": "01JVJAKTGBRCJC7VM7T7QE0JCC"
-      },
-      {
-        "correct_answer": "Selling tobacco to anyone under the age of 18 and Racial crime",
-        "hint": "Criminal laws guard against harmful behaviors affecting the peace of society or the safety of its members; they may involve crimes against individuals or regulatory infractions.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Discrimination in the workplace",
-          "Disputes about faulty goods"
-        ],
-        "number_of_views": 0,
-        "question": "Which of the following would be considered cases of criminal law?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGB5D6PCADD6CK1Z5JY"
       },
       {
         "correct_answer": "True",
@@ -32278,21 +31072,6 @@
         "question": "Which faith community celebrates the festival of Diwali?",
         "type_of_media": null,
         "ulid": "01JVJAKTGD606FDPCD1M86MSRC"
-      },
-      {
-        "correct_answer": "18",
-        "hint": "Think of the magical '18', the age of majority and the legal betting age too!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "16",
-          "21",
-          "20"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age requirement to enter betting shops or gambling clubs?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGDY7SX1J9XPGN27ZVV"
       },
       {
         "correct_answer": "Every prisoner was granted the right to a court hearing",
@@ -33426,19 +32205,6 @@
         "ulid": "01JVJAKTGGA08WT7NQFB25R40H"
       },
       {
-        "correct_answer": "False",
-        "hint": "Think about when most age restrictions typically lift - it's usually not as early as 15!",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it lawful for young individuals to purchase alcohol in pubs and off licences as soon as they turn 15?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGGXPMQN2W16TNKBXMM"
-      },
-      {
         "correct_answer": "Hurricane",
         "hint": "Look for a name that aligns with a force of nature, fitting for a powerful war machine.",
         "is_active": true,
@@ -33828,21 +32594,6 @@
         "ulid": "01JVJAKTGHKC6HXBCYF67R1RRE"
       },
       {
-        "correct_answer": "Scotland",
-        "hint": "Picture a Scottish child's hearing, a system designed to help young people in Scotland.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Wales",
-          "England",
-          "Northern Ireland"
-        ],
-        "number_of_views": 0,
-        "question": "In which country is the Children's Hearings system used?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGHP18EDW5RXQR7YDBQ"
-      },
-      {
         "correct_answer": "Ellie Simmonds",
         "hint": "Remember Ellie Simmonds, the swimming sensation, who made waves with her gold medals.",
         "is_active": true,
@@ -34178,21 +32929,6 @@
         "question": "What is the name for a set of written rules that govern how laws are made and set out citizens' rights and duties?",
         "type_of_media": null,
         "ulid": "01JVJAKTGHTKP36YJ8FQSKQFB5"
-      },
-      {
-        "correct_answer": "look after yourself and your family",
-        "hint": "Your well-being and that of your loved ones is a fundamental responsibility.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "find illegal immigrants",
-          "keep your dog on a lead at all the time",
-          "grow your own vegetables"
-        ],
-        "number_of_views": 0,
-        "question": "What is a primary responsibility of a citizen or permanent resident of the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGH0SZNSN26WCM2NMQS"
       },
       {
         "correct_answer": "Dorset",
@@ -34929,21 +33665,6 @@
         "ulid": "01JVJAKTGK190GF09EWG3EXYVN"
       },
       {
-        "correct_answer": "16",
-        "hint": "Think of the age when you can start driving, it's the same age as buying a lottery ticket.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "17",
-          "18",
-          "21"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age to purchase a lottery ticket or scratch card in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGK54CDT5X2RVNB08XV"
-      },
-      {
         "correct_answer": "Following previous decisions",
         "hint": "Common law is built on the 'common' practice of using past rulings as a guide.",
         "is_active": true,
@@ -35099,21 +33820,6 @@
         "question": "What kind of sites were commonly defended by the people of the Iron Age?",
         "type_of_media": null,
         "ulid": "01JVJAKTGKCNZRGJFK2NDEQBFM"
-      },
-      {
-        "correct_answer": "Father's Day",
-        "hint": "Think of a day dedicated to 'Dad', falling in the sunny month of June when children often appreciate their fathers with cards and gifts.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Mother's Day",
-          "Bonfire Night",
-          "Halloween"
-        ],
-        "number_of_views": 0,
-        "question": "What is the special occasion that is celebrated every year on the third Sunday of June?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGMMBG4860M5TKYFMPT"
       },
       {
         "correct_answer": "She became the first woman Prime Minister.",
@@ -35443,19 +34149,6 @@
         "question": "Is it false that you are not responsible for cleaning up after your pet in public places?",
         "type_of_media": null,
         "ulid": "01JVJAKTGNF49EAMBSXWKKQ04N"
-      },
-      {
-        "correct_answer": "Yes, this is correct",
-        "hint": "Think of 'industrial revolution' as a 'revolution' in child labor laws too.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "No, children were not allowed to enter the factories"
-        ],
-        "number_of_views": 0,
-        "question": "Is it true that during the Industrial Revolution in the 18th and 19th centuries, children also worked in factories and were treated the same way as adults?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGNTTV0XQQ1FNAC4RCV"
       },
       {
         "correct_answer": "Stormont",
@@ -35969,21 +34662,6 @@
         "ulid": "01JVJAKTGPJNT261C2APRMC1PG"
       },
       {
-        "correct_answer": "Freedom of religion and political views",
-        "hint": "Imagine the Enlightenment as a time when people broke free from chains of thought, embracing the freedom to believe and think as they choose.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Complete democracy",
-          "New technological advances",
-          "Constitutional democracy"
-        ],
-        "number_of_views": 0,
-        "question": "What was a core principle of the Enlightenment?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGPDSAZQHVEW8YHBWXG"
-      },
-      {
         "correct_answer": "Yes, it's correct",
         "hint": "Think of the jury as the final judges, carefully listening to the story and deciding the ending.",
         "is_active": true,
@@ -36444,19 +35122,6 @@
         "ulid": "01JVJAKTGQDKFZ4CNEQDJAZH2H"
       },
       {
-        "correct_answer": "False",
-        "hint": "Think about the health risks associated with tobacco use and the age restrictions in place.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it legal to sell tobacco to anyone of any age in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGQH1S3RRE8E77K0CMV"
-      },
-      {
         "correct_answer": "True",
         "hint": "Imagine twinkling lights, festive ornaments, and a decorated tree – all hallmarks of Christmas.",
         "is_active": true,
@@ -36913,19 +35578,6 @@
         "question": "How many members constitute the Scottish Parliament?",
         "type_of_media": null,
         "ulid": "01JVJAKTGRWM1T797XB9HZWCYH"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "'Tobacco is off-limits for those under eighteen' is a good mnemonic phrase to recall the law.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Does the law prohibit the sale of tobacco products to individuals under the age of 18?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGRMD6N1XWCW42S227N"
       },
       {
         "correct_answer": "The Festival of Lights",
@@ -37595,20 +36247,6 @@
         "ulid": "01JVJAKTGVB58VY3S0VE218G7B"
       },
       {
-        "correct_answer": "Racial crime and selling tobacco to anyone under the age of 18",
-        "hint": "Criminal law covers actions harmful to society, like racial crimes and under-age selling of harmful substances.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Disputes about faulty goods",
-          "Discrimination in the workplace"
-        ],
-        "number_of_views": 0,
-        "question": "Which two scenarios fall under criminal law?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGV54T7QBZ8HTM68HFP"
-      },
-      {
         "correct_answer": "The monarch",
         "hint": "Royalty bestows this lifetime honor.",
         "is_active": true,
@@ -37696,21 +36334,6 @@
         "question": "Which date marks the signing of the Treaty of Rome, establishing the European Economic Community (EEC), the precursor to the EU?",
         "type_of_media": null,
         "ulid": "01JVJAKTGVZ1DSWK765RESS4QE"
-      },
-      {
-        "correct_answer": "Play tricks on each other",
-        "hint": "April Fools' Day: a day for laughter, pranks, and playful deception.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Go horse-racing",
-          "Attend church",
-          "Have demonstrations in Trafalgar Square"
-        ],
-        "number_of_views": 0,
-        "question": "What is a common activity on April 1st?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGV3N5G1NY16MDFZB6P"
       },
       {
         "correct_answer": "Bulgaria",
@@ -37870,20 +36493,6 @@
         "question": "On which day does the Christian season of Lent begin?",
         "type_of_media": null,
         "ulid": "01JVJAKTGVV812Q3ZQ7FNT41FJ"
-      },
-      {
-        "correct_answer": "Great Expectations and Oliver Twist",
-        "hint": "Dickens' stories are like a double feature: 'Great Expectations' and 'Oliver Twist' are both classics.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Harry Potter",
-          "Pride and Prejudice"
-        ],
-        "number_of_views": 0,
-        "question": "Which of the following novels were written by Charles Dickens?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGV24V28M8SWZK4KKCR"
       },
       {
         "correct_answer": "Steam Power",
@@ -39108,21 +37717,6 @@
         "ulid": "01JVJAKTGZJJF32330FQAN14E1"
       },
       {
-        "correct_answer": "17",
-        "hint": "Think of the age when teenagers often gain a sense of freedom and independence.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "16",
-          "18",
-          "21"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age to legally drive a car or motorcycle in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTGZPYF4R3R8MXZ7X54N"
-      },
-      {
         "correct_answer": "1679",
         "hint": "Picture the year as a historical marker, a pivotal moment when individual rights were formally protected.",
         "is_active": true,
@@ -39500,19 +38094,6 @@
         "question": "Do Northern Ireland and Wales each have their own Church of state?",
         "type_of_media": null,
         "ulid": "01JVJAKTH0D9X0P573E8Z9D5KA"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "Think of it as a violation of personal freedom, a crime in the UK.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is forcing someone to marry a criminal offense in the UK?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTH0YH3QZ76GVTXN6523"
       },
       {
         "correct_answer": "St George",
@@ -40230,21 +38811,6 @@
         "question": "As a British citizen, what are your responsibilities?",
         "type_of_media": null,
         "ulid": "01JVJAKTH2BQSPYVWJ3D53GAM1"
-      },
-      {
-        "correct_answer": "16",
-        "hint": "It's the same age when you can leave school and get a full-time job in the UK.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "18",
-          "25",
-          "21"
-        ],
-        "number_of_views": 0,
-        "question": "What is the minimum age requirement to ride a moped in the United Kingdom?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTH2AVHFA1BS3YGCYJRW"
       },
       {
         "correct_answer": "False",
@@ -41610,20 +40176,6 @@
         "ulid": "01JVJAKTH66PX270WG7VGK8820"
       },
       {
-        "correct_answer": "Education and Defence",
-        "hint": "Think of the Secretaries of State as key players, managing vital areas like schools and the military.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Policing",
-          "Economy"
-        ],
-        "number_of_views": 0,
-        "question": "Which two areas fall under the responsibility of the Secretaries of State?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTH6FX6JZQA5977W0PXY"
-      },
-      {
         "correct_answer": "Disability and Marital status",
         "hint": "Imagine a world where everyone is treated fairly, regardless of their abilities or relationship status – that's the law's goal!",
         "is_active": true,
@@ -41826,19 +40378,6 @@
         "ulid": "01JVJAKTH6GMT4D3NW8581413N"
       },
       {
-        "correct_answer": "False",
-        "hint": "While this initiative offers great opportunities for young individuals, it's not mandatory but highly encouraged.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "True"
-        ],
-        "number_of_views": 0,
-        "question": "Is it obligatory for 16 and 17 year-olds to enroll in the National Citizen Service programme?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTH6T3R9SQT69CD73V1J"
-      },
-      {
         "correct_answer": "King Henry VII",
         "hint": "Think of the song, 'Henry the Eighth I am, I am.' The answer is the king before him.",
         "is_active": true,
@@ -41893,19 +40432,6 @@
         "question": "What is a general rule for people who are self-employed regarding National Insurance contributions?",
         "type_of_media": null,
         "ulid": "01JVJAKTH678AHZWVN4MCMJMGD"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "Think of the rules that apply to purchases of controlled substances like alcohol and tobacco.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is it against the law to sell tobacco products to anyone below 18 years of age?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTH6AW14PHEEVZGQCMJ2"
       },
       {
         "correct_answer": "True",
@@ -42294,20 +40820,6 @@
         "ulid": "01JVJAKTH7CFYVEN50RQS5TQBV"
       },
       {
-        "correct_answer": "Children's Hearings System",
-        "hint": "Think about the word 'Child'. Scotland uses a system that matches the people it's designed to help – children.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "Youth Hearings System",
-          "Young Hearings System"
-        ],
-        "number_of_views": 0,
-        "question": "Which system is used in Scotland for children and youngsters who have committed an offence?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTH75K9ZNEGEXN6V2VWT"
-      },
-      {
         "correct_answer": "Three",
         "hint": "The Union Flag consists of three crosses – St. George's Cross, St. Andrew's Cross, and St. Patrick's Cross.",
         "is_active": true,
@@ -42566,19 +41078,6 @@
         "question": "Who are school governors or members of the school board in Scotland?",
         "type_of_media": null,
         "ulid": "01JVJAKTH8ZFNP9TFNB852WTP3"
-      },
-      {
-        "correct_answer": "True",
-        "hint": "Imagine a police officer enforcing public order, which includes addressing underage drinking and loitering.",
-        "is_active": true,
-        "link_to_media": null,
-        "list_of_wrong_answers": [
-          "False"
-        ],
-        "number_of_views": 0,
-        "question": "Is it true that the police have the authority to confiscate alcohol or move young people on from public places?",
-        "type_of_media": null,
-        "ulid": "01JVJAKTH897QQMRNZC3ZW1R7M"
       },
       {
         "correct_answer": "King Alfred the Great",
