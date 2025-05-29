@@ -34,7 +34,7 @@
         "category": "Places of Interest",
         "correct_answer": "The distance is approximately 870 miles, or 1,400 kilometers.",
         "hint": "Picture a long road trip across the entire mainland of Britain, stretching from the northernmost point to the southwestern tip.",
-        "is_active": true,
+        "is_active": false,
         "link_to_media": null,
         "list_of_wrong_answers": [
           "True"
@@ -2950,7 +2950,7 @@
         "category": "The Tudors and Stuarts",
         "correct_answer": "Catherine Howard and Anne Boleyn",
         "hint": "Remember that Catherine Howard and Anne Boleyn got the 'axe', not the other wives.",
-        "is_active": true,
+        "is_active": false,
         "link_to_media": null,
         "list_of_wrong_answers": [
           "Anne of Cleves",
